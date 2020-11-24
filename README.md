@@ -23,12 +23,12 @@
 The initial brief required us (within a team) to create a Help Queue web application for use in the Academy, which functions as a CRUD list, allowing users to create issues and for trainers to mark them as complete.
 
 ### Team
-Sam Horner
-Ramgith Jagajith
-Shaquille Ricketts-Sesay
-Sheraz Shahid
-Lewis Thomson
-Lisandro Villarruel
+* Sam Horner
+* Ramgith Jagajith
+* Shaquille Ricketts-Sesay
+* Sheraz Shahid
+* Lewis Thomson
+* Lisandro Villarruel
 
 ### Requirements
 
