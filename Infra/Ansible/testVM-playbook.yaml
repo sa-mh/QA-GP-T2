@@ -1,14 +1,14 @@
 - hosts: 
   become: true
   tasks:
-  - name: Copy pytest-install.sh
-    copy:
-      src: pytest-install.sh
-      dest: /root
-      owner: root
+  - name: Update VM
+    apt:
+        update-cache: yes
 
-  - name: Run pytest-install.sh
-    command: sh /root/pytest-install.sh
+  - name: Install PyTest
+      apt:
+        name: python3-pytest
+        state: latest
 
   - name: Install mysql
     apt:
@@ -23,15 +23,3 @@
  
   - name: Run docker-install.sh
     command: sh /root/docker-install.sh
-
-  - name: Copy docker-compose.yaml
-    copy:
-      src: Docker-Compose/docker-compose.yaml
-      dest: /home/ubuntu
-      owner: ubuntu
-
-  - name: Copy run-tests.sh
-    copy:
-      src: Docker-Compose/run-tests.sh
-      dest: /home/ubuntu
-      owner: ubuntu
