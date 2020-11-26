@@ -30,3 +30,8 @@ variable "subnet_id" {
 variable "security_group_ids" {
   description = "IDs to be overriden"
 }
+
+variable "tag1" {
+  description = "Tag name for main ec2"
+
+}
