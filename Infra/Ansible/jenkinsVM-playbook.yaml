@@ -1,34 +1,15 @@
 - hosts: 
   become: true
   tasks:
-  - name: Copy pytest-install.sh
-    copy:
-      src: pytest-install.sh
-      dest: /root
-      owner: root
-  
-  - name: Run pytest-install.sh
-    command: sh /root/pytest-install.sh
-  
-  - name: Copy docker-install.sh
-    copy:
-      src: docker-install.sh
-      dest: /root
-      owner: root
- 
-  - name: Run docker-install.sh
-    command: sh /root/docker-install.sh
-
-  - name: Install mysql
+  - name: Update VM
     apt:
-      name: mysql-server
-      state: latest
-
+        update-cache: yes
+        
   - name: Install aws-cli
     apt:
       name: awscli
       state: latest
-    
+
   - name: Copy kubectl-install.sh
     copy:
       src: kubectl-install.sh

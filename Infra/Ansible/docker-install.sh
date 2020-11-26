@@ -1,6 +1,5 @@
 #!/bin/bash
 curl https://get.docker.com | sudo bash
-sudo usermod -aG docker $(whoami)
 sudo usermod -aG docker ubuntu
 sudo usermod -aG docker jenkins
 
