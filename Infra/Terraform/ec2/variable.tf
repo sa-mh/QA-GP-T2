@@ -24,3 +24,9 @@ variable "zone" {
     3 = "eu-west-1c"
   }
 }
+variable "subnet_id" {
+  description = "subnet ID to be overriden"
+}
+variable "security_group_ids" {
+  description = "IDs to be overriden"
+}
