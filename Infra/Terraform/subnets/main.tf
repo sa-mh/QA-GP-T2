@@ -6,9 +6,8 @@ resource "aws_subnet" "VPCSub" {
   for_each = var.cidrblock
   cidr_block              = cidr.value
 
-  iterator = azone
   for_each = var.az
-  availability_zone = azone.value
+  availability_zone = each.value.az
 
   tags = {
     Name = "FP - Subnet"
