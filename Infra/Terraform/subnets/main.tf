@@ -1,4 +1,4 @@
-resource "aws_subnet" "taskVPCSubnet" {
+resource "aws_subnet" "VPCSub" {
   vpc_id                  = var.vpc_id
   map_public_ip_on_launch = "true"
 
@@ -42,5 +42,5 @@ resource "aws_subnet" "taskVPCSubnet" {
 
 resource "aws_db_subnet_group" "rds_groups" {
   name = "rds_groups"
-  subnet_ids = [aws_subnet.taskVPCSubnet.id, aws_subnet.rdsSubnet2.id, aws_subnet.rdsSubnet3.id]
+  subnet_ids = [aws_subnet.VPCSub.0.id, aws_subnet.VPCSub.1.id, aws_subnet.VPCSub.2.id]
 }

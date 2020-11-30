@@ -15,7 +15,7 @@ variable "az" {
   type = map
   default = {
     zone1 = "eu-west-1a"
-    zone1 = "eu-west-1b"
-    zone1 = "eu-west-1c"
+    zone2 = "eu-west-1b"
+    zone3 = "eu-west-1c"
   }
 }
