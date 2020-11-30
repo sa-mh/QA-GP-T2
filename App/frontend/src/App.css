@@ -28,6 +28,19 @@
   color: #61dafb;
 }
 
+.footer {
+  background-color: black;
+  color: white;
+  padding: 1%;
+  text-align: center;
+}
+
+.navbar {
+  background-color: black;
+  color: white;
+}
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
