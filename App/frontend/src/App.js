@@ -1,6 +1,10 @@
 import './App.css';
 import Footer from './Components/Footer';
 import Header from './Components/Header';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import LoginPage from './Components/Login-page/LoginPage';
+import Aboutpage from './Components/About-page/Aboutpage';
+
 
 function App() {
   return (
@@ -8,9 +12,8 @@ function App() {
         <Header />
         <Switch>
           <div>
-            <Route path="/" exact component={HomePage}/>
-            <Route path="/login" exact component={loginPage}/>
-            <Route path="/about" exact component={aboutPage}/>
+            <Route path="/login" exact component={LoginPage}/>
+            <Route path="/about" exact component={Aboutpage}/>
           </div>
         </Switch>
         <Footer />
