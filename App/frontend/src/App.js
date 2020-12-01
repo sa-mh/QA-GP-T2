@@ -4,6 +4,7 @@ import Header from './Components/Header';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import LoginPage from './Components/Login-page/LoginPage';
 import Aboutpage from './Components/About-page/Aboutpage';
+import CreateAccount from './Components/Create-Account-page/CreateAccount';
 
 
 function App() {
@@ -14,6 +15,8 @@ function App() {
           <div>
             <Route path="/login" exact component={LoginPage}/>
             <Route path="/about" exact component={Aboutpage}/>
+            <Route path ="/createAccount" component={CreateAccount}/>
+
           </div>
         </Switch>
         <Footer />
