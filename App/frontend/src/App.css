@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: rgb(0, 64, 80);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -29,7 +29,7 @@
 }
 
 body {
-  background-color: rgb(0, 64, 80);
+  background-color: white;
 }
 
 .loginHeading, .signupHeading {
@@ -37,7 +37,7 @@ body {
 }
 
 .footer {
-  background-color: black;
+  background-color:rgb(0, 64, 80);
   color: white;
   padding: 1%;
   text-align: center;
@@ -48,8 +48,24 @@ body {
 }
 
 .navbar {
-  background-color: black;
-  color: white;
+  background-color:white;
+  color: rgb(0, 64, 80);
+  border-bottom-color: rgb(0, 64, 80);
+  border-bottom-width: 10px;
+  align-items: center;
+  text-align: left;
+  box-sizing: border-box;
+
+}
+
+.navbar-logo {
+  display: inline-block;
+  padding-top: .3125rem;
+  padding-bottom: .3125rem;
+  margin-right: 1rem;
+  line-height: inherit;
+  white-space: nowrap;
+  box-sizing: border-box;
 }
 
 .loginDiv, .signupDiv {
