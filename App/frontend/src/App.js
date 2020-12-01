@@ -4,13 +4,17 @@ import Header from './Components/Header';
 
 function App() {
   return (
-    <div className="container">
-      <Header />
-      <div className="container">
-        <h1>Other UIs to go here</h1>
-      </div>
-      <Footer />
-    </div>
+      <Router>
+        <Header />
+        <Switch>
+          <div>
+            <Route path="/" exact component={HomePage}/>
+            <Route path="/login" exact component={loginPage}/>
+            <Route path="/about" exact component={aboutPage}/>
+          </div>
+        </Switch>
+        <Footer />
+      </Router>
   );
 }
 
