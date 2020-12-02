@@ -1,8 +1,9 @@
-import React, {useState} from 'react'
-
+import React, {useState, Redirect} from 'react'
+import axios from 'axios';
 
 const CreateAccount = () => {
 
+    let DATABASE_URL = ""
     // setting the states
     const [firstname, setFirstname] = useState("");
     const [lastname, setLastname] = useState("");
@@ -44,6 +45,21 @@ const CreateAccount = () => {
         isPasswordSame(password1,password2);
     }
 
+    const post_createAccount = (e) => {
+        e.preventDefault();
+        axios.post({DATABASE_URL}+"/create/trainee", {
+            firstName: firstname,
+            lastName: lastname,
+            qaEmail: qaEmail,
+            username: username,
+            password: password1,
+            }
+        ).then(response =>{
+            console.log(response);
+            return  <Redirect  to="../Login" />;
+        }).catch(error => console.log(error));
+    }
+
     //If password1 and password2 is exactly the same, then setPasswordTheSame as true - If it is false, we need to show an error on the page, if it is true, we can send this to the database.
     const isPasswordSame = (password1, password2) => {
         if (password1 === password2) {
@@ -64,7 +80,7 @@ const CreateAccount = () => {
                         <input className="signupInput" type="text" id="username" onChange={(e)=>updateUsername(e)} placeholder="Enter your username" required></input> <br></br>
                         <input className="signupInput" type="password" id="password" onChange={(e)=>updatePassword1(e)} placeholder="Enter your password" required></input> <br></br>
                         <input className="signupInput" type="password" id="password" onChange={(e)=>updatePassword2(e)} placeholder="Enter your password" required></input> <br></br>
-                        <button className="btn btn-primary" id="signupButton" type="submit">Create an account</button>
+                        <button className="btn btn-primary" id="signupButton" type="submit" onClick={(e) => post_createAccount(e)}>Create an account</button>
                     </form>
                 </div>
             </div>
