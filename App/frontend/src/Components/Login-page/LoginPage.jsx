@@ -5,25 +5,11 @@ import axios from 'axios'
 // import CreateAccount from '../Create-Account-page/CreateAccount'
 // import { BrowserRouter as Router, Route, } from 'react-router-dom';
 
-function LoginPage() {
+const LoginPage = props => {
     
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [memberType, setMemeberType] = useState("trainee");
-    
-    const updateUsername = (e) => {
-        e.preventDefault(); 
-        setUsername(e.target.value);
-    }
-
-    const updatePassword = (e) => {
-        e.preventDefault(); 
-        setPassword(e.target.value);
-    }
-
-    const updateMemberType = (e) => {
-        setMemeberType(e.target.value);
-    }
+    const [memberType, setMemberType] = useState("trainee");
 
     const get_Login = (e) => {
         e.preventDefault();
@@ -31,7 +17,7 @@ function LoginPage() {
         .then(response =>{
             console.log(response);
             if(response.data.password === password){
-              return  <Redirect  to="../{memberType}"/>;  
+              props.history.push("/"+memberType);
             }
             else{
                 //Show a login failed message
@@ -48,9 +34,9 @@ function LoginPage() {
                 <h1 className="loginHeading">Login</h1>
                 <div>
                     <form className="ml-3" id="loginForm">
-                        <input className="loginInput" type="text" id="username" placeholder="Enter your username" onChange={(e)=>updateUsername(e)} required></input> <br></br>
-                        <input className="loginInput" type="password" id="password" placeholder="Enter your password" onChange={(e)=>updatePassword(e)} required></input> <br></br>
-                        <select onChange={(e) => updateMemberType(e)}>
+                        <input className="loginInput" type="text" id="username" placeholder="Enter your username" onChange={e=>setUsername(e.target.value)} required></input> <br></br>
+                        <input className="loginInput" type="password" id="password" placeholder="Enter your password" onChange={e=>setPassword(e.target.value)} required></input> <br></br>
+                        <select onChange={e=>setMemberType(e.target.value)}>
                             <option value="trainer">Trainer</option>
                             <option value="trainee" selected>Trainee</option>
                         </select>
