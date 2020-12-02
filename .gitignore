@@ -1,3 +1,6 @@
 
 Infra/Ansible/Returns
 Infra/Terraform/.terraform
+Infra/Terraform/secretVariables.tf
+Infra/Terraform/terraform.tfstate
+Infra/Terraform/terraform.tfstate.backup

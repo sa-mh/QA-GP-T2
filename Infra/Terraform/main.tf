@@ -3,10 +3,10 @@ provider "aws" {
   shared_credentials_file = "/home/ubuntu/.aws/credentials"
 }
 
-// resource "aws_key_pair" "sshKeyGen" {
-//   key_name   = "myKey"
-//   public_key = ""
-// }
+resource "aws_key_pair" "sshKeyGen" {
+  key_name   = "myKey"
+  public_key = var.pubKey
+}
 
 module "ec2" {
   source             = "./ec2"
@@ -36,15 +36,15 @@ module "routetable" {
   vpc_id     = module.vpc.vpc_id
   gateway_id = module.gateway.gateway_id
   subnetid = {
-      subnet1 = module.subnets.subnet_id
-      subnet2 = module.subnets.subnet2_id
-      subnet3 = module.subnets.subnet3_id
+    subnet1 = module.subnets.subnet_id
+    subnet2 = module.subnets.subnet2_id
+    subnet3 = module.subnets.subnet3_id
   }
 }
 
 module "securitygroups" {
-  source = "./securitygroups"
-  vpc_id = module.vpc.vpc_id
+  source  = "./securitygroups"
+  vpc_id  = module.vpc.vpc_id
   vpccidr = module.vpc.vpc_cidr
 }
 
@@ -62,7 +62,7 @@ module "rds" {
   vpc_id             = module.vpc.vpc_id
   rds_subnet_grp_id  = module.subnets.rds_subnet_grp_id
   security_group_ids = [module.securitygroups.ssh_id]
-  rdsname = "DevelopmentDB"
+  rdsname            = "development-db"
 }
 
 module "rds-2" {
@@ -70,7 +70,7 @@ module "rds-2" {
   vpc_id             = module.vpc.vpc_id
   rds_subnet_grp_id  = module.subnets.rds_subnet_grp_id
   security_group_ids = [module.securitygroups.ssh_id]
-  rdsname = "TestDB"
+  rdsname            = "test-db"
 }
 
 // module "eks" {
