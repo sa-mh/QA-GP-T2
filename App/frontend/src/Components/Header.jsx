@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 function Header() {
     return (
         <>
-            <span>
+            <span className="navbar">
             <Link to="/"><img className="navbar-logo" src="https://qa-community.co.uk/static/qa_fill_primary.svg" alt="QA Logo" width="64" height="64"/></Link>
             </span>
             <div className="navbar">
