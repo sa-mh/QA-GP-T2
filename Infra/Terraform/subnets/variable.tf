@@ -1,21 +1,12 @@
 variable "vpc_id" {
-  description = "vpc id to be overriden"
+  description = "VPC ID to be overriden"
 }
 
-variable "cidrblock" {
+variable "AZ_CIDR" {
   type = map
   default = {
-    cidr1 = "10.0.1.0/24"
-    cidr2 = "10.0.3.0/24"
-    cidr3 = "10.0.4.0/24"
-  }
-}
-
-variable "az" {
-  type = map
-  default = {
-    zone1 = "eu-west-1a"
-    zone2 = "eu-west-1b"
-    zone3 = "eu-west-1c"
+    eu-west-1a = "10.0.1.0/24"
+    eu-west-1b = "10.0.2.0/24"
+    eu-west-1c = "10.0.3.0/24"
   }
 }

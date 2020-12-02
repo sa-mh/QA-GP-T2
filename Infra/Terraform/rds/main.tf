@@ -9,5 +9,6 @@ resource "aws_db_instance" "rds1" {
     username = "root"
     password = "password"
     skip_final_snapshot = true
+    identifier = var.rdsname
 }
 

@@ -1,10 +1,10 @@
-resource "aws_instance" "demo" {
-  ami                         = var.ami-ROI
+resource "aws_instance" "EC2" {
+  ami                         = var.ami
   instance_type               = var.type
-  key_name                    = "terraKey"
-  associate_public_ip_address = "true"
+  key_name                    = "myKey"
   subnet_id                   = var.subnet_id
   vpc_security_group_ids      = var.security_group_ids
-  tags = var.tag1
+  associate_public_ip_address = "true"
+  tags                        = var.tag1
 }
 

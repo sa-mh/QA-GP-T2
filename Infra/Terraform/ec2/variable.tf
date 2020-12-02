@@ -5,33 +5,17 @@ variable "ami" {
 
 variable "type" {
   description = "machine size"
-  default     = "t2.small"
+  default     = "t2.micro"
 }
 
-variable "ami-ROI" {
-  description = "machine image"
-  default     = "ami-0dc8d444ee2a42d8a"
-}
-variable "ROIzone" {
-  description = "machine image"
-  default     = "eu-west-1a"
-}
-variable "zone" {
-  description = "map of availability zones for eu-west-1"
-  default = {
-    1 = "eu-west-1a"
-    2 = "eu-west-1b"
-    3 = "eu-west-1c"
-  }
-}
 variable "subnet_id" {
-  description = "subnet ID to be overriden"
+  description = "Subnet ID to be overriden"
 }
+
 variable "security_group_ids" {
   description = "IDs to be overriden"
 }
 
 variable "tag1" {
   description = "Tag name for main ec2"
-
 }
