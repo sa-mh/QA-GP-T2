@@ -54,8 +54,7 @@ function LoginPage() {
                             <option value="trainer">Trainer</option>
                             <option value="trainee" selected>Trainee</option>
                         </select>
-                        <button className="btn btn-primary" id="loginButton" type="submit" onClick={get_Login}>Login</button> 
-
+                        <button className="btn btn-primary" id="loginButton" type="submit" onClick={get_Login}>Login</button>
                         <div>
                             <Link to="/createAccount">
                                 <button style={{ backgroundColor: "darkred" }} className="btn btn-primary" id="signUpButton" type="button">Create an account</button>
