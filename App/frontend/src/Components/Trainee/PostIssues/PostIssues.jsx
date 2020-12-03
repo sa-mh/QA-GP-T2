@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import axios from 'axios'
 
 const PostIssues = () => {
 
@@ -15,16 +16,35 @@ const PostIssues = () => {
         setDescription(e.target.value);
     }
 
+    const post_newIssue = (e) => {
+        e.preventDefault();
+        axios.post("/create/ticket", {
+            title: ticketTitle,
+	        issue: ticketIssue,
+	        topic: ticketTopic,
+	        submitDate: ticketDate,
+            urgency: ticketPriority,
+	        status: "Open",
+	        traineeID: traineeID,
+            }
+        ).then(response =>{
+            console.log(response);
+            window.location.reload();
+        }).catch(error => {
+            console.log(error.data)
+        });
+    }
+
 
     return (
         <div>
         <div className="createDiv">
             <h1 className="signupHeading">Post an issue</h1>
             <div>
-            <form className="ml-3" id="postIssueForm">
+                <form className="ml-3" id="postIssueForm">
                     <input className="issueInput" type="text"  onChange={(e) => updateTitle(e)} placeholder="Give issue a title" required></input> <br></br>
                     <input className="issueInput" type="text"  onChange={(e) => updateDesciption(e)}placeholder="Please explain the issue in as much detail as possible" required></input> <br></br>
-                    <button className="btn btn-primary" id="signupButton" type="submit">Post Issue</button>
+                    <button className="btn btn-primary" id="signupButton" type="submit" onClick={e=>post_newIssue(e)}>Post Issue</button>
                 </form>
             </div>
         </div>

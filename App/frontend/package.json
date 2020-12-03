@@ -35,6 +35,15 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
-    ]
+    ],
+    "jest": {
+      "collectCoverageFrom": [
+        "**/*.{js,jsx}",
+        "!**/node_modules/**",
+        "!**/coverage/**",
+        "!**/serviceWorker.js",
+        "!**/index.js"
+      ]
+  }
   }
 }
