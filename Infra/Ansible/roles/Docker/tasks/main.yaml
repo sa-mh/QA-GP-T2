@@ -1,0 +1,8 @@
+- name: Copy docker-install.sh
+  copy:
+    src: docker-install.sh
+    dest: /root
+    owner: root
+
+- name: Run docker-install.sh
+  command: sh /root/docker-install.sh
