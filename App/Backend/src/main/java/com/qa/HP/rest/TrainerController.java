@@ -7,11 +7,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.qa.HP.domain.Trainer;
 import com.qa.HP.service.TrainerService;
 
-// This class deals with requests
+@RestController
+@RequestMapping("/trainer")
 public class TrainerController {
 	
 	private TrainerService service;
@@ -22,12 +25,12 @@ public class TrainerController {
 	}
 	
 	//Get request
-	@GetMapping("/trainer/getAll")
+	@GetMapping("/getAll")
 	public ResponseEntity<List<Trainer>> getTrainer() {
 		return ResponseEntity.ok(this.service.getTrainer());
 	}
 		
-	@PostMapping("/trainer/create")
+	@PostMapping("/create")
 	public ResponseEntity<Trainer> createTrainer(@RequestBody Trainer trainer) {
 		return new ResponseEntity<Trainer>(this.service.createTrainer(trainer), HttpStatus.CREATED);
 	}

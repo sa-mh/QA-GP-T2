@@ -2,9 +2,12 @@ package com.qa.HP.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.qa.HP.domain.Trainer;
 import com.qa.HP.domain.TrainerRepo;
 
+@Service
 public class TrainerService {
 	
 	private TrainerRepo repo;

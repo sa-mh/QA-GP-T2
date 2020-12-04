@@ -3,11 +3,12 @@ package com.qa.HP.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.qa.HP.domain.TraineeRepo;
 import com.qa.HP.domain.Trainee;
-import com.qa.HP.domain.TraineeRepo;
 
+@Service
 public class TraineeService {
 	
 	@Autowired

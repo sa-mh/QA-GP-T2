@@ -12,11 +12,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.qa.HP.domain.Ticket;
 import com.qa.HP.service.TicketService;
-import com.qa.HP.service.TicketService;
 
+@RestController
+@RequestMapping("/ticket")
 public class TicketController {
 	
 	private TicketService service;
@@ -26,17 +29,17 @@ public class TicketController {
 		this.service = service;
 	}
 
-	@PostMapping("/ticket/create")
+	@PostMapping("/create")
 	public ResponseEntity<Ticket> createTicket(@RequestBody Ticket ticket) {
 		return new ResponseEntity<Ticket>(this.service.createTicket(ticket), HttpStatus.CREATED);
 	}
 
-	@GetMapping("/ticket/getAll")
+	@GetMapping("/getAll")
 	public ResponseEntity<List<Ticket>> getTicket() {
 		return ResponseEntity.ok(this.service.getTicket());
 	}
 
-	@DeleteMapping("/ticket/remove/{id}")
+	@DeleteMapping("/remove/{id}")
 	public ResponseEntity<Object> deleteTicket(@PathVariable Long id) {
 		if (this.service.deleteTicket(id)) {
 			return new ResponseEntity<>(HttpStatus.OK);
