@@ -1,4 +1,4 @@
-import React, {useState, Redirect} from 'react'
+import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 // import { Switch } from 'react-router-dom'
@@ -13,7 +13,7 @@ const LoginPage = props => {
 
     const get_Login = (e) => {
         e.preventDefault();
-        axios.get("/get/" + memberType + "/" + username)
+        axios.get("/"+ memberType + "/get/" + username)
         .then(response =>{
             console.log(response);
             if(response.data.password === password){

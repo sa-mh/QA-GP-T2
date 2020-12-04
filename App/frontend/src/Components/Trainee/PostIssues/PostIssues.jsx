@@ -3,26 +3,20 @@ import axios from 'axios'
 
 const PostIssues = () => {
 
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
+    const [ticketTitle, setTitle] = useState("");
+    const [ticketIssue, setIssue] = useState("");
+    const [ticketTopic, setTopic] = useState("");
+    const [ticketPriority, setPriority] = useState("");
 
-    const updateTitle = (e) => {
-        e.preventDefault(); 
-        setTitle(e.target.value);
-    }
-
-    const updateDesciption = (e) => {
-        e.preventDefault(); 
-        setDescription(e.target.value);
-    }
+    //Need to find a way to retrieve the Trainee ID - Likely via prop/state from Login Screen
+    const [traineeID] = useState(6)
 
     const post_newIssue = (e) => {
         e.preventDefault();
-        axios.post("/create/ticket", {
+        axios.post("/ticket/create", {
             title: ticketTitle,
 	        issue: ticketIssue,
 	        topic: ticketTopic,
-	        submitDate: ticketDate,
             urgency: ticketPriority,
 	        status: "Open",
 	        traineeID: traineeID,
@@ -42,8 +36,21 @@ const PostIssues = () => {
             <h1 className="signupHeading">Post an issue</h1>
             <div>
                 <form className="ml-3" id="postIssueForm">
-                    <input className="issueInput" type="text"  onChange={(e) => updateTitle(e)} placeholder="Give issue a title" required></input> <br></br>
-                    <input className="issueInput" type="text"  onChange={(e) => updateDesciption(e)}placeholder="Please explain the issue in as much detail as possible" required></input> <br></br>
+                    <input className="issueInput" type="text"  onChange={e=>setTitle(e.target.value)} placeholder="Give issue a title" required></input> <br></br>
+                    <input className="issueInput" type="text"  onChange={e=>setIssue(e.target.value)} placeholder="Please explain the issue in as much detail as possible" required></input> <br></br>
+                    <select onChange={e=>setTopic(e.target.value)}>
+                            <option value="Bug">Bug</option>
+                            <option value="React" selected>React</option>
+                            <option value="Java">Java</option>
+                            <option value="JavaScript">JavaScript</option>
+                            <option value="Terraform">Terraform</option>
+                            <option value="Ansible">Ansible</option>
+                    </select>
+                    <select onChange={e=>setPriority(e.target.value)}>
+                            <option value="1">High</option>
+                            <option value="2">Medium</option>
+                            <option value="3" selected>Low</option>
+                    </select>
                     <button className="btn btn-primary" id="signupButton" type="submit" onClick={e=>post_newIssue(e)}>Post Issue</button>
                 </form>
             </div>
