@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS `trainer` (
   `last_name` VARCHAR(60) NOT NULL,
   `field` VARCHAR(30) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(60) NOT NULL,
   PRIMARY KEY (`trainer_id`)
 );
 
@@ -25,6 +26,7 @@ CREATE TABLE IF NOT EXISTS `trainee` (
   `last_name` VARCHAR(60) NOT NULL,
   `cohort` VARCHAR(40) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(60) NOT NULL,
   PRIMARY KEY (`trainee_id`)
 );
 
@@ -41,4 +43,4 @@ CREATE TABLE IF NOT EXISTS `ticket` (
   PRIMARY KEY (`ticket_id`)
 );
 
-INSERT INTO `trainer` VALUES (1,'BenDover1','Ben', 'Dover', 'DevOps', 'mypass321');
+INSERT INTO `trainer` VALUES (1,'BenDover1','Ben', 'Dover', 'DevOps', 'mypass321', 'b.dover@gmail.com');
