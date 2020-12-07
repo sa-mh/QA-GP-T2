@@ -8,6 +8,7 @@ const CreateAccount = () => {
     const [lastname, setLastname] = useState("");
     const [qaEmail, setQaEmail] = useState("");
     const [username, setUsername] = useState("");
+    const [cohort, setCohort] = useState("");
     const [password1, setPassword1] = useState("");
     const [password2, setPassword2] = useState("");
 
@@ -42,12 +43,14 @@ const CreateAccount = () => {
         setPassword2(e.target.value);
     }
 
+
     const post_createAccount = (e) => {
         e.preventDefault();
         axios.post("http://localhost:8081/trainee/create", {
             firstName: firstname,
             lastName: lastname,
             qaEmail: qaEmail,
+            cohort: cohort,
             username: username,
             password: password1,
             }
@@ -79,6 +82,11 @@ const CreateAccount = () => {
                         <input className="signupInput" type="text" id="last-name" onChange={(e)=>updateLastName(e)} placeholder="Enter your last name" required></input> <br></br>
                         <input className="signupInput" type="text" id="qa_email" onChange={(e)=>updateEmail(e)} placeholder="Enter your QA Email address" required></input> <br></br>
                         <input className="signupInput" type="text" id="username" onChange={(e)=>updateUsername(e)} placeholder="Enter your username" required></input> <br></br>
+                        <select className="signupInput" name="cohort" id="cohort" onChange={e=>setCohort(e.target.value)}>
+                            <option value="Dev Ops">Dev Ops</option>
+                            <option value="Cloud Native" selected>Cloud Native</option>
+                            <option value="Software Engineer" selected>Software Engineer</option>
+                        </select>
                         <input className="signupInput" type="password" id="password1" onChange={(e)=>updatePassword1(e)} placeholder="Enter your password" required></input> <br></br>
                         <input className="signupInput" type="password" id="password2" onChange={(e)=>updatePassword2(e)} placeholder="Enter your password" required></input> <br></br>
                         <button className="btn btn-primary" id="signupButton" type="submit" onClick={(e) => isPasswordSame(password1, password2, e)}>Create an account</button>
