@@ -10,10 +10,11 @@ const LoginPage = props => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [memberType, setMemberType] = useState("trainee");
+    const [backendpoint, setBackEndPoint] = useState("http://localhost:8081");
 
     const get_Login = (e) => {
         e.preventDefault();
-        axios.get("/"+ memberType + "/get/" + username)
+        axios.get(backendpoint + "/"+ memberType + "/get/" + username)
         .then(response =>{
             console.log(response);
             if(response.data.password === password){
