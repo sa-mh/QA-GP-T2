@@ -1,0 +1,45 @@
+CREATE DATABASE IF NOT EXISTS `test`;
+
+USE `test`;
+
+CREATE TABLE IF NOT EXISTS `Trainer` (
+  `TrainerID` INTEGER NOT NULL AUTO_INCREMENT,
+  `UserName` VARCHAR(60) NOT NULL,
+  `First_Name` VARCHAR(60) NOT NULL,
+  `Last_Name` VARCHAR(60) NOT NULL,
+  `Field` VARCHAR(30) NOT NULL,
+  `Password` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`TrainerID`)
+);
+
+CREATE TABLE IF NOT EXISTS `Tickets_Trainee` (
+  `TicketID` INT NOT NULL,
+  `TraineeID` INT NOT NULL,
+  PRIMARY KEY (`TicketID`, `TraineeID`)
+);
+
+CREATE TABLE IF NOT EXISTS `Trainee` (
+  `TraineeID` INTEGER NOT NULL AUTO_INCREMENT,
+  `UserName` VARCHAR(60) NOT NULL,
+  `First_Name` VARCHAR(60) NOT NULL,
+  `Last_Name` VARCHAR(60) NOT NULL,
+  `Cohort` VARCHAR(40) NOT NULL,
+  `Password` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`TraineeID`)
+);
+
+CREATE TABLE IF NOT EXISTS `Tickets` (
+  `TicketID` INTEGER NOT NULL AUTO_INCREMENT,
+  `Title` VARCHAR(20) NOT NULL,
+  `Issue` VARCHAR(244) NOT NULL,
+  `Topic` VARCHAR(30) NOT NULL,
+  `Submit_Date` TIMESTAMP NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+  `Urgency` INT NOT NULL,
+  `Status` VARCHAR(20) NOT NULL,
+  `TraineeID` INT NOT NULL,
+  `TrainerID` INT NOT NULL,
+  PRIMARY KEY (`TicketID`)
+);
+
+INSERT INTO `Trainer` VALUES (1,'BenDover1','Ben', 'Dover', 'DevOps', 'mypass321');
+
