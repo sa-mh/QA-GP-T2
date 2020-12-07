@@ -34,9 +34,9 @@ const LoginPage = props => {
                 <h1 className="loginHeading">Login</h1>
                 <div>
                     <form className="ml-3" id="loginForm">
-                        <input className="loginInput" type="text" id="username" placeholder="Enter your username" onChange={e=>setUsername(e.target.value)} required></input> <br></br>
-                        <input className="loginInput" type="password" id="password" placeholder="Enter your password" onChange={e=>setPassword(e.target.value)} required></input> <br></br>
-                        <select onChange={e=>setMemberType(e.target.value)}>
+                        <input name="username" className="loginInput" type="text" id="username" placeholder="Enter your username" onChange={e=>setUsername(e.target.value)} required></input> <br></br>
+                        <input name="password" className="loginInput" type="password" id="password" placeholder="Enter your password" onChange={e=>setPassword(e.target.value)} required></input> <br></br>
+                        <select name="traineeTrainer" onChange={e=>setMemberType(e.target.value)}>
                             <option value="trainer">Trainer</option>
                             <option value="trainee" selected>Trainee</option>
                         </select>
