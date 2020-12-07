@@ -44,7 +44,7 @@ const CreateAccount = () => {
 
     const post_createAccount = (e) => {
         e.preventDefault();
-        axios.post("/trainee/create", {
+        axios.post("http://localhost:8081/trainee/create", {
             firstName: firstname,
             lastName: lastname,
             qaEmail: qaEmail,
