@@ -34,15 +34,15 @@ it('should check if password updates', () => {
 it('should check if MemberSelector updates', () => {
     const {container} = render(<LoginForm submit={mockSubmitFunction}/>);
     const memberVar = container.querySelector('[name="traineeTrainer"]');
-    expect(passwordInput.value).toEqual('');
+    expect(memberVar.value).toEqual('');
 
-    userEvent.type(trainerTrainee,d_Trainee);
+    userEvent.type(memberVar,d_Trainee);
 
-    expect(passwordInput.value).toNotEqual(d_Trainer);
+    expect(memberVar.value).toNotEqual(d_Trainer);
 
-    userEvent.type(trainerTrainee,d_Trainer);
+    userEvent.type(memberVar,d_Trainer);
 
-    expect(passwordInput.value).toEqual(d_Trainer);
+    expect(memberVar.value).toEqual(d_Trainer);
 
 });
 
