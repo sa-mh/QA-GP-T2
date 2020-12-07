@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS `Trainer` (
 
 CREATE TABLE IF NOT EXISTS `Tickets_Trainee` (
   `ticketId` INT NOT NULL,
-  `traineeI` INT NOT NULL,
+  `traineeId` INT NOT NULL,
   PRIMARY KEY (`ticketId`, `traineeId`)
 );
 
