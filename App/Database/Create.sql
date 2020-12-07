@@ -1,3 +1,7 @@
+CREATE DATABASE IF NOT EXISTS `test`;
+
+USE `test`;
+
 CREATE TABLE IF NOT EXISTS `trainer` (
   `trainer_id` INTEGER NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(60) NOT NULL,
