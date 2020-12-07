@@ -10,7 +10,6 @@ const CreateAccount = () => {
     const [username, setUsername] = useState("");
     const [password1, setPassword1] = useState("");
     const [password2, setPassword2] = useState("");
-    const [passwordTheSame, setPasswordTheSame] = useState(false);
 
     //Update all the values as they are changed in the input fields
     const updateFirstName = (e) => {
@@ -63,10 +62,9 @@ const CreateAccount = () => {
     //If password1 and password2 is exactly the same, then setPasswordTheSame as true - If it is false, we need to show an error on the page, if it is true, we can send this to the database.
     const isPasswordSame = (password1, password2, e) => {
         if (password1 === password2) {
-            setPasswordTheSame(true);
             post_createAccount(e)
         }else{
-            alert("Your passwords do not match");
+            alert("Your passwords do not match, please try again");
         }
     }
     

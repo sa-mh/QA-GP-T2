@@ -31,6 +31,21 @@ it('should check if password updates', () => {
     expect(passwordInput.value).toEqual(d_Password);
 });
 
+it('should check if MemberSelector updates', () => {
+    const {container} = render(<LoginForm submit={mockSubmitFunction}/>);
+    const memberVar = container.querySelector('[name="traineeTrainer"]');
+    expect(passwordInput.value).toEqual('');
+
+    userEvent.type(trainerTrainee,d_Trainee);
+
+    expect(passwordInput.value).toNotEqual(d_Trainer);
+
+    userEvent.type(trainerTrainee,d_Trainer);
+
+    expect(passwordInput.value).toEqual(d_Trainer);
+
+});
+
 it('should call the handleSubmit function', () => {
     const {container} = render(<LoginForm submit={mockSubmitFunction}/>);
     const passwordInput = container.querySelector('[name="username"]');
