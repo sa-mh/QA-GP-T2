@@ -42,10 +42,13 @@ const ManageIssues = () => {
     return (
 
         <>
+        <h2>My Issues</h2>
+        <h3>Open Issues</h3>
         <div name="openIssues" id="out_myOpenIssues">
  
         </div>
-
+        <br/>
+        <h3>Closed Issues</h3>
         <div name="closedIssues" id="out_myClosedIssues">
 
         </div>
