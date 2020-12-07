@@ -3,42 +3,42 @@ CREATE DATABASE IF NOT EXISTS `test`;
 USE `test`;
 
 CREATE TABLE IF NOT EXISTS `Trainer` (
-  `TrainerID` INTEGER NOT NULL AUTO_INCREMENT,
-  `UserName` VARCHAR(60) NOT NULL,
-  `First_Name` VARCHAR(60) NOT NULL,
-  `Last_Name` VARCHAR(60) NOT NULL,
-  `Field` VARCHAR(30) NOT NULL,
-  `Password` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`TrainerID`)
+  `trainerId` INTEGER NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(60) NOT NULL,
+  `firstName` VARCHAR(60) NOT NULL,
+  `lastName` VARCHAR(60) NOT NULL,
+  `field` VARCHAR(30) NOT NULL,
+  `password` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`trainerId`)
 );
 
 CREATE TABLE IF NOT EXISTS `Tickets_Trainee` (
-  `TicketID` INT NOT NULL,
-  `TraineeID` INT NOT NULL,
-  PRIMARY KEY (`TicketID`, `TraineeID`)
+  `ticketId` INT NOT NULL,
+  `traineeI` INT NOT NULL,
+  PRIMARY KEY (`ticketId`, `traineeId`)
 );
 
 CREATE TABLE IF NOT EXISTS `Trainee` (
-  `TraineeID` INTEGER NOT NULL AUTO_INCREMENT,
-  `UserName` VARCHAR(60) NOT NULL,
-  `First_Name` VARCHAR(60) NOT NULL,
-  `Last_Name` VARCHAR(60) NOT NULL,
-  `Cohort` VARCHAR(40) NOT NULL,
-  `Password` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`TraineeID`)
+  `traineeId` INTEGER NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(60) NOT NULL,
+  `firstName` VARCHAR(60) NOT NULL,
+  `lastName` VARCHAR(60) NOT NULL,
+  `cohort` VARCHAR(40) NOT NULL,
+  `password` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`traineeId`)
 );
 
-CREATE TABLE IF NOT EXISTS `Tickets` (
-  `TicketID` INTEGER NOT NULL AUTO_INCREMENT,
-  `Title` VARCHAR(20) NOT NULL,
-  `Issue` VARCHAR(244) NOT NULL,
-  `Topic` VARCHAR(30) NOT NULL,
-  `Submit_Date` TIMESTAMP NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
-  `Urgency` INT NOT NULL,
-  `Status` VARCHAR(20) NOT NULL,
-  `TraineeID` INT NOT NULL,
-  `TrainerID` INT NOT NULL,
-  PRIMARY KEY (`TicketID`)
+CREATE TABLE IF NOT EXISTS `Ticket` (
+  `ticketId` INTEGER NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(20) NOT NULL,
+  `issue` VARCHAR(244) NOT NULL,
+  `topic` VARCHAR(30) NOT NULL,
+  `submitDate` TIMESTAMP NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+  `urgency` INT NOT NULL,
+  `status` VARCHAR(20) NOT NULL,
+  `traineeId` INT NOT NULL,
+  `trainerId` INT NOT NULL,
+  PRIMARY KEY (`ticketId`)
 );
 
 INSERT INTO `Trainer` VALUES (1,'BenDover1','Ben', 'Dover', 'DevOps', 'mypass321');
