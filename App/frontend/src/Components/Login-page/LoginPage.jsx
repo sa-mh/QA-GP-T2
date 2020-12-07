@@ -22,6 +22,9 @@ const LoginPage = props => {
             }
             else{
                 //Show a login failed message
+                const loginError = <p>Username/Password is wrong</p>;
+                ReactDOM.render(loginError, document.getElementById('failed-message'));
+
             }
         }).catch(error => {
             console.log(error.data)
@@ -50,6 +53,9 @@ const LoginPage = props => {
                     </form>
                 </div>
             </div>
+        
+            {/* Login failed will appear here */}
+            <div id="failed-message"></div>
         </>
     )
 }

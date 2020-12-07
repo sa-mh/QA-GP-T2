@@ -88,6 +88,18 @@ body {
 margin: 2%;
 width: 80%;
 }
+
+.failed-message{
+  background-color: pink;
+  width: 400px;
+  height: 80px;
+  border: 1px solid black;
+    border-radius: 10px;
+  position: absolute;
+  left: 37%;
+  top: 70%;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
