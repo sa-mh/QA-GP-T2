@@ -41,7 +41,6 @@ const CreateAccount = () => {
     const updatePassword2 = (e) => {
         e.preventDefault(); 
         setPassword2(e.target.value);
-        isPasswordSame(password1,password2);
     }
 
     const post_createAccount = (e) => {
@@ -62,9 +61,12 @@ const CreateAccount = () => {
     }
 
     //If password1 and password2 is exactly the same, then setPasswordTheSame as true - If it is false, we need to show an error on the page, if it is true, we can send this to the database.
-    const isPasswordSame = (password1, password2) => {
+    const isPasswordSame = (password1, password2, e) => {
         if (password1 === password2) {
-            setPasswordTheSame(true)
+            setPasswordTheSame(true);
+            post_createAccount(e)
+        }else{
+            alert("Your passwords do not match");
         }
     }
     
@@ -81,7 +83,7 @@ const CreateAccount = () => {
                         <input className="signupInput" type="text" id="username" onChange={(e)=>updateUsername(e)} placeholder="Enter your username" required></input> <br></br>
                         <input className="signupInput" type="password" id="password1" onChange={(e)=>updatePassword1(e)} placeholder="Enter your password" required></input> <br></br>
                         <input className="signupInput" type="password" id="password2" onChange={(e)=>updatePassword2(e)} placeholder="Enter your password" required></input> <br></br>
-                        <button className="btn btn-primary" id="signupButton" type="submit" onClick={(e) => post_createAccount(e)}>Create an account</button>
+                        <button className="btn btn-primary" id="signupButton" type="submit" onClick={(e) => isPasswordSame(password1, password2, e)}>Create an account</button>
                     </form>
                 </div>
             </div>
