@@ -10,7 +10,7 @@ const LoginPage = props => {
     
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [memberType, setMemberType] = useState("trainee");
+    const [memberType, setMemberType] = useState("");
     const [backendpoint, setBackEndPoint] = useState("http://localhost:8081");
 
     const get_Login = (e) => {
@@ -42,6 +42,7 @@ const LoginPage = props => {
                         <input name="username" className="loginInput" type="text" id="username" placeholder="Enter your username" onChange={e=>setUsername(e.target.value)} required></input> <br></br>
                         <input name="password" className="loginInput" type="password" id="password" placeholder="Enter your password" onChange={e=>setPassword(e.target.value)} required></input> <br></br>
                         <select name="traineeTrainer" onChange={e=>setMemberType(e.target.value)}>
+                            <option value="" selected disabled hidden>Position</option>
                             <option value="trainer">Trainer</option>
                             <option value="trainee" selected>Trainee</option>
                         </select>

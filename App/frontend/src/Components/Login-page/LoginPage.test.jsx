@@ -36,11 +36,11 @@ it('should check if MemberSelector updates', () => {
     const memberVar = container.querySelector('[name="traineeTrainer"]');
     expect(memberVar.value).toEqual('');
 
-    userEvent.type(memberVar,d_Trainee);
-
+    userEvent.selectOptions(memberVar,d_Trainee)
+    
     expect(memberVar.value).toNotEqual(d_Trainer);
 
-    userEvent.type(memberVar,d_Trainer);
+    userEvent.selectOptions(memberVar,d_Trainer);
 
     expect(memberVar.value).toEqual(d_Trainer);
 
