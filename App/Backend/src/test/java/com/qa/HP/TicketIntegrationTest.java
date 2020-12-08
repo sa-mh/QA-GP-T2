@@ -86,7 +86,7 @@ public class TicketIntegrationTest {
 	@Test
 	void deleteTicketTest() throws Exception {
 		RequestBuilder deleteRequest = delete("/ticket/remove/1");
-		ResultMatcher checkStatus = status().is(200);
+		ResultMatcher checkStatus = status().is(200); //
 
 		this.mockMVC.perform(deleteRequest).andExpect(checkStatus);
 	}
