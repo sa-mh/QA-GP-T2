@@ -25,18 +25,26 @@ public class TicketService {
 	public List<Ticket> getTicket() {
 		return this.repo.findAll();
 	}
+	
+	public List<Ticket> findTicketByTopic(String topic) {
+		return this.repo.findByTopic(topic);
+	}
+	
+	public List<Ticket> findTicketByTrainee(Long traineeId) {
+		return this.repo.findByTraineeId(traineeId);
+	}
 
 	public Ticket createTicket(Ticket ticket) {
 		return this.repo.save(ticket);
 	}
 
-	public boolean deleteTicket(Long id) {
-		this.repo.deleteById(id);
-		return !this.repo.existsById(id);
+	public boolean deleteTicket(Long ticketId) {
+		this.repo.deleteById(ticketId);
+		return !this.repo.existsById(ticketId);
 	}
 
-	public Ticket updateTicket(Ticket ticket, Long id) {
-		Optional<Ticket> optTicket = this.repo.findById(id);
+	public Ticket updateTicket(Ticket ticket, Long ticketId) {
+		Optional<Ticket> optTicket = this.repo.findById(ticketId);
 		Ticket oldTicket = optTicket.orElseThrow(() -> new TicketNotFoundException());
 
 		oldTicket.setTitle(ticket.getTitle());
@@ -45,8 +53,8 @@ public class TicketService {
 		oldTicket.setSubmitDate(ticket.getSubmitDate());
 		oldTicket.setUrgency(ticket.getUrgency());
 		oldTicket.setStatus(ticket.getStatus());
-		oldTicket.setTraineeID(ticket.getTraineeID());
-		oldTicket.setTrainerID(ticket.getTrainerID());
+		oldTicket.setTraineeId(ticket.getTraineeId());
+		oldTicket.setTrainerId(ticket.getTrainerId());
 
 		Ticket updatedTicket = this.repo.save(oldTicket);
 		return updatedTicket;
