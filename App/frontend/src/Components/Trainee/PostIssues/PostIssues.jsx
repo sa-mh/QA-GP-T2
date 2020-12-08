@@ -41,7 +41,7 @@ const PostIssues = () => {
                     <input className="issueInput" type="text"  onChange={e=>setIssue(e.target.value)} placeholder="Please explain the issue in as much detail as possible" required></input> <br></br>
                     <select onChange={e=>setTopic(e.target.value)}>
                             <option value="Bug">Bug</option>
-                            <option value="React" selected>React</option>
+                            <option value="React">React</option>
                             <option value="Java">Java</option>
                             <option value="JavaScript">JavaScript</option>
                             <option value="Terraform">Terraform</option>
@@ -50,7 +50,7 @@ const PostIssues = () => {
                     <select onChange={e=>setPriority(e.target.value)}>
                             <option value="1">High</option>
                             <option value="2">Medium</option>
-                            <option value="3" selected>Low</option>
+                            <option value="3">Low</option>
                     </select>
                     <button className="btn btn-primary" id="signupButton" type="submit" onClick={e=>post_newIssue(e)}>Post Issue</button>
                 </form>
