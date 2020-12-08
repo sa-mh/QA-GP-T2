@@ -2,7 +2,7 @@ import userEvent from '@testing-library/user-event';
 import LoginForm from './LoginPage.jsx';
 import { fireEvent, render } from '@testing-library/react';
 
-describe('Form Testing',()=>{
+describe('Login Page Testing',()=>{
 
 const mockSubmitFunction = jest.fn();
 const d_Username= "JDoe";
