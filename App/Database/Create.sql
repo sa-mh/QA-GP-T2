@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `ticket` (
   `urgency` INT NOT NULL,
   `status` VARCHAR(20) NOT NULL,
   `trainee_id` INT NOT NULL,
-  `trainerId` INT NOT NULL,
+  `trainer_id` INT NOT NULL,
   PRIMARY KEY (`ticket_id`)
 );
 
