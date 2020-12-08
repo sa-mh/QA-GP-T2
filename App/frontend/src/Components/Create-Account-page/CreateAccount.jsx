@@ -11,10 +11,11 @@ const CreateAccount = (props) => {
     const [cohort, setCohort] = useState("");
     const [password1, setPassword1] = useState("");
     const [password2, setPassword2] = useState("");
+    const [backendpoint, setBackEndPoint] = useState("http://localhost:8081");
 
     const post_createAccount = (e) => {
         e.preventDefault();
-        axios.post("http://localhost:8081/trainee/create", {
+        axios.post(backendpoint + "/trainee/create", {
             username,
             firstName: firstname,
             secondName: lastname,

@@ -7,13 +7,14 @@ const PostIssues = () => {
     const [ticketIssue, setIssue] = useState("");
     const [ticketTopic, setTopic] = useState("");
     const [ticketPriority, setPriority] = useState("");
+    const [backendpoint, setBackEndPoint] = useState("http://localhost:8081");
 
     //Need to find a way to retrieve the Trainee ID - Likely via prop/state from Login Screen
     const [traineeID] = useState(6)
 
     const post_newIssue = (e) => {
         e.preventDefault();
-        axios.post("/ticket/create", {
+        axios.post(backendpoint+"/ticket/create", {
             title: ticketTitle,
 	        issue: ticketIssue,
 	        topic: ticketTopic,
