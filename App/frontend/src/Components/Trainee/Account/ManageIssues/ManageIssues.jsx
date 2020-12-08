@@ -4,9 +4,9 @@ import TraineeIssue from './TraineeIssue'
 
 const ManageIssues = () => {
 
-    const [data, setData] = useState("");
+    const [data, setData] = useState([]);
     const [backendpoint, setBackEndPoint] = useState("http://localhost:8081");
-    const [traineeId, setBackEndPoint] = useState("http://localhost:8081");
+    const [traineeId, setId] = useState("69");
 
     const openIssues = document.getElementById("out_myOpenIssues");
     const closedIssues = document.getElementById("out_myClosedIssues");

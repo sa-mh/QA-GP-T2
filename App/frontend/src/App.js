@@ -6,8 +6,8 @@ import LoginPage from './Components/Login-page/LoginPage';
 import Aboutpage from './Components/About-page/Aboutpage';
 import CreateAccount from './Components/Create-Account-page/CreateAccount';
 import PostIssues from './Components/Trainee/PostIssues/PostIssues';
-// import TraineePage from './Components/Trainee/Trainee';
-// import TrainerPage from './Components/Trainer/Trainer';
+import ManageIssues from './Components/Trainee/Account/ManageIssues/ManageIssues';
+// import TrainerPage from './Components/Trainer/';
 
 function App() {
   return (
@@ -18,8 +18,8 @@ function App() {
             <Route path="/about" component={Aboutpage}/>
             <Route path="/createAccount" component={CreateAccount}/>
             <Route path="/postIssue" component={PostIssues}/>
-            {/* <Route path="/trainee" component={Trainee}/>
-            <Route path="/trainer" component={Trainer}/> */}
+             <Route path="/trainee" component={ManageIssues}/> 
+            {/*<Route path="/trainer" component={Trainer}/>*/}
         </Switch>
         <Footer />
       </Router>

@@ -85,7 +85,7 @@ const CreateAccount = () => {
                         <select className="signupInput" name="cohort" id="cohort" onChange={e=>setCohort(e.target.value)}>
                             <option value="Dev Ops">Dev Ops</option>
                             <option value="Cloud Native" selected>Cloud Native</option>
-                            <option value="Software Engineer" selected>Software Engineer</option>
+                            <option value="Software Engineer">Software Engineer</option>
                         </select>
                         <input className="signupInput" type="password" id="password1" onChange={(e)=>updatePassword1(e)} placeholder="Enter your password" required></input> <br></br>
                         <input className="signupInput" type="password" id="password2" onChange={(e)=>updatePassword2(e)} placeholder="Enter your password" required></input> <br></br>
