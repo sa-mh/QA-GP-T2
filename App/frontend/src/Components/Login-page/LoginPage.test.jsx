@@ -2,7 +2,7 @@ import userEvent from '@testing-library/user-event';
 import LoginForm from './LoginPage.jsx';
 import { fireEvent, render } from '@testing-library/react';
 
-describe('Form Testing',()=>{
+describe('Login Page Testing',()=>{
 
 const mockSubmitFunction = jest.fn();
 const d_Username= "JDoe";
@@ -36,11 +36,11 @@ it('should check if MemberSelector updates', () => {
     const memberVar = container.querySelector('[name="traineeTrainer"]');
     expect(memberVar.value).toEqual('');
 
-    userEvent.type(memberVar,d_Trainee);
-
+    userEvent.selectOptions(memberVar,d_Trainee)
+    
     expect(memberVar.value).toNotEqual(d_Trainer);
 
-    userEvent.type(memberVar,d_Trainer);
+    userEvent.selectOptions(memberVar,d_Trainer);
 
     expect(memberVar.value).toEqual(d_Trainer);
 

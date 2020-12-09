@@ -52,6 +52,7 @@ const CreateAccount = (props) => {
                         <input className="signupInput" type="text" id="qa_email" onChange={(e)=>setQaEmail(e.target.value)} placeholder="Enter your QA Email address" required></input> <br></br>
                         <input className="signupInput" type="text" id="username" onChange={(e)=>setUsername(e.target.value)} placeholder="Enter your username" required></input> <br></br>
                         <select className="signupInput" name="cohort" id="cohort" onChange={e=>setCohort(e.target.value)}>
+                            <option value="" selected disabled hidden>Cohort</option>
                             <option value="Dev Ops">Dev Ops</option>
                             <option value="Cloud Native">Cloud Native</option>
                             <option value="Software Engineer">Software Engineer</option>
