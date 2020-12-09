@@ -46,12 +46,13 @@ const CreateAccount = (props) => {
             <div className="signupDiv">
                 <h1 className="signupHeading">Create an account</h1>
                 <div>
-                    <form className="ml-3" id="signupForm" onSubmit={isPasswordSame}>
+                    <form className="ml-3" name="pleaseJustWork" id="signupForm" onSubmit={isPasswordSame}>
                         <input className="signupInput" type="text" id="first-name" onChange={(e)=>setFirstname(e.target.value)} placeholder="Enter your first name" required></input> <br></br>
                         <input className="signupInput" type="text" id="last-name" onChange={(e)=>setLastname(e.target.value)} placeholder="Enter your last name" required></input> <br></br>
                         <input className="signupInput" type="text" id="qa_email" onChange={(e)=>setQaEmail(e.target.value)} placeholder="Enter your QA Email address" required></input> <br></br>
                         <input className="signupInput" type="text" id="username" onChange={(e)=>setUsername(e.target.value)} placeholder="Enter your username" required></input> <br></br>
-                        <select defaultValue="Software Engineer" className="signupInput" name="cohort" id="cohort" onChange={e=>setCohort(e.target.value)}>
+                        <select defaultValue="" className="signupInput" name="cohort" id="cohort" onChange={e=>setCohort(e.target.value)}>
+                            <option value="" disabled hidden>Cohort</option>
                             <option value="Dev Ops">Dev Ops</option>
                             <option value="Cloud Native">Cloud Native</option>
                             <option value="Software Engineer">Software Engineer</option>

@@ -36,10 +36,11 @@ const PostIssues = () => {
         <div className="createDiv">
             <h1 className="signupHeading">Post an issue</h1>
             <div>
-                <form className="ml-3" id="postIssueForm">
-                    <input className="issueInput" type="text"  onChange={e=>setTitle(e.target.value)} placeholder="Give issue a title" required></input> <br></br>
-                    <input className="issueInput" type="text"  onChange={e=>setIssue(e.target.value)} placeholder="Please explain the issue in as much detail as possible" required></input> <br></br>
-                    <select onChange={e=>setTopic(e.target.value)}>
+                <form className="ml-3" id="postIssueForm" onSubmit={post_newIssue}>
+                    <input className="issueInput" type="text" id="Title" onChange={e=>setTitle(e.target.value)} placeholder="Give issue a title" required></input> <br></br>
+                    <input className="issueInput" type="text" id="Issue" onChange={e=>setIssue(e.target.value)} placeholder="Please explain the issue in as much detail as possible" required></input> <br></br>
+                    <select defaultValue="" id="Topic" onChange={e=>setTopic(e.target.value)}>
+                            <option value="" disabled hidden>Cohort</option>
                             <option value="Bug">Bug</option>
                             <option value="React">React</option>
                             <option value="Java">Java</option>
@@ -47,12 +48,13 @@ const PostIssues = () => {
                             <option value="Terraform">Terraform</option>
                             <option value="Ansible">Ansible</option>
                     </select>
-                    <select onChange={e=>setPriority(e.target.value)}>
+                    <select defaultValue="" id="Priority"onChange={e=>setPriority(e.target.value)}>
+                            <option value="" disabled hidden>Cohort</option>
                             <option value="1">High</option>
                             <option value="2">Medium</option>
                             <option value="3">Low</option>
                     </select>
-                    <button className="btn btn-primary" id="signupButton" type="submit" onClick={e=>post_newIssue(e)}>Post Issue</button>
+                    <button className="btn btn-primary" id="postButton" type="submit">Post Issue</button>
                 </form>
             </div>
         </div>

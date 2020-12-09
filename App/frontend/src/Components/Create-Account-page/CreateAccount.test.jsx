@@ -73,7 +73,7 @@ describe('Create Account Page Testing',()=>{
     });
 
     it('should call the handleSubmit function for trainee', () => {
-        const {container} = render(<CreateAccount/>);
+        const {container} = render(<CreateAccount onSubmit={mockSubmitFunction}/>);
         const usernameInput = container.querySelector('[id="username"]');
         const firstNameInput= container.querySelector('[id="first-name"]');
         const lastNameInput= container.querySelector('[id="last-name"]');
@@ -83,7 +83,8 @@ describe('Create Account Page Testing',()=>{
         const emailInput = container.querySelector('[id="qa_email"]');
         const accountSubmit = container.querySelector('[id="signupButton"]');
         const accountForm = container.querySelector('[id="signupForm"]');
-        accountForm.onSubmit = mockSubmitFunction;
+        // accountForm.onSubmit={mockSubmitFunction}
+        // console.log(accountForm);
         
         userEvent.type(usernameInput, d_username);
         userEvent.type(firstNameInput, d_firstName);
@@ -92,7 +93,7 @@ describe('Create Account Page Testing',()=>{
         userEvent.type(passwordInput2, d_password);
         userEvent.type(emailInput, d_email);
         userEvent.selectOptions(cohortInput, d_cohort);
-        fireEvent.click(accountSubmit)
+        fireEvent.click(accountSubmit);
     
         expect(mockSubmitFunction).toHaveBeenCalled();
         expect(mockSubmitFunction).toHaveBeenCalledWith({
