@@ -3,3 +3,4 @@ README.md
 .mvn/
 mvnw
 mvnw.cmd
+src/test/
