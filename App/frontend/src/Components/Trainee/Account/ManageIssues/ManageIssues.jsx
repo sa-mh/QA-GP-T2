@@ -6,11 +6,11 @@ const ManageIssues = () => {
 
     const [data, setData] = useState([]);
     const [backendpoint, setBackEndPoint] = useState("http://localhost:8081");
-    const [traineeId, setId] = useState("0");
+    const [traineeId, setId] = useState("69");
 
     const openIssues = document.getElementById("out_myOpenIssues");
     const closedIssues = document.getElementById("out_myClosedIssues");
-    axios.get("http://localhost:8081/ticket/findById/")
+    axios.get(backendpoint + "/tickets/findById/" + traineeId)
         .then(response => {
             console.log(response.data);
             setData(response.data);
