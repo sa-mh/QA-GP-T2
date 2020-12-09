@@ -59,7 +59,11 @@ it('should call the handleSubmit function', () => {
     fireEvent.click(submitButton);
 
     expect(mockSubmitFunction).toHaveBeenCalled();
-    expect(mockSubmitFunction).toHaveBeenCalledWith({username : d_Username, password : d_Password, memberType : d_Trainee});
+    expect(mockSubmitFunction).toHaveBeenCalledWith({
+        username : d_Username,
+        password : d_Password,
+        memberType : d_Trainee
+    });
 
 });
 

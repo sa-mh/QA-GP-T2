@@ -29,6 +29,8 @@ const LoginPage = props => {
             }
         }).catch(error => {
             console.log(error.data)
+            const loginError = <p>Username/Password is wrong</p>;
+            ReactDOM.render(loginError, document.getElementById('failed-message'));
         });
     }
 
@@ -38,7 +40,7 @@ const LoginPage = props => {
             <div className="loginDiv">
                 <h1 className="loginHeading">Login</h1>
                 <div>
-                    <form className="ml-3" id="loginForm">
+                    <form className="ml-3" id="loginForm" onSubmit={get_Login}>
                         <input name="username" className="loginInput" type="text" id="username" placeholder="Enter your username" onChange={e=>setUsername(e.target.value)} required></input> <br></br>
                         <input name="password" className="loginInput" type="password" id="password" placeholder="Enter your password" onChange={e=>setPassword(e.target.value)} required></input> <br></br>
                         <select name="traineeTrainer" onChange={e=>setMemberType(e.target.value)}>
@@ -46,7 +48,7 @@ const LoginPage = props => {
                             <option value="trainer">Trainer</option>
                             <option value="trainee" selected>Trainee</option>
                         </select>
-                        <button className="btn btn-primary" id="loginButton" type="submit" onClick={get_Login}>Login</button>
+                        <button className="btn btn-primary" id="loginButton" type="submit">Login</button>
                         <div>
                             <Link to="/createAccount">
                                 <button style={{ backgroundColor: "darkred" }} className="btn btn-primary" id="signUpButton" type="button">Create an account</button>
