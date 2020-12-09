@@ -1,0 +1,178 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: rgb(0, 64, 80);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+body {
+  background-color: white;
+}
+
+.loginHeading, .signupHeading {
+  color: white;
+}
+
+.footer {
+  background-color:rgb(0, 64, 80);
+  color: white;
+  padding: 1%;
+  text-align: center;
+  position: absolute;
+  bottom: 0%;
+  width: 100%;
+  /* padding-right: 100%; */
+}
+
+.navbar {
+  background-color: rgb(0, 64, 80);
+  color: white;
+  border-bottom-color: rgb(0, 64, 80);
+  border-bottom-width: 10px;
+  align-items: center;
+  text-align: left;
+  box-sizing: border-box;
+
+}
+
+.navbar-logo {
+  display: inline-block;
+  padding-top: .3125rem;
+  padding-bottom: .3125rem;
+  margin-right: 1rem;
+  line-height: inherit;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.loginDiv, .signupDiv {
+  position: absolute;
+  top: 40%;
+  left:40%;
+  margin-top: -50px;
+  margin-left: -50px;
+  width: 400px;
+  height: fit-content;
+  text-align: center;
+    padding-right: 10px;
+    padding-bottom: 20px;
+    background-color: rgb(20,30,40);
+	border: 1px solid black;
+    border-radius: 10px;
+    line-height: 10px;
+}
+.loginInput, .signupInput{
+margin: 2%;
+width: 80%;
+}
+
+.failed-message{
+  background-color: pink;
+  width: 400px;
+  height: 80px;
+  border: 1px solid black;
+    border-radius: 10px;
+  position: absolute;
+  left: 37%;
+  top: 70%;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* Creating the card which displays the issues */
+
+p.card-body{
+  line-height: 0%;
+  padding: 0.7%;
+
+}
+
+h5.card-title {
+  margin-left: -5px;
+  margin-top: -15px;
+}
+.card {
+ margin-left: 15px;
+ margin-bottom: 20px;
+ border: 2px solid black;
+background-color: gainsboro;
+width: 50%;
+}
+
+.card #issue-topic {
+  position: absolute;
+  right: 0%;
+  top: 5%;
+}
+
+.card #issue-priority {
+  position: absolute;
+  left:50%;
+  bottom: -7%;
+}
+
+.card p#issue-date {
+  position: absolute;
+  left:2%;
+  bottom: -7%;
+}
+
+.card button{
+  height: 35px;
+  width: 60px;
+  text-align: center;
+  position: absolute;
+  left:90%;
+  bottom: 0%;
+background: maroon;
+border: 1px solid black;
+cursor: pointer;
+border-radius: 6px;
+color: white;
+font-family: 'Exo', sans-serif;
+font-size: 16px;
+font-weight: 400;
+padding: 0px;
+margin-top: 10px;
+}
+.vl {
+  border-left: 6px solid green;
+  height: 500px;
+  position: fixed;
+  top: 120px;
+  right: 45%;
+  height: 80%;
+}
+
+  
