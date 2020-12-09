@@ -4,7 +4,7 @@ USE `test`;
 
 CREATE TABLE IF NOT EXISTS `trainer` (
   `trainer_id` INT NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(60) NOT NULL,
+  `username` VARCHAR(60) NOT NULL UNIQUE,
   `first_name` VARCHAR(60) NOT NULL,
   `last_name` VARCHAR(60) NOT NULL,
   `field` VARCHAR(30) NOT NULL,
@@ -13,17 +13,9 @@ CREATE TABLE IF NOT EXISTS `trainer` (
   PRIMARY KEY (`trainer_id`)
 );
 
-CREATE TABLE IF NOT EXISTS `tickets_trainee` (
-  `ticket_id` INT NOT NULL,
-  `trainee_id` INT NOT NULL,
-  PRIMARY KEY (`ticket_id`, `trainee_id`),
-  FOREIGN KEY (`trainee_id`) REFERENCES trainee(trainee_id),
-  FOREIGN KEY (`ticket_id`) REFERENCES ticket(ticket_id)
-);
-
 CREATE TABLE IF NOT EXISTS `trainee` (
   `trainee_id` INT NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(60) NOT NULL,
+  `username` VARCHAR(60) NOT NULL UNIQUE,
   `first_name` VARCHAR(60) NOT NULL,
   `second_name` VARCHAR(60) NOT NULL,
   `cohort` VARCHAR(40) NOT NULL,
@@ -43,8 +35,16 @@ CREATE TABLE IF NOT EXISTS `ticket` (
   `trainee_id` int NOT NULL,
   `trainer_id` int NOT NULL,
   PRIMARY KEY (`ticket_id`),
-  FOREIGN KEY (`trainee_id`) REFERENCES trainee(trainee_id),
-  FOREIGN KEY (`trainer_id`) REFERENCES trainer(trainer_id)
+  FOREIGN KEY (`trainee_id`) REFERENCES `trainee` (`trainee_id`),
+  FOREIGN KEY (`trainer_id`) REFERENCES `trainer` (`trainer_id`)
+);
+
+CREATE TABLE IF NOT EXISTS `tickets_trainee` (
+  `ticket_id` INT NOT NULL,
+  `trainee_id` INT NOT NULL,
+  PRIMARY KEY (`ticket_id`, `trainee_id`),
+  FOREIGN KEY (`ticket_id`) REFERENCES `ticket`(`ticket_id`),
+  FOREIGN KEY (`trainee_id`) REFERENCES `trainee`(`trainee_id`)
 );
 
 INSERT INTO `trainer` (
@@ -58,12 +58,12 @@ INSERT INTO `trainer` (
 )
 VALUES (
   NULL,
-  'BenDover1',
-  'Ben',
-  'Dover', 
+  'Bobbothy12',
+  'Bob',
+  'Bobby', 
   'DevOps',
   'mypass321',
-  'b.dover@gmail.com'
+  'b.bob@gmail.com'
 );
 
 INSERT INTO `trainee` (
@@ -105,5 +105,5 @@ VALUES (
   '4',
   'new',
   '1',
-  '2'
+  '1'
 );
