@@ -6,12 +6,11 @@ const ManageIssues = () => {
 
     const [data, setData] = useState([]);
     const [backendpoint, setBackEndPoint] = useState("http://localhost:8081");
-    const [traineeId, setId] = useState("69");
+    const [traineeId, setId] = useState("0");
 
     const openIssues = document.getElementById("out_myOpenIssues");
     const closedIssues = document.getElementById("out_myClosedIssues");
-    // making a get request which pulls the issues from the database - NOT SURE IF THIS WORKS. please Fix!
-    axios.get(backendpoint + "/tickets/findById/" + traineeId)
+    axios.get("http://localhost:8081/ticket/findById/")
         .then(response => {
             console.log(response.data);
             setData(response.data);
