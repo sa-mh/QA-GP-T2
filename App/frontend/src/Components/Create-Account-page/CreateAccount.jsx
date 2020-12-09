@@ -59,7 +59,7 @@ const CreateAccount = (props) => {
             <div className="signupDiv">
                 <h1 className="signupHeading">Create an account</h1>
                 <div>
-                    <form className="ml-3" name="pleaseJustWork" id="signupForm" onSubmit={isPasswordSame}>
+                    <form className="ml-3" name="pleaseJustWork" id="signupForm" onSubmit={validate}>
                         <input className="signupInput" type="text" id="first-name" onChange={(e)=>setFirstname(e.target.value)} placeholder="Enter your first name" required></input> <br></br>
                         <input className="signupInput" type="text" id="last-name" onChange={(e)=>setLastname(e.target.value)} placeholder="Enter your last name" required></input> <br></br>
                         <input className="signupInput" type="text" id="qa_email" onChange={(e)=>setQaEmail(e.target.value)} placeholder="Enter your QA Email address" required></input> <br></br>
