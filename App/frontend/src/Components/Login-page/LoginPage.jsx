@@ -28,10 +28,19 @@ const LoginPage = props => {
             });
     }
 
+<<<<<<< HEAD
     let index = 0;
     while (index < data.length) {
         console.log("The username is:" + data[index].username);
         index += 1;
+=======
+            }
+        }).catch(error => {
+            console.log(error.data)
+            const loginError = <p>Username/Password is wrong</p>;
+            ReactDOM.render(loginError, document.getElementById('failed-message'));
+        });
+>>>>>>> 44a0d823f7762d43bd73c3fa578fcf7b6dc431c9
     }
 
     const validate = () => {
@@ -50,15 +59,26 @@ const LoginPage = props => {
             <div className="loginDiv">
                 <h1 className="loginHeading">Login</h1>
                 <div>
+<<<<<<< HEAD
                     <form className="ml-3" id="loginForm">
                         <input name="username" className="loginInput" type="text" id="username" placeholder="Enter your username" onChange={e => setUsername(e.target.value)} required></input> <br></br>
                         <input name="password" className="loginInput" type="password" id="password" placeholder="Enter your password" onChange={e => setPassword(e.target.value)} required></input> <br></br>
                         <select name="traineeTrainer" onChange={e => setMemberType(e.target.value)}>
+=======
+                    <form className="ml-3" id="loginForm" onSubmit={get_Login}>
+                        <input name="username" className="loginInput" type="text" id="username" placeholder="Enter your username" onChange={e=>setUsername(e.target.value)} required></input> <br></br>
+                        <input name="password" className="loginInput" type="password" id="password" placeholder="Enter your password" onChange={e=>setPassword(e.target.value)} required></input> <br></br>
+                        <select name="traineeTrainer" onChange={e=>setMemberType(e.target.value)}>
+>>>>>>> 44a0d823f7762d43bd73c3fa578fcf7b6dc431c9
                             <option value="" selected disabled hidden>Position</option>
                             <option value="trainer">Trainer</option>
                             <option value="trainee" selected>Trainee</option>
                         </select>
+<<<<<<< HEAD
                         <button className="btn btn-primary" id="loginButton" type="submit" onClick={getLogin}>Login</button>
+=======
+                        <button className="btn btn-primary" id="loginButton" type="submit">Login</button>
+>>>>>>> 44a0d823f7762d43bd73c3fa578fcf7b6dc431c9
                         <div>
                             <Link to="/createAccount">
                                 <button style={{ backgroundColor: "darkred" }} className="btn btn-primary" id="signUpButton" type="button">Create an account</button>
