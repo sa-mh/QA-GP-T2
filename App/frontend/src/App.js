@@ -12,11 +12,18 @@ import ViewAllIssues from './Components/Trainer/ViewAllIssues';
 
 function App() {
   return (
-      <Router>
-        <Header />
-        <ManageIssues />
-        <Footer />
-      </Router>
+    <Router>
+      <Header />
+      <Switch>
+        <Route path="/login" component={LoginPage} />
+        <Route path="/about" component={Aboutpage} />
+        <Route path="/createAccount" component={CreateAccount} />
+        <Route path="/postIssue" component={PostIssues} />
+        {/* <Route path="/trainee" component={Trainee}/>
+            <Route path="/trainer" component={Trainer}/> */}
+      </Switch>
+      <Footer />
+    </Router>
   );
 }
 
