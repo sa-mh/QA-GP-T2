@@ -13,6 +13,7 @@ RUN npm install -g serve
 ENTRYPOINT ["serve",  "-g", "build"]
 
 ##########################################
+COPY . .
 
 FROM nginx:latest as hostnginx
 
