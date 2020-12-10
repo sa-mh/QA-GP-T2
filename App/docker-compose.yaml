@@ -16,17 +16,7 @@ services:
     image: sherazshahid017/frontend:latest
     container_name: frontend
     ports:
-    - target: 3000
-      published: 3000
+    - target: 80
+      published: 5000
       protocol: tcp
      
-  nginx:
-    image: nginx:latest
-    ports:
-    - target: 80
-      published: 80
-      protocol: tcp
-    volumes:
-    - type: bind
-      source: ./frontend/nginx.conf
-      target: /etc/nginx/nginx.conf
