@@ -1,6 +1,6 @@
 FROM node:latest as reactbuild
 
-COPY package.json ./
+COPY . ./
 
 RUN npm install
 
@@ -10,9 +10,8 @@ CMD ["npm", "run", "build"]
 
 RUN npm install -g serve
 
-ENTRYPOINT ["serve",  "-s", "build"]
+# ENTRYPOINT ["serve",  "-s", "build"]
 
-##########################################
 
 FROM nginx:latest as hostnginx
 
@@ -23,3 +22,5 @@ COPY --from=reactbuild ./build .
 COPY ./nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 80
+
+ENTRYPOINT ["serve",  "-s", "build"]
