@@ -1,6 +1,5 @@
-import React, {useState, Redirect} from 'react'
+import React, {useState} from 'react'
 import axios from 'axios';
-import ReactDOM from 'react-dom'
 
 const CreateAccount = (props) => {
 
@@ -10,42 +9,45 @@ const CreateAccount = (props) => {
     const [qaEmail, setQaEmail] = useState("");
     const [username, setUsername] = useState("");
     const [cohort, setCohort] = useState("");
+    const [member, setMember] = useState("");
     const [password1, setPassword1] = useState("");
     const [password2, setPassword2] = useState("");
-    const [backendpoint, setBackEndPoint] = useState("http://34.242.81.192:8081");
 
     const post_createAccount = (e) => {
         e.preventDefault();
-        axios.post(backendpoint + "/trainer/create", {
+        if(member === "trainee"){
+        axios.post("http://52.48.80.243:8081/trainee/create", {
             username,
             firstName: firstname,
             secondName: lastname,
             cohort: cohort,
             password: password1,
             traineeEmail: qaEmail
-            }
+            }    
         ).then(response =>{
             console.log(response);
             props.history.push("/login");
         }).catch(error => {
             console.log(error)
         });
-    }
+    }else{
+        axios.post("http://52.48.80.243:8081/trainer/create", {
+            username,
+            firstName: firstname,
+            lastName: lastname,
+            password: password1,
+            field: cohort,
+            trainerEmail: qaEmail
+            }    
+        ).then(response =>{
+            console.log(response);
+            props.history.push("/login");
+        }).catch(error => {
+            console.log(error)
+        });
+    }}
 
-    //If password1 and password2 is exactly the same, then setPasswordTheSame as true - If it is false, we need to show an error on the page, if it is true, we can send this to the database.
     const validate = (e) => {
-        axios.get("http://34.242.81.192:8081/trainer/getAll")
-            .then(response => {
-                console.log(response.data);
-                let index = 0;
-                while (index < response.data.length) {
-                    if (response.data[index].username === username){
-                      ReactDOM.render(<p>Username already exists, please try again with a different username</p>, document.getElementById('error-message'));
-                      e.preventDefault();
-
-                    }
-                }
-            })
         if (password1 === password2) {
             post_createAccount(e)
         }else{
@@ -70,6 +72,12 @@ const CreateAccount = (props) => {
                             <option value="Cloud Native">Cloud Native</option>
                             <option value="Software Engineer">Software Engineer</option>
                         </select>
+                        <select defaultValue="" className="signupInput" name="memberType" id="memberType" onChange={e=>setMember(e.target.value)}>
+                            <option value="" disabled hidden>Choose your Member type</option>
+                            <option value="trainer">Trainer</option>
+                            <option value="trainee">Trainee</option>
+                        </select>
+
                         <input className="signupInput" type="password" id="password1" onChange={(e)=>setPassword1(e.target.value)} placeholder="Enter your password" required></input> <br></br>
                         <input className="signupInput" type="password" id="password2" onChange={(e)=>setPassword2(e.target.value)} placeholder="Re-enter your password" required></input> <br></br>
                         <button className="btn btn-primary" id="signupButton" type="submit">Create an account</button>

@@ -1,24 +1,18 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import ReactDOM from 'react'
-import { browserHistory } from 'react-router-dom';
 
-// import { Switch } from 'react-router-dom'
-// import CreateAccount from '../Create-Account-page/CreateAccount'
-// import { BrowserRouter as Router, Route, } from 'react-router-dom';
 
 const LoginPage = props => {
 
     const [data, setData] = useState([]);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [memberType, setMemberType] = useState("Trainee");
-    const [backendpoint, setBackEndPoint] = useState("http://localhost:8081");
+    const [memberType, setMemberType] = useState("trainee");
 
     const getLogin = (e) => {
         e.preventDefault();
-        axios.get(backendpoint + "/" + memberType + "/findByUsername?Username=" + username)
+        axios.get("http://52.48.80.243:8081/" + memberType + "/findByUsername?Username=" + username)
             .then(response => {
                 // console.log(response.data[0].username);
                 setData(response.data);

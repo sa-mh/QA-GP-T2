@@ -19,10 +19,13 @@ function App() {
         <Route path="/about" component={Aboutpage} />
         <Route path="/createAccount" component={CreateAccount} />
         <Route path="/postIssue" component={PostIssues} />
+        <Route path="/ViewAllIssues" component={ViewAllIssues} />
+        <Route path="/manageIssues" component={ManageIssues} />
+
         {/* <Route path="/trainee" component={Trainee}/>
             <Route path="/trainer" component={Trainer}/> */}
       </Switch>
-      <Footer />
+             <Footer />
     </Router>
   );
 }

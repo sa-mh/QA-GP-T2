@@ -1,7 +1,8 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import axios from 'axios'
+import Issue from '../../Trainer/Issue';
 
-const PostIssues = () => {
+const PostIssues = ( props ) => {
 
     const [ticketTitle, setTitle] = useState("");
     const [ticketIssue, setIssue] = useState("");
@@ -12,15 +13,45 @@ const PostIssues = () => {
     //Need to find a way to retrieve the Trainee ID - Likely via prop/state from Login Screen
     const [traineeID] = useState(6)
 
+
+
+    const [data, setData] = useState([]);
+
+    const allIssues = document.getElementById("readDiv");
+
+    useEffect(() => {
+        axios.get("http://52.48.80.243:8081/ticket/getAll")
+            .then(response => {
+                console.log(response.data);
+                setData(response.data);
+            })
+    }, [])
+
+    
+    const items = (data.map((issue) =>(
+        
+        <Issue 
+            title={issue.title}
+            topic={issue.topic}
+            message={issue.issue}
+            date={issue.submitDate}
+            priority={issue.urgency}
+         />
+        // <Issue title={issue.title}/>
+    )))
+
     const post_newIssue = (e) => {
         e.preventDefault();
-        axios.post(backendpoint+"/ticket/create", {
+        axios.post("http://52.48.80.243:8081/ticket/create", {
+            ticketId: 0,
             title: ticketTitle,
 	        issue: ticketIssue,
-	        topic: ticketTopic,
+            topic: ticketTopic,
+            submitDate: "",
             urgency: ticketPriority,
 	        status: "Open",
-	        traineeID: traineeID,
+            traineeId: 1,
+            trainerId: 0
             }
         ).then(response =>{
             console.log(response);
@@ -33,14 +64,16 @@ const PostIssues = () => {
 
     return (
         <div>
+
+    {/* Allow user to post an issue here */}
         <div className="createDiv">
-            <h1 className="signupHeading">Post an issue</h1>
+            <h3 className="signupHeading">Post an issue</h3>
             <div>
                 <form className="ml-3" id="postIssueForm" onSubmit={post_newIssue}>
-                    <input className="issueInput" type="text" id="Title" onChange={e=>setTitle(e.target.value)} placeholder="Give issue a title" required></input> <br></br>
-                    <input className="issueInput" type="text" id="Issue" onChange={e=>setIssue(e.target.value)} placeholder="Please explain the issue in as much detail as possible" required></input> <br></br>
+                    <input className="issueInput" type="text" id="title" onChange={e=>setTitle(e.target.value)} placeholder="Give issue a title" required></input> <br></br>
+                    <input className="issueInput" type="text" id="issue" onChange={e=>setIssue(e.target.value)} placeholder="Please explain the issue in as much detail as possible" required></input> <br></br>
                     <select defaultValue="" id="Topic" onChange={e=>setTopic(e.target.value)}>
-                            <option value="" disabled hidden>Cohort</option>
+                            <option value="" disabled hidden>Topic</option>
                             <option value="Bug">Bug</option>
                             <option value="React">React</option>
                             <option value="Java">Java</option>
@@ -48,8 +81,8 @@ const PostIssues = () => {
                             <option value="Terraform">Terraform</option>
                             <option value="Ansible">Ansible</option>
                     </select>
-                    <select defaultValue="" id="Priority"onChange={e=>setPriority(e.target.value)}>
-                            <option value="" disabled hidden>Cohort</option>
+                    <select defaultValue="" id="priority"onChange={e=>setPriority(e.target.value)}>
+                            <option value="" disabled hidden>Priority</option>
                             <option value="1">High</option>
                             <option value="2">Medium</option>
                             <option value="3">Low</option>
@@ -58,6 +91,16 @@ const PostIssues = () => {
                 </form>
             </div>
         </div>
+
+{/* View all the issues currently in the database here */}
+<div id="readDiv">
+<div class="vl"></div>
+
+    <h5>All the issues currently awaiting help</h5>
+{items}
+
+    
+</div >
     </div>
     )
 
