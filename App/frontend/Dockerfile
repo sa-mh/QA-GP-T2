@@ -2,15 +2,13 @@ FROM node:latest as reactbuild
 
 COPY . ./
 
-RUN npm install
+RUN ["npm", "install"]
 
-EXPOSE 3000
+EXPOSE 5000
 
-CMD ["npm", "run", "build"]
+RUN ["npm", "run", "build"]
 
-RUN npm install -g serve
-
-# ENTRYPOINT ["serve",  "-s", "build"]
+RUN ["npm", "install", "-g", "serve"]
 
 
 FROM nginx:latest as hostnginx
