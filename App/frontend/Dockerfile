@@ -17,7 +17,7 @@ ENTRYPOINT ["serve",  "-s", "build"]
 
 FROM nginx:latest as hostnginx
 
-COPY --from=reactbuild ./build .
+COPY --from=reactbuild . .
 
 COPY ./nginx.conf /etc/nginx/nginx.conf
 
