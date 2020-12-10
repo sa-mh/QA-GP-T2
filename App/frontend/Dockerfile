@@ -13,9 +13,11 @@ RUN npm install -g serve
 ENTRYPOINT ["serve",  "-g", "build"]
 
 ##########################################
-COPY . .
+
 
 FROM nginx:latest as hostnginx
+
+COPY --from=reactbuild . .
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
