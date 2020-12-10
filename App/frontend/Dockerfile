@@ -10,16 +10,16 @@ CMD ["npm", "build"]
 
 RUN npm install -g serve
 
-ENTRYPOINT ["serve",  "-g", "build"]
+ENTRYPOINT ["serve",  "-s", "build"]
 
 ##########################################
 
 
 FROM nginx:latest as hostnginx
 
-COPY --from=reactbuild . .
+COPY --from=reactbuild ./build .
 
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY ./nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 80
 
