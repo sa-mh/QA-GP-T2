@@ -1,7 +1,18 @@
-FROM node:latest
+FROM node:latest as reactbuild
 
-COPY . .
-
+WORKDIR ./
+COPY package.json package-lock.json ./
+RUN npm install
+COPY . ./  
 EXPOSE 3000
+CMD ["npm", "build"]
 
-ENTRYPOINT ["npm", "start"]
+
+FROM nginx:latest as hostnginx
+
+COPY --from=reactbuild ./ 
+
+
+
+
+

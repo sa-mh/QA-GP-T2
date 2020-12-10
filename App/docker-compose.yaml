@@ -1,0 +1,32 @@
+version: "3.7"
+
+services:
+  
+  backend:
+    build: ./Backend
+    image: sherazshahid017/mavenbuild:latest
+    container_name: backend
+    ports:
+    - target: 8081
+      published: 8081
+      protocol: tcp
+
+  frontend:
+    build: ./frontend
+    image: sherazshahid017/frontend:latest
+    container_name: frontend
+    ports:
+    - target: 3000
+      published: 3000
+      protocol: tcp
+     
+  nginx:
+    image: nginx:latest
+    ports:
+    - target: 80
+      published: 80
+      protocol: tcp
+    volumes:
+    - type: bind
+      source: ./frontend/nginx.conf
+      target: /etc/nginx/nginx.conf
