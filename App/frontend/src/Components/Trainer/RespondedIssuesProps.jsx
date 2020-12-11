@@ -10,7 +10,6 @@ return (
                 <p className="card-body" id="issue-topic">Topic: {props.topic}</p>
                 <p className="card-body" id="issue-message">{props.message}</p>
                 <p className="card-body" id="issue-date">Created on: {props.date}</p>
-                <p className="card-body" id="issue-priority">Priority: {props.priority}</p>
                 <p className="card-body" id="completed">Completed</p>
             </div>
         </div>

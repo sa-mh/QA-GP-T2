@@ -38,10 +38,10 @@ const ViewAllIssues = () => {
 
 
     useEffect(() => {
-        axios.get("http://52.48.80.243:8081/ticket/getAll")
+        axios.get("http://54.194.254.129:8081/ticket/getAll")
             .then(response => {
                 response.data.map( (child) => {
-                    if(child.status === "Closed" ){
+                    if(child.status === "new" ){
                         console.log("I'm here");
                         setRespondedData(response.data);
                     }else{
@@ -73,10 +73,11 @@ const ViewAllIssues = () => {
                 {items}
             </div>
 
-            <div class="vl"></div>
 
             <h3 id="completed-heading">Completed Items</h3>
-            <div name="issues" id="completed">
+            <div name="issues" id="completed-issues">
+            <div class="vl"></div>
+
                 {Respondeditems}
             </div>
         </>

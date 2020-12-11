@@ -39,7 +39,6 @@ const ManageIssues = () => {
         />
     )))
 
-
     useEffect(() => {
         axios.get("http://"+ip+"/ticket/findByTopic/MySQL")
             .then(response => {

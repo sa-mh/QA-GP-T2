@@ -4,7 +4,6 @@ import IpContext from '../../IpContext'
 import { useContext } from 'react';
 
 const Issue = (props) => {
-
     const ip = useContext(IpContext);
     const closeTicket = (e) => {
         e.preventDefault();
