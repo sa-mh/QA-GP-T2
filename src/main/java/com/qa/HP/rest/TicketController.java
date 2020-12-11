@@ -62,7 +62,7 @@ public class TicketController {
 		}
 	}
 
-	@PutMapping("/update")
+	@PutMapping("/update/")
 	public ResponseEntity<Ticket> updateTicket(@RequestBody Ticket ticket, @PathParam("id") Long id) {
 		return new ResponseEntity<Ticket>(this.service.updateTicket(ticket, id), HttpStatus.ACCEPTED);
 	}
