@@ -31,6 +31,16 @@ public class TicketService {
 		return this.repo.findById(id).get();
 	}
 	
+	public List<Ticket> findTicketByStatus(String status) {
+		return this.repo.findByTopic(status);
+	}
+	
+	public Ticket updateTicketStatus(Long id) {
+		Ticket oldTicket = this.repo.findById(id).get();
+		oldTicket.setStatus("Closed");
+		return this.repo.save(oldTicket);
+	}
+	
 	public List<Ticket> findTicketByTopic(String topic) {
 		return this.repo.findByTopic(topic);
 	}

@@ -32,7 +32,7 @@ import com.qa.HP.domain.Trainer;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 @Sql(scripts = { "classpath:ticket-schema.sql",
-"classpath:ticket-data.sql", "classpath:trainee-data.sql", "classpath:trainee-schema.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
+"classpath:ticket-data.sql", "classpath:trainee-data.sql", "classpath:trainee-schema.sql", "classpath:trainee-ticket-schema.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
 @ActiveProfiles(profiles = "test")
 public class TicketIntegrationTest {
 

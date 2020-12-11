@@ -1,6 +1,4 @@
-DROP TABLE `trainee`;
-
-CREATE TABLE trainee (
+CREATE TABLE IF NOT EXISTS trainee (
  	 id BIGINT PRIMARY KEY AUTO_INCREMENT,
  	 username VARCHAR(60) NOT NULL,
  	 firstName VARCHAR(60) NOT NULL,

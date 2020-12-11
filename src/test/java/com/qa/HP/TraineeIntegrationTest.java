@@ -41,7 +41,7 @@ public class TraineeIntegrationTest {
 	
 	@Test
 	void getTraineeTest() throws Exception {
-		List<Ticket> tickets = new ArrayList<>();
+		List<Ticket> tickets = new ArrayList<Ticket>();
 		Trainee trainee = new Trainee("A username", "First name", "Last name", "A cohort", "A password", "An email", tickets);
 		trainee.setId(1L);
 		List<Trainee> trainees = new ArrayList<>();
@@ -53,7 +53,7 @@ public class TraineeIntegrationTest {
 	
 	@Test
 	void createTraineeTest() throws Exception {
-		List<Ticket> tickets = new ArrayList<>();
+		List<Ticket> tickets = new ArrayList<Ticket>();
 		Trainee newTrainee = new Trainee("A username", "First name", "Last name", "A cohort", "A password", "An email", tickets);
 		String body = this.mapper.writeValueAsString(newTrainee);
 		RequestBuilder createRequestBody = post("/trainee/create").contentType(MediaType.APPLICATION_JSON).content(body);
@@ -69,7 +69,7 @@ public class TraineeIntegrationTest {
 	
 	@Test
 	void findTraineeByIdTest() throws Exception {
-		List<Ticket> tickets = new ArrayList<>();
+		List<Ticket> tickets = new ArrayList<Ticket>();
 		Trainee trainee = new Trainee("A username", "First name", "Last name", "A cohort", "A password", "An email", tickets);
 		Long traineeId = 1L;
 		List<Trainee> trainees = new ArrayList<>();
@@ -83,7 +83,7 @@ public class TraineeIntegrationTest {
 	
 	@Test
 	void findTraineeByCohortTest() throws Exception {
-		List<Ticket> tickets = new ArrayList<>();
+		List<Ticket> tickets = new ArrayList<Ticket>();
 		Trainee trainee = new Trainee("A username", "First name", "Last name", "A cohort", "A password", "An email", tickets);
 		String cohort = "Cloud Native";
 		List<Trainee> trainees = new ArrayList<>();
@@ -97,7 +97,7 @@ public class TraineeIntegrationTest {
 	
 	@Test
 	void findTraineeByUsernameTest() throws Exception {
-		List<Ticket> tickets = new ArrayList<>();
+		List<Ticket> tickets = new ArrayList<Ticket>();
 		Trainee trainee = new Trainee("A username", "First name", "Last name", "A cohort", "A password", "An email", tickets);
 		String username = "username1";
 		List<Trainee> trainees = new ArrayList<>();
