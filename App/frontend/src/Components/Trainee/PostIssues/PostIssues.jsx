@@ -1,14 +1,16 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import Issue from '../../Trainer/Issue';
+import IpContext from '../../../IpContext'
+import { useContext } from 'react';
 
 const PostIssues = ( props ) => {
 
+    const ip = useContext(IpContext);
     const [ticketTitle, setTitle] = useState("");
     const [ticketIssue, setIssue] = useState("");
     const [ticketTopic, setTopic] = useState("");
     const [ticketPriority, setPriority] = useState("");
-    const [backendpoint, setBackEndPoint] = useState("http://localhost:8081");
 
     //Need to find a way to retrieve the Trainee ID - Likely via prop/state from Login Screen
     const [traineeID] = useState(6)
@@ -20,7 +22,7 @@ const PostIssues = ( props ) => {
     const allIssues = document.getElementById("readDiv");
 
     useEffect(() => {
-        axios.get("http://52.48.80.243:8081/ticket/getAll")
+        axios.get("http://"+ip+"/ticket/getAll")
             .then(response => {
                 console.log(response.data);
                 setData(response.data);
@@ -42,7 +44,7 @@ const PostIssues = ( props ) => {
 
     const post_newIssue = (e) => {
         e.preventDefault();
-        axios.post("http://52.48.80.243:8081/ticket/create", {
+        axios.post("http://"+ip+"/ticket/create", {
             ticketId: 0,
             title: ticketTitle,
 	        issue: ticketIssue,
@@ -72,7 +74,7 @@ const PostIssues = ( props ) => {
                 <form className="ml-3" id="postIssueForm" onSubmit={post_newIssue}>
                     <input className="issueInput" type="text" id="title" onChange={e=>setTitle(e.target.value)} placeholder="Give issue a title" required></input> <br></br>
                     <input className="issueInput" type="text" id="issue" onChange={e=>setIssue(e.target.value)} placeholder="Please explain the issue in as much detail as possible" required></input> <br></br>
-                    <select defaultValue="" id="Topic" onChange={e=>setTopic(e.target.value)}>
+                    <select defaultValue="" id="topic" onChange={e=>setTopic(e.target.value)}>
                             <option value="" disabled hidden>Topic</option>
                             <option value="Bug">Bug</option>
                             <option value="React">React</option>

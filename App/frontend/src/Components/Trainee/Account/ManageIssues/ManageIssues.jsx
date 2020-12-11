@@ -2,17 +2,20 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import TraineeIssue from './TraineeIssue'
 import ClosedDataProps from './ClosedDataProps';
+import IpContext from '../../../../IpContext'
+import { useContext } from 'react';
 
 const ManageIssues = () => {
 
+    const ip = useContext(IpContext);
+
     const [data, setData] = useState([]);
     const [closedData, setClosedData] = useState([])
-    const [backendpoint, setBackEndPoint] = useState("http://localhost:8081");
     const [traineeId, setId] = useState("1");
 
     useEffect(() => {
         // axios.get(backendpoint + "/tickets/findById/" + traineeId)
-        axios.get("http://52.48.80.243:8081/ticket/findByTopic/MySQL")
+        axios.get("http://"+ip+"/ticket/findByTopic/MySQL")
             .then(response => {
                 response.data.map((child) => {
                     if (child.status === "new" || child.status === "Open") {
@@ -40,7 +43,7 @@ const ManageIssues = () => {
 
     useEffect(() => {
         // axios.get(backendpoint + "/tickets/findById/" + traineeId)
-        axios.get("http://52.48.80.243:8081/ticket/findByTopic/MySQL")
+        axios.get("http://"+ip+"/ticket/findByTopic/MySQL")
             .then(response => {
                 response.data.map((child) => {
                     if (child.status === "Closed") {

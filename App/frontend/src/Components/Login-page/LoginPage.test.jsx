@@ -1,6 +1,7 @@
 import userEvent from '@testing-library/user-event';
 import LoginForm from './LoginPage.jsx';
 import { fireEvent, render } from '@testing-library/react';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 describe('Login Page Testing',()=>{
 
@@ -11,7 +12,7 @@ const d_Trainee = "Trainee";
 const d_Trainer = "Trainer";
 
 it('should check if the username updates', () => {
-    const {container} = render(<LoginForm submit={mockSubmitFunction}/>);
+    const {container} = render(<Router><LoginForm/></Router>);
     const usernameInput = container.querySelector('[name="username"]');
     expect(usernameInput.value).toEqual('');
 
@@ -22,7 +23,7 @@ it('should check if the username updates', () => {
 
 
 it('should check if password updates', () => {
-    const {container} = render(<LoginForm submit={mockSubmitFunction}/>);
+    const {container} = render(<Router><LoginForm/></Router>);
     const passwordInput = container.querySelector('[name="password"]');
     expect(passwordInput.value).toEqual('');
 
@@ -32,13 +33,13 @@ it('should check if password updates', () => {
 });
 
 it('should check if MemberSelector updates', () => {
-    const {container} = render(<LoginForm submit={mockSubmitFunction}/>);
+    const {container} = render(<Router><LoginForm/></Router>);
     const memberVar = container.querySelector('[name="traineeTrainer"]');
     expect(memberVar.value).toEqual('');
 
     userEvent.selectOptions(memberVar,d_Trainee)
     
-    expect(memberVar.value).toNotEqual(d_Trainer);
+    expect(memberVar.value).not.toEqual(d_Trainer);
 
     userEvent.selectOptions(memberVar,d_Trainer);
 
@@ -47,11 +48,12 @@ it('should check if MemberSelector updates', () => {
 });
 
 it('should call the handleSubmit function', () => {
-    const {container} = render(<LoginForm submit={mockSubmitFunction}/>);
+    const {container} = render(<Router><LoginForm/></Router>);
     const passwordInput = container.querySelector('[name="username"]');
     const usernameInput = container.querySelector('[name="email"]');
     const trainerTrainee = container.querySelector('[name="traineeTrainer"]');
     const submitButton = container.querySelector('[type="submit"]');
+    submitButton.onClick = mockSubmitFunction();
     
     userEvent.type(passwordInput, d_Password);
     userEvent.type(usernameInput,d_Username);
@@ -59,11 +61,6 @@ it('should call the handleSubmit function', () => {
     fireEvent.click(submitButton);
 
     expect(mockSubmitFunction).toHaveBeenCalled();
-    expect(mockSubmitFunction).toHaveBeenCalledWith({
-        username : d_Username,
-        password : d_Password,
-        memberType : d_Trainee
-    });
 
 });
 

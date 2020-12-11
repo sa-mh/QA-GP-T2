@@ -9,11 +9,16 @@ import PostIssues from './Components/Trainee/PostIssues/PostIssues';
 import ManageIssues from './Components/Trainee/Account/ManageIssues/ManageIssues';
 import ViewAllIssues from './Components/Trainer/ViewAllIssues';
 // import TrainerPage from './Components/Trainer/';
+import IpContext from './IpContext';
+import { useContext } from 'react';
+
+const ip = "54.194.254.129:8081"
 
 function App() {
   return (
     <Router>
       <Header />
+      <IpContext.Provider value = {ip}>
       <Switch>
         <Route path="/login" component={LoginPage} />
         <Route path="/about" component={Aboutpage} />
@@ -25,6 +30,7 @@ function App() {
         {/* <Route path="/trainee" component={Trainee}/>
             <Route path="/trainer" component={Trainer}/> */}
       </Switch>
+      </IpContext.Provider>
              <Footer />
     </Router>
   );

@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-
+import IpContext from '../../IpContext'
+import { useContext } from 'react';
 
 const LoginPage = props => {
+
+    const ip = useContext(IpContext);
 
     const [data, setData] = useState([]);
     const [username, setUsername] = useState("");
@@ -12,7 +15,7 @@ const LoginPage = props => {
 
     const getLogin = (e) => {
         e.preventDefault();
-        axios.get("http://52.48.80.243:8081/" + memberType + "/findByUsername?Username=" + username)
+        axios.get(ip + "/" + memberType + "/findByUsername?Username=" + username)
             .then(response => {
                 // console.log(response.data[0].username);
                 setData(response.data);
@@ -47,10 +50,10 @@ const LoginPage = props => {
                     <form className="ml-3" id="loginForm">
                         <input name="username" className="loginInput" type="text" id="username" placeholder="Enter your username" onChange={e => setUsername(e.target.value)} required></input> <br></br>
                         <input name="password" className="loginInput" type="password" id="password" placeholder="Enter your password" onChange={e => setPassword(e.target.value)} required></input> <br></br>
-                        <select name="traineeTrainer" onChange={e => setMemberType(e.target.value)}>
-                            <option value="" selected disabled hidden>Position</option>
-                            <option value="trainer">Trainer</option>
-                            <option value="trainee" selected>Trainee</option>
+                        <select defaultValue="" name="traineeTrainer" onChange={e => setMemberType(e.target.value)}>
+                            <option value="" disabled hidden>Position</option>
+                            <option value="Trainer">Trainer</option>
+                            <option value="Trainee">Trainee</option>
                         </select>
                         <button className="btn btn-primary" id="loginButton" type="submit" onClick={getLogin}>Login</button>
                         <div>

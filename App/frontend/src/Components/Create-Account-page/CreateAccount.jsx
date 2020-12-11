@@ -1,7 +1,11 @@
 import React, {useState} from 'react'
 import axios from 'axios';
+import IpContext from '../../IpContext'
+import { useContext } from 'react';
 
 const CreateAccount = (props) => {
+
+    const ip = useContext(IpContext);
 
     // setting the states
     const [firstname, setFirstname] = useState("");
@@ -16,7 +20,7 @@ const CreateAccount = (props) => {
     const post_createAccount = (e) => {
         e.preventDefault();
         if(member === "trainee"){
-        axios.post("http://52.48.80.243:8081/trainee/create", {
+        axios.post("http://"+ip+"/trainee/create", {
             username,
             firstName: firstname,
             secondName: lastname,
@@ -31,7 +35,7 @@ const CreateAccount = (props) => {
             console.log(error)
         });
     }else{
-        axios.post("http://52.48.80.243:8081/trainer/create", {
+        axios.post("http://"+ip+"/trainer/create", {
             username,
             firstName: firstname,
             lastName: lastname,

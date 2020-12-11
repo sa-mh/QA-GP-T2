@@ -16,7 +16,7 @@ describe('Posting Issues Testing',()=>{
 
     it('should check if the title updates', () => {
         const {container} = render(<PostIssues/>);
-        const titleInput = container.querySelector('[id="Title"]');
+        const titleInput = container.querySelector('[id="title"]');
         expect(titleInput.value).toEqual('');
     
         userEvent.type(titleInput,d_title);
@@ -26,7 +26,7 @@ describe('Posting Issues Testing',()=>{
 
     it('should check if the issue updates', () => {
         const {container} = render(<PostIssues/>);
-        const issueInput = container.querySelector('[id="Issue"]');
+        const issueInput = container.querySelector('[id="issue"]');
         expect(issueInput.value).toEqual('');
     
         userEvent.type(issueInput,d_issue);
@@ -36,7 +36,7 @@ describe('Posting Issues Testing',()=>{
     
     it('should check if Topic updates', () => {
         const {container} = render(<PostIssues/>);
-        const topicInput = container.querySelector('[id="Topic"]');
+        const topicInput = container.querySelector('[id="topic"]');
         expect(topicInput.value).toEqual('');
 
         userEvent.selectOptions(topicInput, d_topicTag)
@@ -46,7 +46,7 @@ describe('Posting Issues Testing',()=>{
 
     it('should check if Priority updates', () => {
         const {container} = render(<PostIssues/>);
-        const priorityInput = container.querySelector('[id="Priority"]');
+        const priorityInput = container.querySelector('[id="priority"]');
         expect(priorityInput.value).toEqual('');
 
         userEvent.selectOptions(priorityInput, d_priorityTag)
@@ -56,30 +56,20 @@ describe('Posting Issues Testing',()=>{
 
     it('should call the handleSubmit function for posting issues', () => {
         const {container} = render(<PostIssues onSubmit={mockSubmitFunction}/>);
-        const titleInput = container.querySelector('[id="Title"]');
-        const issueInput = container.querySelector('[id="Issue"]');
-        const topicInput = container.querySelector('[id="Topic"]');
-        const priorityInput = container.querySelector('[id="Priority"]');
-        const accountSubmit = container.querySelector('[id="postButton"]');
-        const accountForm = container.querySelector('[id="postIssueForm"]');
-        // accountForm.onSubmit={mockSubmitFunction}
-        // console.log(accountForm);
+        const titleInput = container.querySelector('[id="title"]');
+        const issueInput = container.querySelector('[id="issue"]');
+        const topicInput = container.querySelector('[id="topic"]');
+        const priorityInput = container.querySelector('[id="priority"]');
+        const issueSubmit = container.querySelector('[id="postButton"]');
+        issueSubmit.onClick=mockSubmitFunction()
         
         userEvent.type(titleInput, d_title);
         userEvent.type(issueInput, d_issue);
         userEvent.selectOptions(topicInput, d_topicTag);
         userEvent.selectOptions(priorityInput, d_priorityTag);
-        fireEvent.submit(accountForm);
+        fireEvent.click(issueSubmit);
     
         expect(mockSubmitFunction).toHaveBeenCalled();
-        expect(mockSubmitFunction).toHaveBeenCalledWith({
-            title: d_title,
-	        issue: d_issue,
-	        topic: d_topic,
-            urgency: d_priority,
-	        status: d_status,
-	        traineeID: d_traineeid,
-            });
     
     });
 

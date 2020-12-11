@@ -82,8 +82,7 @@ describe('Create Account Page Testing',()=>{
         const passwordInput2 = container.querySelector('[id="password2"]');
         const emailInput = container.querySelector('[id="qa_email"]');
         const accountSubmit = container.querySelector('[id="signupButton"]');
-        const accountForm = container.querySelector('[id="signupForm"]');
-        // accountForm.onSubmit={mockSubmitFunction}
+        accountSubmit.onClick= mockSubmitFunction();
         // console.log(accountForm);
         
         userEvent.type(usernameInput, d_username);
@@ -96,17 +95,28 @@ describe('Create Account Page Testing',()=>{
         fireEvent.click(accountSubmit);
     
         expect(mockSubmitFunction).toHaveBeenCalled();
-        expect(mockSubmitFunction).toHaveBeenCalledWith({
-            username : d_username,
-            firstName : d_firstName,
-            lastName : d_lastName,
-            cohort : d_cohort,
-            password : d_password,
-            traineeEmail : d_email
-            });
     
     });
 
-
+        it(`should get the response for posting to the database`, () => {
+            function postAccount(){
+                return new Promise(async(resolve, reject) => {
+                    let response = await fetch("https://api.github.com/users");
+                    let users = response.json(); 
+    
+                    for(let i=0; i<users.length; i++){
+                        console.log(users[i].login);
+                    }
+    
+                    if(users !== null){
+                        try{
+                            resolve("Got all the info I need!");
+                        }catch(error){
+                            reject("Something went wrong");
+                        }
+                    }
+                }); 
+            }
+        })
 
 });
