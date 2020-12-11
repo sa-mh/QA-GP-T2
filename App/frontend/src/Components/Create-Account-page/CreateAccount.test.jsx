@@ -1,9 +1,12 @@
 import userEvent from '@testing-library/user-event';
 import CreateAccount from './CreateAccount.jsx';
 import { fireEvent, render } from '@testing-library/react';
+import IpContext from '../../IpContext';
+import { useContext } from 'react';
 
 describe('Create Account Page Testing',()=>{
 
+    
     const mockSubmitFunction = jest.fn();
     const d_username = "JDoe";
     const d_firstName= "Jordan";
@@ -98,10 +101,12 @@ describe('Create Account Page Testing',()=>{
     
     });
 
-        it(`should get the response for posting to the database`, () => {
-            function postAccount(){
+        it(`should get a response for the database trainer table`, () => {
+            function trainerCheck(){
                 return new Promise(async(resolve, reject) => {
-                    let response = await fetch("https://api.github.com/users");
+                    
+                    const ip = useContext(IpContext);
+                    let response = await fetch("http://" + ip + "/trainer/getAll");
                     let users = response.json(); 
     
                     for(let i=0; i<users.length; i++){
@@ -119,4 +124,26 @@ describe('Create Account Page Testing',()=>{
             }
         })
 
+        it(`should get a response for the database trainee table`, () => {
+            function traineeCheck(){
+                return new Promise(async(resolve, reject) => {
+                    
+                    const ip = useContext(IpContext);
+                    let response = await fetch("http://" + ip + "/trainee/getAll");
+                    let users = response.json(); 
+    
+                    for(let i=0; i<users.length; i++){
+                        console.log(users[i].login);
+                    }
+    
+                    if(users !== null){
+                        try{
+                            resolve("Got all the info I need!");
+                        }catch(error){
+                            reject("Something went wrong");
+                        }
+                    }
+                }); 
+            }
+        })
 });

@@ -15,7 +15,7 @@ const LoginPage = props => {
 
     const getLogin = (e) => {
         e.preventDefault();
-        axios.get(ip + "/" + memberType + "/findByUsername?Username=" + username)
+        axios.get("http://"+ ip + "/" + memberType + "/findByUsername?Username=" + username)
             .then(response => {
                 // console.log(response.data[0].username);
                 setData(response.data);
