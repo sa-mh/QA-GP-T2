@@ -11,6 +11,8 @@ pipeline{
         Stage("Build the docker images") {
             steps {
                 //Docker compose up -d (to build all the images (frontend and backend))
+                sh 'cd ~/QA-GP-T2/App/'
+                sh 'docker-compose up -d'
             }
         }
         Stage("Run the backend and frontend tests") {
