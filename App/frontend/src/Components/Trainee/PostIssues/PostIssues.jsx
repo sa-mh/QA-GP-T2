@@ -19,15 +19,19 @@ const PostIssues = ( props ) => {
 
     const [data, setData] = useState([]);
 
-    const allIssues = document.getElementById("readDiv");
-
     useEffect(() => {
         axios.get("http://"+ip+"/ticket/getAll")
             .then(response => {
-                console.log(response.data);
-                setData(response.data);
+                response.data.map( (child) => {
+                    if(child.status === "new" || child.status === "Open"  ){
+                        console.log("I'm here");
+                        setData(response.data);
+                    }else{
+                        console.log("nope");
+                    }
+                })
             })
-    }, [])
+    }, [])  
 
     
     const items = (data.map((issue) =>(

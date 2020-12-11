@@ -6,7 +6,7 @@ const Issue = (props) => {
 
     const closeTicket = (e) => {
         e.preventDefault();
-        axios.put("http://52.48.80.243:8081/ticket/update", {
+        axios.put("http://54.194.254.129:8081/ticket/update", {
             ticketId: props.ticketId,
             title: props.title,
             issue: props.message,
