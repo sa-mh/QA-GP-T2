@@ -5,11 +5,10 @@ import { useContext } from 'react';
 
 const Issue = (props) => {
 
-
     const ip = useContext(IpContext);
     const closeTicket = (e) => {
         e.preventDefault();
-        axios.put("http://"+ip+"/ticket/update", {
+        axios.put("http://"+ip+"/ticket/status/" + props.ticketId, {
             ticketId: props.ticketId,
             title: props.title,
             issue: props.message,
