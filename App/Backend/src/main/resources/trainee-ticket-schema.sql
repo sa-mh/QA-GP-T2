@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS trainee_ticket (
+	id BIGINT PRIMARY KEY AUTO_INCREMENT,
+	trainee_id BIGINT FOREIGN KEY REFERENCES trainee(id),
+	ticket_id BIGINT FOREIGN KEY REFERENCES ticket(id)
+);

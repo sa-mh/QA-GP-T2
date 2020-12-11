@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.qa.HP.domain.Ticket;
 import com.qa.HP.domain.TicketRepo;
+import com.qa.HP.domain.Trainer;
 import com.qa.HP.exception.TicketNotFoundException;
 
 
@@ -25,6 +26,18 @@ public class TicketService {
 	public List<Ticket> getTicket() {
 		return this.repo.findAll();
 	}
+	
+	public Ticket findTicketById(Long id) {
+		return this.repo.findById(id).get();
+	}
+	
+	public List<Ticket> findTicketByTopic(String topic) {
+		return this.repo.findByTopic(topic);
+	}
+	
+//	public List<Ticket> findTicketByTrainee(Long id) { 
+//		return this.repo.findByTraineeId(id);
+//	}
 
 	public Ticket createTicket(Ticket ticket) {
 		return this.repo.save(ticket);
@@ -45,12 +58,12 @@ public class TicketService {
 		oldTicket.setSubmitDate(ticket.getSubmitDate());
 		oldTicket.setUrgency(ticket.getUrgency());
 		oldTicket.setStatus(ticket.getStatus());
-		oldTicket.setTraineeID(ticket.getTraineeID());
-		oldTicket.setTrainerID(ticket.getTrainerID());
+		oldTicket.setTrainer(ticket.getTrainer());
+		oldTicket.setTrainees(ticket.getTrainees());
 
 		Ticket updatedTicket = this.repo.save(oldTicket);
 		return updatedTicket;
-
 	}
+	
 } 
 
