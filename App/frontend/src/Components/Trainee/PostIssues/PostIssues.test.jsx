@@ -54,7 +54,7 @@ describe('Posting Issues Testing',()=>{
         expect(priorityInput.value).toEqual(d_priority);
     });
 
-    it('should call the handleSubmit function for posting issues', () => {
+    it('should call the handleSubmit function for posting issues', async () => {
         const {container} = render(<PostIssues onSubmit={mockSubmitFunction}/>);
         const titleInput = container.querySelector('[id="title"]');
         const issueInput = container.querySelector('[id="issue"]');
@@ -72,6 +72,29 @@ describe('Posting Issues Testing',()=>{
         expect(mockSubmitFunction).toHaveBeenCalled();
     
     });
+
+    it(`should get a response for the database issues table`, () => {
+        function getAllTest(){
+            return new Promise(async(resolve, reject) => {
+                
+                const ip = useContext(IpContext);
+                let response = await fetch("http://"+ip+"/ticket/getAll");
+                let issues = response.json(); 
+
+                for(let i=0; i<issues.length; i++){
+                    console.log(issues[i].title);
+                }
+                if(issues !== null){
+                    try{resolve("Data Recieved");
+                    }
+                    catch(error){reject("Missing Data");
+                    }
+                }
+
+            }); 
+        }
+        expect(getAllTest()).resolves.toMatch("1");
+    })
 
 
 

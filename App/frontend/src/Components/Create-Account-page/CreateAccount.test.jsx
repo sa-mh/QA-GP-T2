@@ -110,7 +110,7 @@ describe('Create Account Page Testing',()=>{
                     let users = response.json(); 
     
                     for(let i=0; i<users.length; i++){
-                        console.log(users[i].login);
+                        console.log(users[i].username);
                     }
     
                     if(users !== null){
@@ -133,7 +133,7 @@ describe('Create Account Page Testing',()=>{
                     let users = response.json(); 
     
                     for(let i=0; i<users.length; i++){
-                        console.log(users[i].login);
+                        console.log(users[i].username);
                     }
     
                     if(users !== null){
