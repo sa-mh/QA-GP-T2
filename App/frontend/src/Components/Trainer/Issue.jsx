@@ -1,12 +1,15 @@
 import React from 'react'
 import axios from 'axios'
+import IpContext from '../../IpContext'
+import { useContext } from 'react';
 
 const Issue = (props) => {
 
 
+    const ip = useContext(IpContext);
     const closeTicket = (e) => {
         e.preventDefault();
-        axios.put("http://54.194.254.129:8081/ticket/update", {
+        axios.put("http://"+ip+"/ticket/update", {
             ticketId: props.ticketId,
             title: props.title,
             issue: props.message,

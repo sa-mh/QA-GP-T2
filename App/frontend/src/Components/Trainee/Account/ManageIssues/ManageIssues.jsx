@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import TraineeIssue from './TraineeIssue'
 import ClosedDataProps from './ClosedDataProps';
-import IpContext from '../../../../IpContext'
+import IpContext from '../../../../IpContext';
 import { useContext } from 'react';
 
 const ManageIssues = () => {
@@ -30,7 +30,6 @@ const ManageIssues = () => {
 
 
     const items = (data.map((issue) => (
-
         <TraineeIssue
             title={issue.title}
             topic={issue.topic}
@@ -42,7 +41,6 @@ const ManageIssues = () => {
 
 
     useEffect(() => {
-        // axios.get(backendpoint + "/tickets/findById/" + traineeId)
         axios.get("http://"+ip+"/ticket/findByTopic/MySQL")
             .then(response => {
                 response.data.map((child) => {
