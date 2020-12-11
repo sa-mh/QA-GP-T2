@@ -6,16 +6,33 @@ pipeline{
         Stage("Step 1") {
             steps {
                 // In the jenkinsVM, sign into DockerHub and Kubectl (as jenkins user?)
+                sh 'bash ./Scripts/logins.sh'
             }
         }
         Stage("Step 2") {
             steps {
                 //Docker compose up -d (to build all the images (frontend and backend))
+                sh 'cd ~/QA-TP-G2/App/'
+                sh 'docker-compose up -d'
             }
         }
-        Stage("Step 3") {
+        Stage("Run the backend and frontend tests") {
             steps {
-                //step three here
+                // Run the tests (npm test for frontend) (somehow test backend)
+                sh 'bash ./Scripts/frontend-tests.sh'
+                sh 'bash ./Scripts/backend-tests.sh'
+            }
+        }
+        Stage("Push the successful images to nexus repo") {
+            steps {
+                // Pushing the images ran to nexus repository
+                sh 'bash ./Scripts/image-push.sh'
+            }
+        }
+        Stage("Uodate the Kubernetes files") {
+            steps {
+                // Updating the kubernetes files (deployments, services, configmap, secrets) to pull latest image
+                sh 'bash .Scripts/...'
             }
         }
     }
