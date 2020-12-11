@@ -1,4 +1,4 @@
 import React from "react";
 
-const IpContext = React.createContext("54.194.254.129:8081");
+const IpContext = React.createContext();
 export default IpContext;
