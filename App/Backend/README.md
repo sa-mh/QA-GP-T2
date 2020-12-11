@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# Final-P-backend
-=======
 # QA Cloud Native - Final Project - SIFA3
 ## Group 2 : Name TBD
 
@@ -64,4 +61,3 @@ The initial brief required us (within a team) to create a Help Queue web applica
 
 Trello : https://trello.com/b/C5f54Wkv/final-project-group-2 <br>
 Jira Board: https://sshahid.atlassian.net/secure/RapidBoard.jspa?projectKey=GRP2&rapidView=5# <br>
->>>>>>> branch 'Backend' of https://github.com/sa-mh/QA-GP-T2.git

@@ -32,8 +32,8 @@ public class TrainerController {
 	}
 	
 	@GetMapping("/findById")
-	public ResponseEntity<Trainer> getTrainerById(Long trainerId) {
-		return ResponseEntity.ok(this.service.getTrainerById(trainerId));
+	public ResponseEntity<Trainer> findTrainerById(Long trainerId) {
+		return ResponseEntity.ok(this.service.findTrainerById(trainerId));
 	}
 		
 	@PostMapping("/create")

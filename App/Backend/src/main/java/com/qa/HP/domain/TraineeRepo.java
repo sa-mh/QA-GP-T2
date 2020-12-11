@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 public interface TraineeRepo extends JpaRepository<Trainee, Long> {
 	
 	List<Trainee> findByCohort(String cohort);
+	List<Trainee> findByUsername(String username);
 }
