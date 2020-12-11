@@ -10,38 +10,42 @@ public class Trainer {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long trainerId;
 	
 	private String username;
 	private String firstName;
 	private String lastName;
 	private String password;
+	private String field;
+	private String trainerEmail;
 	
 	
-	public Trainer(String username, String firstName, String lastName, String password) {
+	public Trainer(String username, String firstName, String lastName, String password, String field, String trainerEmail) {
 		super();
 		this.username = username;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.password = password;
-		
+		this.field = field;
+		this.trainerEmail = trainerEmail;
 	}
 	
 	public Trainer() { 
 		super();
 
 	}
+	
 	@Override
 	public String toString() {
-		return "Trainers [id=" + id + ", username=" + username + "firstName=" + firstName + ", lastName=" + lastName + ", password=" + password + "]";
+		return "Trainers [id=" + trainerId + ", username=" + username + "firstName=" + firstName + ", lastName=" + lastName + ", password=" + password + ", field=" + field + ", trainer email=" + trainerEmail + "]";
 	}
 
-	public Long getId() {
-		return id;
+	public Long getTrainerId() {
+		return trainerId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setTrainerId(Long trainerId) {
+		this.trainerId = trainerId;
 	}
 	
 	public String getUsername() {
@@ -76,5 +80,20 @@ public class Trainer {
 		this.password = password;
 	}
 	
+	public String getField() {
+		return field;
+	}
+	
+	public void setField(String field) {
+		this.field= field;
+	}
+	
+	public String getTrainerEmail() {
+		return trainerEmail;
+	}
+	
+	public void setTrainerEmail(String trainerEmail) {
+		this.trainerEmail = trainerEmail;
+	}
 
 }

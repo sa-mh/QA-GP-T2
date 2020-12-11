@@ -10,52 +10,42 @@ public class Ticket {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long ticketId;
 
-	private int ticketID;
 	private String title;
 	private String issue;
 	private String topic;
 	private String submitDate;
 	private int urgency;
 	private String status;
-	private int traineeID;
-	private int trainerID;
+	private int traineeId;
+	private int trainerId;
 	
 
 	public Ticket() {
 		super();
 	}
 
-	public Ticket(int ticketID, String title, String issue, String topic, String submitDate, int urgency, String status, int traineeID, int trainerID) {
+	public Ticket(String title, String issue, String topic, String submitDate, int urgency, String status, int traineeId, int trainerId) {
 		super();
-		this.ticketID = ticketID;
 		this.title = title;
 		this.issue = issue;
 		this.topic = topic;
 		this.submitDate = submitDate;
 		this.urgency = urgency;
 		this.status = status;
-		this.traineeID = traineeID;
-		this.trainerID = trainerID;
+		this.traineeId = traineeId;
+		this.trainerId = trainerId;
 	}
 	
-	public Long getId() {
-		return id;
+	public Long getTicketId() {
+		return ticketId;
 	}
 	
-	public void setId(Long id) {
-		this.id = id;
+	public void setTicketId(Long ticketId) {
+		this.ticketId = ticketId;
 	}
 	
-	public int getTicketID() {
-		return ticketID;
-	}
-
-	public void setTicketID(int ticketID) {
-		this.ticketID = ticketID;
-	}
-
 	public String getTitle() {
 		return title;
 	}
@@ -104,20 +94,20 @@ public class Ticket {
 		this.status = status;
 	}
 
-	public int getTraineeID() {
-		return traineeID;
+	public int getTraineeId() {
+		return traineeId;
 	}
 
-	public void setTraineeID(int traineeID) {
-		this.traineeID = traineeID;
+	public void setTraineeId(int traineeId) {
+		this.traineeId = traineeId;
 	}
 
-	public int getTrainerID() {
-		return trainerID;
+	public int getTrainerId() {
+		return trainerId;
 	}
 
-	public void setTrainerID(int trainerID) {
-		this.trainerID = trainerID;
+	public void setTrainerId(int trainerId) {
+		this.trainerId = trainerId;
 	}
 	
 	// needs Hashcode and equals override for testing
