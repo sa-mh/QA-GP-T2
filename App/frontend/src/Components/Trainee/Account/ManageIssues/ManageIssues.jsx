@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 import TraineeIssue from './TraineeIssue'
 import ClosedDataProps from './ClosedDataProps';
@@ -12,7 +13,7 @@ const ManageIssues = () => {
 
     useEffect(() => {
         // axios.get(backendpoint + "/tickets/findById/" + traineeId)
-        axios.get("http://52.48.80.243:8081/ticket/findByTopic/MySQL")
+        axios.get("http://54.194.254.129:8081/ticket/findByTopic/MySQL")
             .then(response => {
                 response.data.map((child) => {
                     if (child.status === "new" || child.status === "Open") {
@@ -73,7 +74,11 @@ const ManageIssues = () => {
                 <h3>Open Issues</h3>
                 {items}
             </div>
-
+            <div>
+                <Link to="/postIssue">
+                    <button id="PostIssueButton">Post a new Issue</button>
+                </Link>
+            </div>
             <div class="vl"></div>
 
             <div name="closedIssues" id="out_myClosedIssues">
