@@ -100,7 +100,7 @@ const PostIssues = ( props ) => {
 
 {/* View all the issues currently in the database here */}
 <div id="readDiv">
-<div class="vl"></div>
+<div className="vl"></div>
 
     <h5>All the issues currently awaiting help</h5>
 {items}
