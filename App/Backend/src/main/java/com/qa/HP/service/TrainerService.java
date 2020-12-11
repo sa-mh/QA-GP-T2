@@ -1,11 +1,10 @@
-package com.qa.HP.service;
+package App.Backend.src.main.java.com.qa.HP.service;
 
-import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.qa.HP.domain.Trainer;
-import com.qa.HP.domain.TrainerRepo;
+import App.Backend.src.main.java.com.qa.HP.domain.Trainer;
+import App.Backend.src.main.java.com.qa.HP.domain.TrainerRepo;
 
 @Service
 public class TrainerService {

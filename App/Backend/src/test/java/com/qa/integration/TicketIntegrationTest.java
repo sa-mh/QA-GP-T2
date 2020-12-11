@@ -1,4 +1,4 @@
-package com.qa.HP;
+package App.Backend.src.test.java.com.qa.integration;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -25,9 +25,9 @@ import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.qa.HP.domain.Ticket;
-import com.qa.HP.domain.Trainee;
-import com.qa.HP.domain.Trainer;
+import App.Backend.src.main.java.com.qa.HP.domain.Ticket;
+import App.Backend.src.main.java.com.qa.HP.domain.Trainee;
+import App.Backend.src.main.java.com.qa.HP.domain.Trainer;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc

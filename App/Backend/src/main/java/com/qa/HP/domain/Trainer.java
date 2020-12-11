@@ -1,4 +1,4 @@
-package com.qa.HP.domain;
+package App.Backend.src.main.java.com.qa.HP.domain;
 
 import java.util.List;
 
