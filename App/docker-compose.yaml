@@ -4,7 +4,7 @@ services:
   
   backend:
     build: ./Backend
-    image: sherazshahid017/mavenbuild:latest
+    image: ${NexusIP}/backend:latest
     container_name: backend
     ports:
     - target: 8081
@@ -13,7 +13,7 @@ services:
 
   frontend:
     build: ./frontend
-    image: sherazshahid017/frontend:latest
+    image: ${NexusIP}/frontend:latest
     container_name: frontend
     ports:
     - target: 5000
