@@ -46,20 +46,19 @@ const PostIssues = ( props ) => {
 
     const post_newIssue = (e) => {
         e.preventDefault();
-        axios.post("http://52.48.80.243:8081/ticket/create", {
-            ticketId: 0,
+        axios.post("http://54.194.254.129:8081//ticket/create", {
             title: ticketTitle,
 	        issue: ticketIssue,
             topic: ticketTopic,
-            submitDate: "",
+            submitDate: "0000-00-00 00:00:00",
             urgency: ticketPriority,
 	        status: "Open",
             traineeId: 1,
-            trainerId: 0
+            trainerId: 1
             }
         ).then(response =>{
             console.log(response);
-            // window.location.reload();
+            window.location.reload();
         }).catch(error => {
             console.log(error.data)
         });
@@ -91,7 +90,7 @@ const PostIssues = ( props ) => {
                             <option value="2">Medium</option>
                             <option value="3">Low</option>
                     </select>
-                    <button className="btn btn-primary" id="postButton" type="submit">Post Issue</button>
+                    <button className="btn btn-primary" id="postButton" type="submit" onSubmit={post_newIssue}>Post Issue</button>
                 </form>
             </div>
         </div>
