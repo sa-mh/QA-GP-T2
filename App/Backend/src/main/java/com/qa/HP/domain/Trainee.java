@@ -10,42 +10,40 @@ public class Trainee {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long traineeId;
+	private Long id;
 
-	private String username;
+	private int username;
 	private String firstName;
 	private String secondName;
 	private String cohort;
 	private String password;
-	private String traineeEmail;
 
 	public Trainee() {
 		super();
 	}
 
-	public Trainee(String username, String firstName, String secondName, String cohort, String password, String traineeEmail) {
+	public Trainee(int username, String firstName, String secondName, String cohort, String password) {
 		super();
 		this.username = username;
 		this.firstName = firstName;
 		this.secondName = secondName;
 		this.cohort = cohort;
 		this.password = password;
-		this.traineeEmail = traineeEmail;
 	}
 
-	public Long getTraineeId() {
-		return traineeId;
+	public Long getId() {
+		return id;
 	}
 
-	public void setTraineeId(Long id) {
-		this.traineeId = id;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public String getUsername() {
+	public int getUsername() {
 		return username;
 	}
 
-	public void setUsername(String username) {
+	public void setUsername(int username) {
 		this.username = username;
 	}
 
@@ -79,14 +77,6 @@ public class Trainee {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	
-	public String getEmail() {
-		return traineeEmail;
-	}
-	
-	public void setTraineeEmail(String traineeEmail) {
-		this.traineeEmail = traineeEmail;
 	}
 	
 	// needs Hashcode and equals override for testing

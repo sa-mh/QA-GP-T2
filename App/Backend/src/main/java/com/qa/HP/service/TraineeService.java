@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.qa.HP.domain.TraineeRepo;
-import com.qa.HP.domain.Trainer;
-import com.qa.HP.domain.Ticket;
 import com.qa.HP.domain.Trainee;
 
 @Service
@@ -21,16 +19,8 @@ public class TraineeService {
 		this.repo = repo;
 	}
 
-	public List<Trainee> getTrainees() {
+	public List<Trainee> getTrainee() {
 		return this.repo.findAll();
-	}
-	
-	public List<Trainee> findTraineeByCohort(String cohort) {
-		return this.repo.findByCohort(cohort);
-	}
-	
-	public Trainee getTraineeById(Long traineeId) {
-		return this.repo.findById(traineeId).get();
 	}
 
 	public Trainee createTrainee(Trainee trainee) {
@@ -38,14 +28,14 @@ public class TraineeService {
 	}
 
 //delete trainee
- // public boolean deleteTrainee(Long traineeId) {
-	//	this.repository.deleteById(traineeId);
-	//	return !this.repository.existsById(traineeId);
+ // public boolean deleteTrainee(Long id) {
+	//	this.repository.deleteById(id);
+	//	return !this.repository.existsById(id);
 	//}
 
 // update trainee
-//	public Trainee updateTrainee(Trainee trainee, Long traineeId) {
-//		Optional<Trainee> optTrainee = this.repository.findById(traineeId);
+//	public Trainee updateTrainee(Trainee trainee, Long id) {
+//		Optional<Trainee> optTrainee = this.repository.findById(id);
 //		Trainee oldTrainee = optTrainee.orElseThrow(() -> new TraineeNotFoundException());
 
 	//	oldTrainee.setTraineeID(trainee.getTraineeID());

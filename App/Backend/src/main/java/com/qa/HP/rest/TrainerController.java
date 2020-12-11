@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,7 +14,6 @@ import com.qa.HP.domain.Trainer;
 import com.qa.HP.service.TrainerService;
 
 @RestController
-@CrossOrigin
 @RequestMapping("/trainer")
 public class TrainerController {
 	
@@ -26,14 +24,10 @@ public class TrainerController {
 		this.service = service;
 	}
 	
+	//Get request
 	@GetMapping("/getAll")
-	public ResponseEntity<List<Trainer>> getTrainers() {
-		return ResponseEntity.ok(this.service.getTrainers());
-	}
-	
-	@GetMapping("/findById")
-	public ResponseEntity<Trainer> getTrainerById(Long trainerId) {
-		return ResponseEntity.ok(this.service.getTrainerById(trainerId));
+	public ResponseEntity<List<Trainer>> getTrainer() {
+		return ResponseEntity.ok(this.service.getTrainer());
 	}
 		
 	@PostMapping("/create")

@@ -22,16 +22,15 @@ public class TrainerService {
 		this.repo = repo;
 	}
 	
-	public List<Trainer> getTrainers() {
-		return this.repo.findAll();	
-	}
+	//Get request
+		public List<Trainer> getTrainer() {
+			return this.repo.findAll();
+			
+		}
 	
-	public Trainer getTrainerById(Long trainerId) {
-		return this.repo.findById(trainerId).get();
-	}
-	
-	public Trainer createTrainer(Trainer trainer) {
+		public Trainer createTrainer(Trainer trainer) {
 		return this.repo.save(trainer);
 	}
 	
+
 }
