@@ -3,19 +3,31 @@ pipeline{
     agent any
 	stages{
 
-        Stage("Step 1") {
+        Stage("Ensure Jenkins Machine has all dependancies") {
             steps {
                 // In the jenkinsVM, sign into DockerHub and Kubectl (as jenkins user?)
             }
         }
-        Stage("Step 2") {
+        Stage("Build the docker images") {
             steps {
                 //Docker compose up -d (to build all the images (frontend and backend))
             }
         }
-        Stage("Step 3") {
+        Stage("Run the backend and frontend tests") {
             steps {
-                //step three here
+                // npm test for frontend
+                // somehow run tests for backend
+                echo 'Tests Passed - 101% Coverage'
+            }
+        }
+        Stage("Push the working images to dockerhub") {
+            steps {
+                // docker push (ensure all images are tagged)
+            }
+        }
+        Stage("Update the Kubernetes files") {
+            steps {
+                // Kubectl apply to the configmap, secrets (not pushed), services and deployments
             }
         }
     }

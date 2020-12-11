@@ -4,7 +4,7 @@ services:
   
   backend:
     build: ./Backend
-    image: sherazshahid017/mavenbuild:latest
+    image: sherazshahid017/backend:latest
     container_name: backend
     ports:
     - target: 8081
