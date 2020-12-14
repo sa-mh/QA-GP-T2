@@ -1,5 +1,6 @@
 package com.qa.HP.service;
 
+
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -17,7 +18,6 @@ public class TrainerService {
 		this.repo = repo;
 	}
 	
-
 	public void setRepo(TrainerRepo repo) {
 		this.repo = repo;
 	}
