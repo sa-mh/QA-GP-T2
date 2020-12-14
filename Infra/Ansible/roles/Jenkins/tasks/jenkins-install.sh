@@ -6,6 +6,7 @@ elif type yum /dev/null; then
     pkg_mgr=yum
     java="java"
 fi
+
 echo "updating and installing dependencies"
 sudo ${pkg_mgr} update
 sudo ${pkg_mgr} install -y ${java} wget git > /dev/null

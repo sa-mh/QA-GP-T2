@@ -1,0 +1,4 @@
+- name: Install aws-cli
+  apt:
+    name: awscli
+    state: latest
