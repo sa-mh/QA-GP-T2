@@ -35,6 +35,14 @@ import com.qa.HP.domain.Trainer;
 "classpath:ticket-data.sql", "classpath:trainee-data.sql", "classpath:trainee-schema.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
 @ActiveProfiles(profiles = "test")
 public class TicketIntegrationTest {
+	
+	private String username="DD";
+	private String firstName="Dummy";
+	private String lastName="Data";
+	private String password="NA";
+	private String field="Dev Ops";
+	private String trainerEmail="DD@Fake.com";
+	private List<Ticket> ticketList;
 
 	@Autowired
 	private MockMvc mockMVC;
@@ -44,7 +52,7 @@ public class TicketIntegrationTest {
 
 	@Test
 	void getTicketTest() throws Exception {
-		Trainer trainer = new Trainer();
+		Trainer trainer = new Trainer(this.username,this.firstName,this.lastName,this.password,this.field,this.trainerEmail,this.ticketList);
 		List<Trainee> trainees = new ArrayList<Trainee>();
 		Ticket ticket = new Ticket("A title", "An issue", "A topic", 10L , 4, "Pending", trainer, trainees);
 		ticket.setId(1L);
@@ -57,7 +65,7 @@ public class TicketIntegrationTest {
 	
 	@Test
 	void getTicketByTopicTest() throws Exception {
-		Trainer trainer = new Trainer();
+		Trainer trainer = new Trainer(this.username,this.firstName,this.lastName,this.password,this.field,this.trainerEmail,this.ticketList);
 		List<Trainee> trainees = new ArrayList<Trainee>();
 		Ticket ticket = new Ticket("A title", "An issue", "A topic", 10L , 4, "Pending", trainer, trainees);
 		String topic = "Dev Ops";
@@ -72,7 +80,7 @@ public class TicketIntegrationTest {
 	
 	@Test
 	void getTicketByTrainee() throws Exception {
-		Trainer trainer = new Trainer();
+		Trainer trainer = new Trainer(this.username,this.firstName,this.lastName,this.password,this.field,this.trainerEmail,this.ticketList);
 		List<Trainee> trainees = new ArrayList<Trainee>();
 		Ticket ticket = new Ticket("A title", "An issue", "A topic", 10L, 4, "Pending", trainer, trainees);
 		Long traineeId = 1L;
@@ -87,7 +95,7 @@ public class TicketIntegrationTest {
 		
 	@Test
 	void createTicketTest() throws Exception {
-		Trainer trainer = new Trainer();
+		Trainer trainer = new Trainer(this.username,this.firstName,this.lastName,this.password,this.field,this.trainerEmail,this.ticketList);
 		List<Trainee> trainees = new ArrayList<Trainee>();
 		Ticket newTicket = new Ticket("A title", "An issue", "A topic", 10L, 4, "Pending", trainer, trainees);
 		String body = this.mapper.writeValueAsString(newTicket);
@@ -111,7 +119,7 @@ public class TicketIntegrationTest {
 
 	@Test
 	void updateTicketTest() throws Exception {
-		Trainer trainer = new Trainer();
+		Trainer trainer = new Trainer(this.username,this.firstName,this.lastName,this.password,this.field,this.trainerEmail,this.ticketList);
 		List<Trainee> trainees = new ArrayList<Trainee>();
 		Ticket newTicket = new Ticket("A title", "An issue", "A topic", 10L, 4, "Pending", trainer, trainees);
 		String body = this.mapper.writeValueAsString(newTicket);
