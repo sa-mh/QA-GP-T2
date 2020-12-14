@@ -11,7 +11,7 @@ const ViewAllIssues = () => {
     const [respondedData, setRespondedData] = useState([]);
 
     useEffect(() => {
-        axios.get("http://54.194.254.129:8081/ticket/getAll")
+        axios.get("http://localhost:8081/ticket/getAll")
             .then(response => {
                 response.data.map( (child) => {
                     if(child.status === "new" || child.status === "Open"  ){
@@ -33,15 +33,16 @@ const ViewAllIssues = () => {
             message={issue.issue}
             date={issue.submitDate}
             priority={issue.urgency}
+            ticketId={issue.ticketId}
         />
     )))
 
 
     useEffect(() => {
-        axios.get("http://54.194.254.129:8081/ticket/getAll")
+        axios.get("http://54.78.12.174:8081/ticket/getAll")
             .then(response => {
                 response.data.map( (child) => {
-                    if(child.status === "new" ){
+                    if(child.status === "Closed" ){
                         console.log("I'm here");
                         setRespondedData(response.data);
                     }else{

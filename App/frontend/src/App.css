@@ -378,3 +378,10 @@ top: 10%
     right:20%;
     bottom:50%;
   }
+
+  #failed-message{
+    position: absolute;
+    top:60%;
+    text-align: left;
+    right: 47%;
+  }

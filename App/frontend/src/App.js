@@ -12,7 +12,7 @@ import ViewAllIssues from './Components/Trainer/ViewAllIssues';
 import IpContext from './IpContext';
 import { useContext } from 'react';
 
-const ip = "54.194.254.129:8081"
+const ip = "localhost:8081"
 
 function App() {
   return (

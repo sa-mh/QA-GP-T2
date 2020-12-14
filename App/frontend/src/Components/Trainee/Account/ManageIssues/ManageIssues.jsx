@@ -6,13 +6,14 @@ import ClosedDataProps from './ClosedDataProps';
 import IpContext from '../../../../IpContext';
 import { useContext } from 'react';
 
-const ManageIssues = () => {
+const ManageIssues = (props) => {
 
     const ip = useContext(IpContext);
-
+    
     const [data, setData] = useState([]);
     const [closedData, setClosedData] = useState([])
     const [traineeId, setId] = useState("1");
+
 
     useEffect(() => {
         axios.get("http://"+ip+"/ticket/findByTopic/MySQL")
@@ -27,7 +28,6 @@ const ManageIssues = () => {
                 })
             })
     }, [])
-
 
     const items = (data.map((issue) => (
         <TraineeIssue
@@ -83,6 +83,9 @@ const ManageIssues = () => {
             <div name="closedIssues" id="out_myClosedIssues">
                 <h3 id="completed-heading" >Closed Issues</h3>
                 {ClosedIssues}
+            </div>
+            <div>
+                {/* <h2>ISSUE HERE: {props.userDetails}</h2> */}
             </div>
         </>
     );
