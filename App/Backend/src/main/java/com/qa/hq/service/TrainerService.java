@@ -30,7 +30,7 @@ public class TrainerService {
 		return this.repo.findById(trainerId).get();
 	}
 	
-	public List<Trainer> findTrainerByUsername(String username) {
+	public Trainer findTrainerByUsername(String username) {
 		return this.repo.findByUsername(username);
 	}
 	

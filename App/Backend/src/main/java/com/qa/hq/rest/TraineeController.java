@@ -55,7 +55,7 @@ public class TraineeController {
 	}
 	
 	@GetMapping("/findByUsername/{username}")
-	public ResponseEntity<List<Trainee>> findTraineeByUsername(@PathVariable String username) {
+	public ResponseEntity<Trainee> findTraineeByUsername(@PathVariable String username) {
 		return ResponseEntity.ok(this.service.findTraineeByUsername(username));
 	}
 

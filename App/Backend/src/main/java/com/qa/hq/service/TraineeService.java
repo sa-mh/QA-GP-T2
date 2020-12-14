@@ -29,7 +29,7 @@ public class TraineeService {
 		return this.repo.findByCohort(cohort);
 	}
 	
-	public List<Trainee> findTraineeByUsername(String username) {
+	public Trainee findTraineeByUsername(String username) {
 		return this.repo.findByUsername(username);
 	}
 	

@@ -33,6 +33,7 @@ import com.qa.hq.domain.Trainer;
 @AutoConfigureMockMvc
 @Sql(scripts = { "classpath:trainee-data.sql", "classpath:trainee-schema.sql", "classpath:trainee-ticket-schema.sql","classpath:ticket-schema.sql",
 "classpath:ticket-data.sql"  }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
+
 @ActiveProfiles(profiles = "test")
 public class TicketIntegrationTest {
 	
@@ -105,7 +106,7 @@ public class TicketIntegrationTest {
 		savedTicket.setId(2L);
 		String resultBody = this.mapper.writeValueAsString(savedTicket);
 		ResultMatcher checkBody = content().json(resultBody);
-
+		
 		this.mockMVC.perform(createRequestBody).andExpect(checkStatus).andExpect(checkBody);
 		MvcResult result = this.mockMVC.perform(createRequestBody).andExpect(checkStatus).andReturn();
 	}

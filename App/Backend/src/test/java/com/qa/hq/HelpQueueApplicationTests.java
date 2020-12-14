@@ -1,4 +1,4 @@
-package com.qa;
+package com.qa.hq;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
