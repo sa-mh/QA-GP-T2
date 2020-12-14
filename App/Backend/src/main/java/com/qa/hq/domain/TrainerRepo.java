@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TrainerRepo extends JpaRepository<Trainer, Long> {
 
-	List<Trainer> findByUsername(String username);
+	Trainer findByUsername(String username);
 }

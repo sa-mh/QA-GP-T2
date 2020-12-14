@@ -31,8 +31,8 @@ import com.qa.hq.domain.Trainer;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
-@Sql(scripts = { "classpath:ticket-schema.sql",
-"classpath:ticket-data.sql", "classpath:trainee-data.sql", "classpath:trainee-schema.sql", "classpath:trainee-ticket-schema.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
+@Sql(scripts = { "classpath:/sql/trainee-data.sql", "classpath:trainee-schema.sql", "classpath:trainer-data.sql", "classpath:trainer-schema.sql", "classpath:ticket-data.sql", "classpath:ticket-schema.sql",
+ "classpath:trainee-ticket-schema.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
 @ActiveProfiles(profiles = "test")
 public class TicketIntegrationTest {
 	
@@ -105,7 +105,7 @@ public class TicketIntegrationTest {
 		savedTicket.setId(2L);
 		String resultBody = this.mapper.writeValueAsString(savedTicket);
 		ResultMatcher checkBody = content().json(resultBody);
-
+		
 		this.mockMVC.perform(createRequestBody).andExpect(checkStatus).andExpect(checkBody);
 		MvcResult result = this.mockMVC.perform(createRequestBody).andExpect(checkStatus).andReturn();
 	}
