@@ -1,0 +1,13 @@
+- name: Copy jenkins-install.sh
+  copy:
+    src: jenkins-install.sh
+    dest: /root
+    owner: root
+
+- name: Run jenkins-install.sh
+  command: sh /root/jenkins-install.sh
+
+- name: Fetch initial jenkins password
+  fetch:
+    src: /root/jenkinsPass
+    dest: /home/ubuntu/terra1/ansible/returns/VM-IP

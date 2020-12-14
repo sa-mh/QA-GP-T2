@@ -26,8 +26,12 @@ public class TrainerService {
 		return this.repo.findAll();	
 	}
 	
-	public Trainer getTrainerById(Long trainerId) {
+	public Trainer findTrainerById(Long trainerId) {
 		return this.repo.findById(trainerId).get();
+	}
+	
+	public List<Trainer> findTrainerByUsername(String username) {
+		return this.repo.findByUsername(username);
 	}
 	
 	public Trainer createTrainer(Trainer trainer) {

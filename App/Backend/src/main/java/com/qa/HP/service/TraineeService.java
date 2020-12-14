@@ -21,20 +21,29 @@ public class TraineeService {
 		this.repo = repo;
 	}
 
-	public List<Trainee> getTrainees() {
+	public List<Trainee> getTrainees() { 
 		return this.repo.findAll();
-	}
+	} 
 	
 	public List<Trainee> findTraineeByCohort(String cohort) {
 		return this.repo.findByCohort(cohort);
 	}
 	
-	public Trainee getTraineeById(Long traineeId) {
-		return this.repo.findById(traineeId).get();
+	public List<Trainee> findTraineeByUsername(String username) {
+		return this.repo.findByUsername(username);
+	}
+	
+	public Trainee findTraineeById(Long id) {
+		return this.repo.findById(id).get();
 	}
 
 	public Trainee createTrainee(Trainee trainee) {
 		return this.repo.save(trainee);
+	}
+
+	public List<Ticket> findTicketByTrainee(Long id) {
+		Trainee trainee = this.findTraineeById(id);
+		return trainee.getTickets();
 	}
 
 //delete trainee

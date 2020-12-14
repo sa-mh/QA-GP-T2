@@ -1,1 +1,31 @@
-Temp file, where all the playbooks will go
+- hosts: 
+  become: true
+  ansible_connection: local
+  tasks:
+  - name: Update APT
+    apt:
+        update-cache: yes
+  - name: Install MYSQL
+    apt:
+      name: mysql-server
+      state: latest
+
+- hosts: Docker
+  become: true
+  roles: 
+  - Docker
+
+- hosts: Jenkins
+  become: true
+  roles: 
+  - Jenkins
+
+- hosts: AWS
+  become: true
+  roles:
+  - AWS
+
+- hosts: Kube
+  become: true
+  roles:
+  - Kube 

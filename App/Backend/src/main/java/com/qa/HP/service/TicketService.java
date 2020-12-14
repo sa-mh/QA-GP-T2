@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.qa.HP.domain.Ticket;
 import com.qa.HP.domain.TicketRepo;
+import com.qa.HP.domain.Trainer;
 import com.qa.HP.exception.TicketNotFoundException;
 
 
@@ -26,25 +27,29 @@ public class TicketService {
 		return this.repo.findAll();
 	}
 	
+	public Ticket findTicketById(Long id) {
+		return this.repo.findById(id).get();
+	}
+	
 	public List<Ticket> findTicketByTopic(String topic) {
 		return this.repo.findByTopic(topic);
 	}
 	
-	public List<Ticket> findTicketByTrainee(Long traineeId) {
-		return this.repo.findByTraineeId(traineeId);
-	}
+//	public List<Ticket> findTicketByTrainee(Long id) { 
+//		return this.repo.findByTraineeId(id);
+//	}
 
 	public Ticket createTicket(Ticket ticket) {
 		return this.repo.save(ticket);
 	}
 
-	public boolean deleteTicket(Long ticketId) {
-		this.repo.deleteById(ticketId);
-		return !this.repo.existsById(ticketId);
+	public boolean deleteTicket(Long id) {
+		this.repo.deleteById(id);
+		return !this.repo.existsById(id);
 	}
 
-	public Ticket updateTicket(Ticket ticket, Long ticketId) {
-		Optional<Ticket> optTicket = this.repo.findById(ticketId);
+	public Ticket updateTicket(Ticket ticket, Long id) {
+		Optional<Ticket> optTicket = this.repo.findById(id);
 		Ticket oldTicket = optTicket.orElseThrow(() -> new TicketNotFoundException());
 
 		oldTicket.setTitle(ticket.getTitle());
@@ -53,12 +58,12 @@ public class TicketService {
 		oldTicket.setSubmitDate(ticket.getSubmitDate());
 		oldTicket.setUrgency(ticket.getUrgency());
 		oldTicket.setStatus(ticket.getStatus());
-		oldTicket.setTraineeId(ticket.getTraineeId());
-		oldTicket.setTrainerId(ticket.getTrainerId());
+		oldTicket.setTrainer(ticket.getTrainer());
+		oldTicket.setTrainees(ticket.getTrainees());
 
 		Ticket updatedTicket = this.repo.save(oldTicket);
 		return updatedTicket;
-
 	}
+	
 } 
 

@@ -40,17 +40,27 @@ public class TraineeController {
 	}
 	
 	@GetMapping("/findById")
-	public ResponseEntity<Trainee> getTraineeById(Long traineeId) {
-		return ResponseEntity.ok(this.service.getTraineeById(traineeId));
+	public ResponseEntity<Trainee> findTraineeById(Long id) {
+		return ResponseEntity.ok(this.service.findTraineeById(id));
+	}
+	
+	@GetMapping("/findByTrainee/{id}") 
+	public ResponseEntity<List<Ticket>> findTicketByTrainee(@PathVariable Long id) {
+		return ResponseEntity.ok(this.service.findTicketByTrainee(id));
 	}
 	
 	@GetMapping("/findByCohort/{cohort}")
 	public ResponseEntity<List<Trainee>> findTraineeByCohort(@PathVariable String cohort) {
 		return ResponseEntity.ok(this.service.findTraineeByCohort(cohort));
 	}
+	
+	@GetMapping("/findByUsername/{username}")
+	public ResponseEntity<List<Trainee>> findTraineeByUsername(@PathVariable String username) {
+		return ResponseEntity.ok(this.service.findTraineeByUsername(username));
+	}
 
 	//@PutMapping("/update")
-	//public ResponseEntity<Trainee> updateTicket(@RequestBody Trainee trainee, @PathParam("id") Long traineeId) {
+	//public ResponseEntity<Trainee> updateTicket(@RequestBody Trainee trainee, @PathParam("id") Long id) {
 
 	//@PutMapping("/update")
 	//public ResponseEntity<Trainee> updateTicket(@RequestBody Trainee trainee, @PathParam("id") Long id) {

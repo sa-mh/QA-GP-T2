@@ -1,51 +1,59 @@
 package com.qa.HP.domain;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+
+import org.joda.time.DateTime;
 
 @Entity 
 public class Ticket {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long ticketId;
+	private Long id;
 
 	private String title;
 	private String issue;
 	private String topic;
-	private String submitDate;
+	private Long submitDate;
 	private int urgency;
 	private String status;
-	private int traineeId;
-	private int trainerId;
+	//private int traineeId; 
+	@ManyToOne(targetEntity = Trainer.class)
+	private Trainer trainer; 
+	@ManyToMany(mappedBy = "tickets")
+	private List<Trainee> trainees;
 	
-
 	public Ticket() {
 		super();
 	}
-
-	public Ticket(String title, String issue, String topic, String submitDate, int urgency, String status, int traineeId, int trainerId) {
-		super();
+	
+	public Ticket(String title, String issue, String topic, Long submitDate, int urgency, String status, Trainer trainer, List<Trainee> trainees) {
 		this.title = title;
 		this.issue = issue;
 		this.topic = topic;
 		this.submitDate = submitDate;
 		this.urgency = urgency;
 		this.status = status;
-		this.traineeId = traineeId;
-		this.trainerId = trainerId;
+		//this.traineeId = traineeId;
+		this.trainer = trainer;
+		this.trainees = trainees;
 	}
-	
-	public Long getTicketId() {
-		return ticketId;
+
+	public Long getId() {
+		return id;
 	}
-	
-	public void setTicketId(Long ticketId) {
-		this.ticketId = ticketId;
+
+	public void setId(Long id) {
+		this.id = id;
 	}
-	
+
 	public String getTitle() {
 		return title;
 	}
@@ -70,11 +78,11 @@ public class Ticket {
 		this.topic = topic;
 	}
 
-	public String getSubmitDate() {
+	public Long getSubmitDate() {
 		return submitDate;
 	}
 
-	public void setSubmitDate(String submitDate) {
+	public void setSubmitDate(Long submitDate) {
 		this.submitDate = submitDate;
 	}
 
@@ -94,22 +102,101 @@ public class Ticket {
 		this.status = status;
 	}
 
-	public int getTraineeId() {
-		return traineeId;
+//	public int getTraineeId() {
+//		return traineeId;
+//	}
+//
+//	public void setTraineeId(int traineeId) {
+//		this.traineeId = traineeId;
+//	}
+
+	public Trainer getTrainer() {
+		return trainer;
 	}
 
-	public void setTraineeId(int traineeId) {
-		this.traineeId = traineeId;
+	public void setTrainer(Trainer trainer) {
+		this.trainer = trainer;
 	}
 
-	public int getTrainerId() {
-		return trainerId;
+	public List<Trainee> getTrainees() {
+		return trainees;
 	}
 
-	public void setTrainerId(int trainerId) {
-		this.trainerId = trainerId;
+	public void setTrainees(List<Trainee> trainees) {
+		this.trainees = trainees;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((issue == null) ? 0 : issue.hashCode());
+		result = prime * result + ((status == null) ? 0 : status.hashCode());
+		result = prime * result + ((submitDate == null) ? 0 : submitDate.hashCode());
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		result = prime * result + ((topic == null) ? 0 : topic.hashCode());
+		//result = prime * result + traineeId;
+		result = prime * result + ((trainees == null) ? 0 : trainees.hashCode());
+		result = prime * result + ((trainer == null) ? 0 : trainer.hashCode());
+		result = prime * result + urgency;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Ticket other = (Ticket) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (issue == null) {
+			if (other.issue != null)
+				return false;
+		} else if (!issue.equals(other.issue))
+			return false;
+		if (status == null) {
+			if (other.status != null)
+				return false;
+		} else if (!status.equals(other.status))
+			return false;
+		if (submitDate == null) {
+			if (other.submitDate != null)
+				return false;
+		} else if (!submitDate.equals(other.submitDate))
+			return false;
+		if (title == null) {
+			if (other.title != null)
+				return false;
+		} else if (!title.equals(other.title))
+			return false;
+		if (topic == null) {
+			if (other.topic != null)
+				return false;
+		} else if (!topic.equals(other.topic))
+			return false;
+//		if (traineeId != other.traineeId)
+//			return false;
+		if (trainees == null) {
+			if (other.trainees != null)
+				return false;
+		} else if (!trainees.equals(other.trainees))
+			return false;
+		if (trainer == null) {
+			if (other.trainer != null)
+				return false;
+		} else if (!trainer.equals(other.trainer))
+			return false;
+		if (urgency != other.urgency)
+			return false;
+		return true;
 	}
 	
-	// needs Hashcode and equals override for testing
-
 }

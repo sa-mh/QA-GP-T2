@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.qa.HP.domain.Ticket;
+import com.qa.HP.domain.Trainee;
+
 import com.qa.HP.service.TicketService;
 
 @RestController
@@ -41,28 +43,28 @@ public class TicketController {
 		return ResponseEntity.ok(this.service.getTicket());
 	}
 	
+	@GetMapping("/findById")
+	public ResponseEntity<Ticket> findTicketById(Long id) {
+		return ResponseEntity.ok(this.service.findTicketById(id));
+	}
+	
 	@GetMapping("/findByTopic/{topic}")
 	public ResponseEntity<List<Ticket>> findTicketByTopic(@PathVariable String topic) {
 		return ResponseEntity.ok(this.service.findTicketByTopic(topic));
 	}
-	
-	@GetMapping("/findByTrainee/{traineeId}")
-	public ResponseEntity<List<Ticket>> findTicketByTrainee(@PathVariable Long traineeId) {
-		return ResponseEntity.ok(this.service.findTicketByTrainee(traineeId));
-	}
 
 	@DeleteMapping("/remove/{id}")
-	public ResponseEntity<Object> deleteTicket(@PathVariable Long ticketId) {
-		if (this.service.deleteTicket(ticketId)) {
+	public ResponseEntity<Object> deleteTicket(@PathVariable Long id) {
+		if (this.service.deleteTicket(id)) {
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
-	@PutMapping("/update")
-	public ResponseEntity<Ticket> updateTicket(@RequestBody Ticket ticket, @PathParam("id") Long ticketId) {
-		return new ResponseEntity<Ticket>(this.service.updateTicket(ticket, ticketId), HttpStatus.ACCEPTED);
+	@PutMapping("/update/")
+	public ResponseEntity<Ticket> updateTicket(@RequestBody Ticket ticket, @PathParam("id") Long id) {
+		return new ResponseEntity<Ticket>(this.service.updateTicket(ticket, id), HttpStatus.ACCEPTED);
 	}
 
 }
