@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-config
+data:
+  default.conf: |
+    server {
+      listen 80;
+
+      root ./build;
+
+      index public/index.html;
+
+      include /etc/nginx/mime.types;
+
+      location / {
+        try_files $uri $uri/ /;
+      }
+    }
+
