@@ -6,8 +6,7 @@
 `submitDate`,
 `urgency`,
 `status`,
-`traineeId`,
-`trainerId`)
+`trainer`)
 VALUES
 ('A title',
 'An issue',
@@ -15,5 +14,4 @@ VALUES
 '21/12/2021',
 4,
 'Pending',
-123,
-456);
+1);
