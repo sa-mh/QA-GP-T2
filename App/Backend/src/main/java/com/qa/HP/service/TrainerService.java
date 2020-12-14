@@ -1,10 +1,12 @@
-package App.Backend.src.main.java.com.qa.HP.service;
+package com.qa.HP.service;
 
+
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import App.Backend.src.main.java.com.qa.HP.domain.Trainer;
-import App.Backend.src.main.java.com.qa.HP.domain.TrainerRepo;
+import com.qa.HP.domain.Trainer;
+import com.qa.HP.domain.TrainerRepo;
 
 @Service
 public class TrainerService {
@@ -16,7 +18,6 @@ public class TrainerService {
 		this.repo = repo;
 	}
 	
-
 	public void setRepo(TrainerRepo repo) {
 		this.repo = repo;
 	}

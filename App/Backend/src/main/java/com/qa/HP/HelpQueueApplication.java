@@ -1,13 +1,12 @@
-package App.Backend.src.main.java.com.qa.HP;
+package com.qa.HP;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class HelpQueueApplication {
-
+	
 	public static void main(String[] args) {
 		SpringApplication.run(HelpQueueApplication.class, args);
 	}
-
 }

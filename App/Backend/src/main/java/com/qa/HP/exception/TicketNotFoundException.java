@@ -1,4 +1,4 @@
-package App.Backend.src.main.java.com.qa.HP.exception;
+package com.qa.HP.exception;
 
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.http.HttpStatus;

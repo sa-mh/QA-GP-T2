@@ -1,4 +1,4 @@
-package App.Backend.src.main.java.com.qa.HP.rest;
+package com.qa.HP.rest;
 
 import java.util.List;
 
@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import App.Backend.src.main.java.com.qa.HP.domain.Ticket;
-import App.Backend.src.main.java.com.qa.HP.domain.Trainee;
-import App.Backend.src.main.java.com.qa.HP.domain.Trainer;
-import App.Backend.src.main.java.com.qa.HP.service.TraineeService;
+import com.qa.HP.domain.Ticket;
+import com.qa.HP.domain.Trainee;
+import com.qa.HP.domain.Trainer;
+import com.qa.HP.service.TraineeService;
 
 @RestController
 @CrossOrigin

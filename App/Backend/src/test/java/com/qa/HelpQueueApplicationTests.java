@@ -1,9 +1,9 @@
-package App.Backend.src.test.java.com.qa;
+package com.qa;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import App.Backend.src.main.java.com.qa.HP.domain.Ticket;
+import com.qa.HP.domain.Ticket;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
 

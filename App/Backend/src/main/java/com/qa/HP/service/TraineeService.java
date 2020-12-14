@@ -1,14 +1,14 @@
-package App.Backend.src.main.java.com.qa.HP.service;
+package com.qa.HP.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import App.Backend.src.main.java.com.qa.HP.domain.TraineeRepo;
-import App.Backend.src.main.java.com.qa.HP.domain.Trainer;
-import App.Backend.src.main.java.com.qa.HP.domain.Ticket;
-import App.Backend.src.main.java.com.qa.HP.domain.Trainee;
+import com.qa.HP.domain.TraineeRepo;
+import com.qa.HP.domain.Trainer;
+import com.qa.HP.domain.Ticket;
+import com.qa.HP.domain.Trainee;
 
 @Service
 public class TraineeService {
