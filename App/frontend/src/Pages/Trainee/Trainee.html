@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Issues</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="Splash.css">
+    <link rel="stylesheet" href="../../Reasources/navBar.css">
+</head>
+<body>
+    <nav id="navBar" class="navbar navbar-expand-lg navbar-light" style="background-color:#ffffff;">
+        <img src="https://qa-community.co.uk/static/qa_fill_primary.svg" alt="QA Logo" width="64" height="64">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="Index.html">Home<span class="sr-only"> (current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../Login/Login.html">Help Queue</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    <h1>Issues</h1>
+
+    <div id="Issues">
+        <h3 id="IssueHeadings">Your Issues</h3>
+            <div class="container" id="tbl_Issues">
+                <div class="row" id="tbl_heading">
+                    <div class="col"><p>Ticket #</p></div>
+                    <div class="col"><p>Title</p></div>
+                    <div class="col"><p>Issue</p></div>
+                    <div class="col"><p>Topic</p></div>
+                    <div class="col"><p>Submission Date</p></div>
+                    <div class="col"><p>Urgency</p></div>
+                    <div class="col"><p>Status</p></div>
+                    <div class="col"><p>Assigned Trainer</p></div>
+                </div>
+                <div class="row" id="out_Issues"></div>
+            </div>
+        <h3 id="CreateIssue">Submit an Issue</h3>
+            <div>
+                <form class="row" id="frm_createIssues">
+                    <div class="col"><input id="in_IssueTitle" placeholder="Title" required name="nm_IssueTitle"></div>
+
+                    <div class="col"><input id="in_IssueContent" placeholder="What is the problem you're having?" required name="nm_IssueContent"></div>
+
+                    <div><select name="nm_IssueTopic" id="in_IssueTopic">
+                        <option value="Networking">Networking</option>
+                        <option value="Programming">Programming</option>
+                        <option value="Bugs">Bugs</option>
+                        <option value="Project Questions">Project Questions</option>
+                      </select></div>
+
+
+                    <div><select name="nm_IssueUrgency" id="in_IssueUrgency">
+                      <option value="High">High</option>
+                      <option value="Medium">Medium</option>
+                      <option value="Low">Low</option>
+                    </select></div>
+
+                    <div class="col"><button type="submit" value="FALSE">+</button></div>
+                </form>
+            </div>
+
+    </div>
+    <script src="Trainee.js"></script>
+</body>
+</html>
