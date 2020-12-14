@@ -1,4 +1,4 @@
-package com.qa.HP.rest;
+package com.qa.hq.rest;
 
 import java.util.List;
 
@@ -17,10 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.qa.HP.domain.Ticket;
-import com.qa.HP.domain.Trainee;
-
-import com.qa.HP.service.TicketService;
+import com.qa.hq.domain.Ticket;
+import com.qa.hq.domain.Trainee;
+import com.qa.hq.service.TicketService;
 
 @RestController
 @CrossOrigin

@@ -1,10 +1,12 @@
-CREATE TABLE IF NOT EXISTS trainee (
+DROP TABLE IF EXISTS `trainee` CASCADE;
+
+CREATE TABLE `trainee` (
  	 id BIGINT PRIMARY KEY AUTO_INCREMENT,
  	 username VARCHAR(60) NOT NULL,
  	 firstName VARCHAR(60) NOT NULL,
  	 lastName VARCHAR(60) NOT NULL,
  	 cohort VARCHAR(40) NOT NULL,
  	 password VARCHAR(45) NOT NULL,
- 	 traineeEmail VARCHAR(60) NOT NULL
+ 	 traineeEmail VARCHAR(60) NOT NULL,
  	 tickets BIGINT FOREIGN KEY REFERENCES ticket(id)
 );

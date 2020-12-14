@@ -1,5 +1,4 @@
-INSERT INTO `trainee`;
-
+INSERT INTO `trainee`
 (`username`,
 `firstName`,
 `lastName`,

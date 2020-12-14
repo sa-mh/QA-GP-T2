@@ -3,7 +3,7 @@ package com.qa;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.qa.HP.domain.Ticket;
+import com.qa.hq.domain.Ticket;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
 
