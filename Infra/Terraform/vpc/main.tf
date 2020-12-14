@@ -1,7 +1,7 @@
-main.tf for VPC child module
+resource "aws_vpc" "taskVPC" {
+  cidr_block = "10.0.0.0/16"
   
-# VPC 
-# Private subnet for Jenkins EC2, Testing server & Artefact Repo (DockerHub/Nexus)
-# Public subnet for Production & Testing RDS'
-# IGW
-# RTs
+  tags = {
+    Name = "task-VPC"
+  }
+}

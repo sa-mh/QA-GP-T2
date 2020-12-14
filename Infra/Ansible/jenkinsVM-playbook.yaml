@@ -1,0 +1,34 @@
+- hosts: 
+  become: true
+  tasks:
+  - name: Update VM
+    apt:
+        update-cache: yes
+        
+  - name: Install aws-cli
+    apt:
+      name: awscli
+      state: latest
+
+  - name: Copy kubectl-install.sh
+    copy:
+      src: kubectl-install.sh
+      dest: /root
+      owner: root
+
+  - name: Run kubectl-install.sh
+    command: sh /root/kubectl-install.sh
+  
+  - name: Copy jenkins-install.sh
+    copy:
+      src: jenkins-install.sh
+      dest: /root
+      owner: root
+
+  - name: Run jenkins-install.sh
+    command: sh /root/jenkins-install.sh
+
+  - name: Fetch initial jenkins password
+    fetch:
+      src: /root/jenkinsPass
+      dest: /home/ubuntu/terra1/ansible/returns/VM-IP
