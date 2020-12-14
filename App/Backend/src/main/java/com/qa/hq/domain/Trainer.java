@@ -17,7 +17,7 @@ public class Trainer {
 	
 	private String username;
 	private String firstName;
-	private String lastName; //change?
+	private String lastName; 
 	private String password;
 	private String field;
 	private String trainerEmail;
