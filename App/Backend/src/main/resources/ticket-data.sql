@@ -1,5 +1,4 @@
  INSERT INTO `ticket`
-
 (`title`,
 `issue`,
 `topic`,

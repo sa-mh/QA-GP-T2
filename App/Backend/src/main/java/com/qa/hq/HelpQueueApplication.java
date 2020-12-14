@@ -1,4 +1,4 @@
-package com.qa.HP;
+package com.qa.hq;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

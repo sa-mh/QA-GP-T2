@@ -1,4 +1,4 @@
-package com.qa.HP.domain;
+package com.qa.hq.domain;
 
 import java.util.List;
 

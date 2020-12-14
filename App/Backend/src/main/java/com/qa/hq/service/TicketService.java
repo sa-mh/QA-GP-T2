@@ -1,4 +1,4 @@
-package com.qa.HP.service;
+package com.qa.hq.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,10 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.qa.HP.domain.Ticket;
-import com.qa.HP.domain.TicketRepo;
-import com.qa.HP.domain.Trainer;
-import com.qa.HP.exception.TicketNotFoundException;
+import com.qa.hq.domain.Ticket;
+import com.qa.hq.domain.TicketRepo;
+import com.qa.hq.domain.Trainer;
+import com.qa.hq.exception.TicketNotFoundException;
 
 
 @Service

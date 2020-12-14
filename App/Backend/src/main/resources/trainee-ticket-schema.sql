@@ -1,4 +1,6 @@
-CREATE TABLE IF NOT EXISTS trainee_ticket (
+DROP TABLE IF EXISTS `trainee_ticket` CASCADE;
+
+CREATE TABLE `trainee_ticket` (
 	id BIGINT PRIMARY KEY AUTO_INCREMENT,
 	trainee_id BIGINT FOREIGN KEY REFERENCES trainee(id),
 	ticket_id BIGINT FOREIGN KEY REFERENCES ticket(id)
