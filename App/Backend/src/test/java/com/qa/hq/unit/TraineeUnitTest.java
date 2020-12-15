@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -153,12 +154,15 @@ public class TraineeUnitTest {
 		// Given there are 2 trainers with 3 tickets between them.
 		List<Ticket> TicketsToReturn = new ArrayList<>();
 		long TIID = 1;
-		Ticket Ticket1 = new Ticket("Help!", "Junit errors", "Bug", 1245246L, 4, "Open", null, null);
+		Date date = new Date(1245246L);
+		Ticket Ticket1 = new Ticket("Help!", "Junit errors", "Bug", date, 4, "Open", null, null);
 		Ticket1.setId(TIID++);
 		TicketsToReturn.add(Ticket1);
-		Ticket Ticket2 = new Ticket("React Problems", "Cant open react", "React", 12434246L, 5, "Open", null, null);
+		date = new Date(12434246L);
+		Ticket Ticket2 = new Ticket("React Problems", "Cant open react", "React", date, 5, "Open", null, null);
 		Ticket2.setId(TIID++);
-		Ticket Ticket3 = new Ticket("Cant format table", "SQL isn't working correctly", "SQL", 1523466L, 2, "Open", null, null);
+		date = new Date(1523466L);
+		Ticket Ticket3 = new Ticket("Cant format table", "SQL isn't working correctly", "SQL", date, 2, "Open", null, null);
 		Ticket3.setId(TIID);
 		TicketsToReturn.add(Ticket3);
 		
