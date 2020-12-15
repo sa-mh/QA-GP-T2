@@ -1,6 +1,11 @@
-package dto;
+package com.qa.hq.dto;
 
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import com.qa.hq.domain.Ticket;
+import com.qa.hq.domain.Trainee;
 
 public class TicketDto {
 
@@ -11,10 +16,23 @@ public class TicketDto {
 	private Date submitDate;
 	private int urgency;
 	private String status;
-	private int trainerId;
-	private int traineeId;
+	private Long trainerId;
+	private List<Long> traineeIds;
 	
-	public TicketDto(Long id, String title, String issue, String topic, Date submitDate, int urgency, String status, int trainerId, int traineeId) {
+	public TicketDto(Ticket ticket) {
+		super();
+		setId(ticket.getId());
+		setTitle(ticket.getTitle());
+		setIssue(ticket.getIssue());
+		setTopic(ticket.getTopic());
+		setSubmitDate(ticket.getSubmitDate());
+		setUrgency(ticket.getUrgency());
+		setStatus(ticket.getStatus());
+		setTrainerId(ticket.getTrainer().getId());
+		setTraineeIds(ticket.getTrainees().stream().map( (trainee) -> trainee.getId()).collect(Collectors.toList()));
+	}
+	
+	public TicketDto(Long id, String title, String issue, String topic, Date submitDate, int urgency, String status, Long trainerId, List<Long> traineeIds) {
 		super();
 		setId(id);
 		setTitle(title);
@@ -24,7 +42,7 @@ public class TicketDto {
 		setUrgency(urgency);
 		setStatus(status);
 		setTrainerId(trainerId);
-		setTraineeId(traineeId);
+		setTraineeIds(traineeIds);
 	}
 
 	public Long getId() {
@@ -83,20 +101,20 @@ public class TicketDto {
 		this.status = status;
 	}
 
-	public int getTrainerId() {
+	public Long getTrainerId() {
 		return trainerId;
 	}
 
-	public void setTrainerId(int trainerId) {
+	public void setTrainerId(Long trainerId) {
 		this.trainerId = trainerId;
 	}
 
-	public int getTraineeId() {
-		return traineeId;
+	public List<Long> getTraineeIds() {
+		return traineeIds;
 	}
 
-	public void setTraineeId(int traineeId) {
-		this.traineeId = traineeId;
+	public void setTraineeIds(List<Long> traineeIds) {
+		this.traineeIds = traineeIds;
 	}
 
 	@Override
@@ -109,8 +127,8 @@ public class TicketDto {
 		result = prime * result + ((submitDate == null) ? 0 : submitDate.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		result = prime * result + ((topic == null) ? 0 : topic.hashCode());
-		result = prime * result + traineeId;
-		result = prime * result + trainerId;
+		result = prime * result + ((traineeIds == null) ? 0 : traineeIds.hashCode());
+		result = prime * result + ((trainerId == null) ? 0 : trainerId.hashCode());
 		result = prime * result + urgency;
 		return result;
 	}
@@ -154,9 +172,15 @@ public class TicketDto {
 				return false;
 		} else if (!topic.equals(other.topic))
 			return false;
-		if (traineeId != other.traineeId)
+		if (traineeIds == null) {
+			if (other.traineeIds != null)
+				return false;
+		} else if (!traineeIds.equals(other.traineeIds))
 			return false;
-		if (trainerId != other.trainerId)
+		if (trainerId == null) {
+			if (other.trainerId != null)
+				return false;
+		} else if (!trainerId.equals(other.trainerId))
 			return false;
 		if (urgency != other.urgency)
 			return false;

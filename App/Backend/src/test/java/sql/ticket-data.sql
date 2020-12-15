@@ -1,6 +1,5 @@
  INSERT INTO `ticket`
-(`id`,
-`title`,
+(`title`,
 `issue`,
 `topic`,
 `submit_date`,
@@ -8,11 +7,10 @@
 `status`,
 `trainer_id`)
 VALUES
-(NULL,
-'A title',
+('A title',
 'An issue',
 'A topic',
-NULL,
+'2020-12-18 00:00:00',
 4,
 'Pending',
 1);
