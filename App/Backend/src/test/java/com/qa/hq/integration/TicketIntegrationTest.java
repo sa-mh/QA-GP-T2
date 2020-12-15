@@ -29,10 +29,12 @@ import com.qa.hq.domain.Ticket;
 import com.qa.hq.domain.Trainee;
 import com.qa.hq.domain.Trainer;
 
+import java.sql.Timestamp;    
+import java.util.Date; 
+
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
-@Sql(scripts = { "classpath:/sql/trainee-data.sql", "classpath:trainee-schema.sql", "classpath:trainer-data.sql", "classpath:trainer-schema.sql", "classpath:ticket-data.sql", "classpath:ticket-schema.sql",
- "classpath:trainee-ticket-schema.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
+@Sql(scripts = { "classpath:/sql/trainer-schema.sql", "classpath:/sql/trainee-schema.sql", "classpath:/sql/ticket-schema.sql", "classpath:/sql/trainee-ticket-schema.sql", "classpath:/sql/trainer-data.sql", "classpath:/sql/trainee-data.sql", "classpath:/sql/ticket-data.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
 @ActiveProfiles(profiles = "test")
 public class TicketIntegrationTest {
 	
@@ -43,6 +45,9 @@ public class TicketIntegrationTest {
 	private String field="Dev Ops";
 	private String trainerEmail="DD@Fake.com";
 	private List<Ticket> ticketList;
+	
+	private String cohort="20SepCN";
+	private String traineeEmail="EE@Fake.com";
 
 	@Autowired
 	private MockMvc mockMVC;
@@ -53,8 +58,14 @@ public class TicketIntegrationTest {
 	@Test
 	void getTicketTest() throws Exception {
 		Trainer trainer = new Trainer(this.username,this.firstName,this.lastName,this.password,this.field,this.trainerEmail,this.ticketList);
+		Trainee trainee = new Trainee(this.username,this.firstName,this.lastName,this.cohort,this.password,this.traineeEmail,this.ticketList);
+		trainer.setId(1L);
+		trainee.setId(1L);
 		List<Trainee> trainees = new ArrayList<Trainee>();
-		Ticket ticket = new Ticket("A title", "An issue", "A topic", 10L , 4, "Pending", trainer, trainees);
+		trainees.add(trainee);
+		Date date = new Date();
+		Timestamp timestamp = new Timestamp(date.getTime());
+		Ticket ticket = new Ticket("A title", "An issue", "A topic", timestamp , 4, "Pending", trainer, trainees);
 		ticket.setId(1L);
 		List<Ticket> tickets = new ArrayList<>();
 		tickets.add(ticket);
@@ -67,7 +78,9 @@ public class TicketIntegrationTest {
 	void getTicketByTopicTest() throws Exception {
 		Trainer trainer = new Trainer(this.username,this.firstName,this.lastName,this.password,this.field,this.trainerEmail,this.ticketList);
 		List<Trainee> trainees = new ArrayList<Trainee>();
-		Ticket ticket = new Ticket("A title", "An issue", "A topic", 10L , 4, "Pending", trainer, trainees);
+		Date date = new Date();
+		Timestamp timestamp = new Timestamp(date.getTime());
+		Ticket ticket = new Ticket("A title", "An issue", "A topic", timestamp , 4, "Pending", trainer, trainees);
 		String topic = "Dev Ops";
 		List<Ticket> tickets = new ArrayList<>();
 		tickets.add(ticket);
@@ -81,8 +94,12 @@ public class TicketIntegrationTest {
 	@Test
 	void getTicketByTrainee() throws Exception {
 		Trainer trainer = new Trainer(this.username,this.firstName,this.lastName,this.password,this.field,this.trainerEmail,this.ticketList);
+		Trainee trainee = new Trainee(this.username,this.firstName,this.lastName,this.cohort,this.password,this.traineeEmail,this.ticketList);
 		List<Trainee> trainees = new ArrayList<Trainee>();
-		Ticket ticket = new Ticket("A title", "An issue", "A topic", 10L, 4, "Pending", trainer, trainees);
+		trainees.add(trainee);
+		Date date = new Date();
+		Timestamp timestamp = new Timestamp(date.getTime());
+		Ticket ticket = new Ticket("A title", "An issue", "A topic", timestamp, 4, "Pending", trainer, trainees);
 		Long traineeId = 1L;
 		List<Ticket> tickets = new ArrayList<>();
 		tickets.add(ticket);
@@ -96,12 +113,16 @@ public class TicketIntegrationTest {
 	@Test
 	void createTicketTest() throws Exception {
 		Trainer trainer = new Trainer(this.username,this.firstName,this.lastName,this.password,this.field,this.trainerEmail,this.ticketList);
+		Trainee trainee = new Trainee(this.username,this.firstName,this.lastName,this.cohort,this.password,this.traineeEmail,this.ticketList);
 		List<Trainee> trainees = new ArrayList<Trainee>();
-		Ticket newTicket = new Ticket("A title", "An issue", "A topic", 10L, 4, "Pending", trainer, trainees);
+		trainees.add(trainee);
+		Date date = new Date();
+		Timestamp timestamp = new Timestamp(date.getTime());
+		Ticket newTicket = new Ticket("A title", "An issue", "A topic", timestamp, 4, "Pending", trainer, trainees);
 		String body = this.mapper.writeValueAsString(newTicket);
 		RequestBuilder createRequestBody = post("/ticket/create").contentType(MediaType.APPLICATION_JSON).content(body);
 		ResultMatcher checkStatus = status().isCreated();
-		Ticket savedTicket = new Ticket("A title", "An issue", "A topic", 10L, 4, "Pending", trainer, trainees);
+		Ticket savedTicket = new Ticket("A title", "An issue", "A topic", timestamp, 4, "Pending", trainer, trainees);
 		savedTicket.setId(2L);
 		String resultBody = this.mapper.writeValueAsString(savedTicket);
 		ResultMatcher checkBody = content().json(resultBody);
@@ -112,6 +133,14 @@ public class TicketIntegrationTest {
 
 	@Test
 	void deleteTicketTest() throws Exception {
+		Trainer trainer = new Trainer(this.username,this.firstName,this.lastName,this.password,this.field,this.trainerEmail,this.ticketList);
+		Trainee trainee = new Trainee(this.username,this.firstName,this.lastName,this.cohort,this.password,this.traineeEmail,this.ticketList);
+		List<Trainee> trainees = new ArrayList<Trainee>();
+		trainees.add(trainee);
+		Date date = new Date();
+		Timestamp timestamp = new Timestamp(date.getTime());
+		Ticket ticket = new Ticket("A title", "An issue", "A topic", timestamp, 4, "Pending", trainer, trainees);
+		ticket.setId(1L);
 		RequestBuilder deleteRequest = delete("/ticket/remove/1");
 		ResultMatcher checkStatus = status().is(200); 
 		this.mockMVC.perform(deleteRequest).andExpect(checkStatus);
@@ -120,12 +149,16 @@ public class TicketIntegrationTest {
 	@Test
 	void updateTicketTest() throws Exception {
 		Trainer trainer = new Trainer(this.username,this.firstName,this.lastName,this.password,this.field,this.trainerEmail,this.ticketList);
+		Trainee trainee = new Trainee(this.username,this.firstName,this.lastName,this.cohort,this.password,this.traineeEmail,this.ticketList);
 		List<Trainee> trainees = new ArrayList<Trainee>();
-		Ticket newTicket = new Ticket("A title", "An issue", "A topic", 10L, 4, "Pending", trainer, trainees);
+		trainees.add(trainee);
+		Date date = new Date();
+		Timestamp timestamp = new Timestamp(date.getTime());
+		Ticket newTicket = new Ticket("A title", "An issue", "A topic", timestamp, 4, "Pending", trainer, trainees);
 		String body = this.mapper.writeValueAsString(newTicket);
 		RequestBuilder updateRequestBody = put("/ticket/update?id=1").contentType(MediaType.APPLICATION_JSON).content(body);
 		ResultMatcher checkStatus = status().isAccepted();
-		Ticket savedTicket = new Ticket("A title", "An issue", "A topic", 10L, 4, "Pending", trainer, trainees);
+		Ticket savedTicket = new Ticket("A title", "An issue", "A topic", timestamp, 4, "Pending", trainer, trainees);
 		savedTicket.setId(1L);
 		String resultBody = this.mapper.writeValueAsString(savedTicket);
 		ResultMatcher checkBody = content().json(resultBody);

@@ -26,7 +26,7 @@ public class Trainee {
 	@ManyToMany
 	@JoinTable(
 		name = "trainee_ticket",
-		joinColumns = @JoinColumn(name = "trainee_id"), 
+		joinColumns = @JoinColumn(name = "trainee_id"),
 		inverseJoinColumns = @JoinColumn(name = "ticket_id"))
 	private List<Ticket> tickets;
 	
@@ -36,13 +36,13 @@ public class Trainee {
 
 	public Trainee(String username, String firstName, String lastName, String cohort, String password, String traineeEmail, List<Ticket> tickets) {
 		super();
-		this.username = username;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.cohort = cohort;
-		this.password = password;
-		this.traineeEmail = traineeEmail;
-		this.tickets = tickets;
+		setUsername(username);
+		setFirstName(firstName);
+		setLastName(lastName);
+		setCohort(cohort);
+		setPassword(password);
+		setTraineeEmail(traineeEmail);
+		setTickets(tickets);
 	}
 
 	public Long getId() {

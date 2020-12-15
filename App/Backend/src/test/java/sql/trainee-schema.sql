@@ -1,12 +1,11 @@
 DROP TABLE IF EXISTS `trainee` CASCADE;
 
 CREATE TABLE `trainee` (
- 	 id BIGINT PRIMARY KEY AUTO_INCREMENT,
- 	 username VARCHAR(60) NOT NULL,
- 	 firstName VARCHAR(60) NOT NULL,
- 	 lastName VARCHAR(60) NOT NULL,
- 	 cohort VARCHAR(40) NOT NULL,
- 	 password VARCHAR(45) NOT NULL,
- 	 traineeEmail VARCHAR(60) NOT NULL,
- 	 tickets BIGINT FOREIGN KEY REFERENCES ticket(id)
+ 	 `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
+ 	 `username` VARCHAR(60) NOT NULL,
+ 	 `first_name` VARCHAR(60) NOT NULL,
+ 	 `last_name` VARCHAR(60) NOT NULL,
+ 	 `cohort` VARCHAR(40) NOT NULL,
+ 	 `password` VARCHAR(45) NOT NULL,
+ 	 `trainee_email` VARCHAR(60) NOT NULL
 );

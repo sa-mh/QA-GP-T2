@@ -47,17 +47,17 @@ public class TraineeService {
 	}
 
 //delete trainee
- // public boolean deleteTrainee(Long traineeId) {
-	//	this.repository.deleteById(traineeId);
-	//	return !this.repository.existsById(traineeId);
+ // public boolean deleteTrainee(Long id) {
+	//	this.repository.deleteById(id);
+	//	return !this.repository.existsById(id);
 	//}
 
 // update trainee
-//	public Trainee updateTrainee(Trainee trainee, Long traineeId) {
-//		Optional<Trainee> optTrainee = this.repository.findById(traineeId);
+//	public Trainee updateTrainee(Trainee trainee, Long id) {
+//		Optional<Trainee> optTrainee = this.repository.findById(id);
 //		Trainee oldTrainee = optTrainee.orElseThrow(() -> new TraineeNotFoundException());
 
-	//	oldTrainee.setTraineeID(trainee.getTraineeID());
+	//	oldTrainee.setId(trainee.getId());
 	//  oldTrainee.setFirstName(trainee.getFirstName());
   //	oldTrainee.setSecondName(trainee.getSecondName());
   //  oldTrainee.setCohort(trainee.getCohort());

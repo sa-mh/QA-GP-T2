@@ -1,5 +1,6 @@
 package com.qa.hq.domain;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -21,10 +22,9 @@ public class Ticket {
 	private String title;
 	private String issue;
 	private String topic;
-	private Long submitDate;
+	private Date submitDate;
 	private int urgency;
-	private String status;
-	//private int traineeId; 
+	private String status; 
 	@ManyToOne(targetEntity = Trainer.class)
 	private Trainer trainer; 
 	@ManyToMany(mappedBy = "tickets")
@@ -34,16 +34,15 @@ public class Ticket {
 		super();
 	}
 	
-	public Ticket(String title, String issue, String topic, Long submitDate, int urgency, String status, Trainer trainer, List<Trainee> trainees) {
-		this.title = title;
-		this.issue = issue;
-		this.topic = topic;
-		this.submitDate = submitDate;
-		this.urgency = urgency;
-		this.status = status;
-		//this.traineeId = traineeId;
-		this.trainer = trainer;
-		this.trainees = trainees;
+	public Ticket(String title, String issue, String topic, Date submitDate, int urgency, String status, Trainer trainer, List<Trainee> trainees) {
+		setTitle(title);
+		setIssue(issue);
+		setTopic(topic);
+		setSubmitDate(submitDate);
+		setUrgency(urgency);
+		setStatus(status);
+		setTrainer(trainer);
+		setTrainees(trainees);
 	}
 
 	public Long getId() {
@@ -78,11 +77,11 @@ public class Ticket {
 		this.topic = topic;
 	}
 
-	public Long getSubmitDate() {
+	public Date getSubmitDate() {
 		return submitDate;
 	}
 
-	public void setSubmitDate(Long submitDate) {
+	public void setSubmitDate(Date submitDate) {
 		this.submitDate = submitDate;
 	}
 
@@ -101,14 +100,6 @@ public class Ticket {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
-//	public int getTraineeId() {
-//		return traineeId;
-//	}
-//
-//	public void setTraineeId(int traineeId) {
-//		this.traineeId = traineeId;
-//	}
 
 	public Trainer getTrainer() {
 		return trainer;
@@ -136,7 +127,6 @@ public class Ticket {
 		result = prime * result + ((submitDate == null) ? 0 : submitDate.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		result = prime * result + ((topic == null) ? 0 : topic.hashCode());
-		//result = prime * result + traineeId;
 		result = prime * result + ((trainees == null) ? 0 : trainees.hashCode());
 		result = prime * result + ((trainer == null) ? 0 : trainer.hashCode());
 		result = prime * result + urgency;
@@ -182,8 +172,6 @@ public class Ticket {
 				return false;
 		} else if (!topic.equals(other.topic))
 			return false;
-//		if (traineeId != other.traineeId)
-//			return false;
 		if (trainees == null) {
 			if (other.trainees != null)
 				return false;

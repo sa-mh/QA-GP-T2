@@ -71,4 +71,10 @@ public class TicketController {
 	public ResponseEntity<Ticket> updateTicketStatus(@PathVariable Long id) {
 		return new ResponseEntity<Ticket>(this.service.updateTicketStatus(id), HttpStatus.ACCEPTED);
 	}
+	
+//	@PatchMapping
+//	public ResponseEntity<Ticket> addTraineeToTicket(@PathVariable Long id) {
+//		return new ResponseEntity<Ticket>(this.service.addTrainee(id), HttpStatus.ACCEPTED);
+//	}
+
 }

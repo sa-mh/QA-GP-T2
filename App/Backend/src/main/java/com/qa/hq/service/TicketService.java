@@ -27,12 +27,16 @@ public class TicketService {
 		return this.repo.findAll();
 	}
 	
+//	public Ticket addTrainee(Long id) {
+//		return null;
+//	}
+	
 	public Ticket findTicketById(Long id) {
 		return this.repo.findById(id).get();
 	}
 	
 	public List<Ticket> findTicketByStatus(String status) {
-		return this.repo.findByTopic(status);
+		return this.repo.findByStatus(status);
 	}
 	
 	public Ticket updateTicketStatus(Long id) {

@@ -24,14 +24,18 @@ public class Trainer {
 	@OneToMany(mappedBy = "trainer")
 	private List<Ticket> tickets;
 	
+	public Trainer() {
+		super();
+	}
+	
 	public Trainer(String username, String firstName, String lastName, String password, String field, String trainerEmail, List<Ticket> tickets) {
-		this.username = username;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.password = password;
-		this.field = field;
-		this.trainerEmail = trainerEmail;
-		this.tickets = tickets;
+		setUsername(username);
+		setFirstName(firstName);
+		setLastName(lastName);
+		setPassword(password);
+		setField(field);
+		setTrainerEmail(trainerEmail);
+		setTickets(tickets);
 	}
 	
 	public Long getId() {
@@ -81,6 +85,73 @@ public class Trainer {
 	}
 	public void setTickets(List<Ticket> tickets) {
 		this.tickets = tickets;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((field == null) ? 0 : field.hashCode());
+		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((tickets == null) ? 0 : tickets.hashCode());
+		result = prime * result + ((trainerEmail == null) ? 0 : trainerEmail.hashCode());
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Trainer other = (Trainer) obj;
+		if (field == null) {
+			if (other.field != null)
+				return false;
+		} else if (!field.equals(other.field))
+			return false;
+		if (firstName == null) {
+			if (other.firstName != null)
+				return false;
+		} else if (!firstName.equals(other.firstName))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (lastName == null) {
+			if (other.lastName != null)
+				return false;
+		} else if (!lastName.equals(other.lastName))
+			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
+		if (tickets == null) {
+			if (other.tickets != null)
+				return false;
+		} else if (!tickets.equals(other.tickets))
+			return false;
+		if (trainerEmail == null) {
+			if (other.trainerEmail != null)
+				return false;
+		} else if (!trainerEmail.equals(other.trainerEmail))
+			return false;
+		if (username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!username.equals(other.username))
+			return false;
+		return true;
 	}
 	
 }
