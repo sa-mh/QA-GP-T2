@@ -6,19 +6,24 @@ import { useContext } from 'react';
 
 const PostIssues = props => {
 
+
+
     const ip = useContext(IpContext);
     const [ticketTitle, setTitle] = useState("");
     const [ticketIssue, setIssue] = useState("");
     const [ticketTopic, setTopic] = useState("");
     const [ticketPriority, setPriority] = useState("");
+    const [userDetails, setuserDetails] = useState("");
 
     //Need to find a way to retrieve the Trainee ID - Likely via prop/state from Login Screen
     const [traineeID, setId] = useState("")
 
     const [data, setData] = useState([]);
 
+    console.log(props)
+    
     useEffect(() => {
-        axios.get("http://" + "52.16.137.246:8081" + "/ticket/getAll")
+        axios.get("http://" + ip + "/ticket/getAll")
             .then(response => {
                 response.data.map((child) => {
                     if (child.status === "new" || child.status === "Open") {
@@ -46,15 +51,39 @@ const PostIssues = props => {
 
     const post_newIssue = (e) => {
         e.preventDefault();
-        axios.post("http://" + "52.16.137.246:8081" + "/ticket/create", {
+        axios.post("http://" + ip + "/ticket/create", {
             title: ticketTitle,
             issue: ticketIssue,
             topic: ticketTopic,
             submitDate: "0000-00-00 00:00:00",
             urgency: ticketPriority,
             status: "Open",
-            traineeId: 1,
-            trainerId: 1
+            trainer: {
+                id: 1,
+                username: null,
+                firstName: null,
+                lastName: null,
+                password: null,
+                field: null,
+                trainerEmail: null,
+                tickets: [
+                    null
+                ]
+            },
+            trainees: [
+                {
+                    id: 1,
+                    username: "string",
+                    firstName: "string",
+                    lastName: "string",
+                    cohort: "string",
+                    password: "string",
+                    traineeEmail: "string",
+                    tickets: [
+                        null
+                    ]
+                }
+            ]
         }
         ).then(response => {
             console.log(response);
@@ -63,7 +92,6 @@ const PostIssues = props => {
             console.log(error)
         });
     }
-
 
     return (
         <div>
@@ -102,6 +130,9 @@ const PostIssues = props => {
                 <h5>All the issues currently awaiting help</h5>
                 {items}
             </div >
+            <div>
+                <h3>this is my props: {props.userDetails} </h3>
+            </div>
         </div>
     )
 

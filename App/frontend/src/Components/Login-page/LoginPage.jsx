@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import IpContext from '../../IpContext'
@@ -24,6 +24,7 @@ const LoginPage = props => {
                 .then(response => {
                     setuserDetails(response.data);
                     console.log(userDetails)
+                    sendToAccount(userDetails);
                     console.log(response.data.id);
                 }).catch(error => {
                     console.log(error)
@@ -39,6 +40,17 @@ const LoginPage = props => {
                 });
         }
     }
+
+    const sendToAccount = (userDetails) => {
+
+Object.entries(userDetails).map(([key, value]) => {
+    <PostIssues
+    username={userDetails.username}
+    id={userDetails.id}
+/>
+    })
+    }
+
 
     const validate = (e) => {
         if (userDetails.username === username && userDetails.password === password) {
