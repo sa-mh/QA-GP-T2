@@ -1,15 +1,3 @@
-- hosts: 
-  become: true
-  ansible_connection: local
-  tasks:
-  - name: Update APT
-    apt:
-        update-cache: yes
-  - name: Install MYSQL
-    apt:
-      name: mysql-server
-      state: latest
-
 - hosts: Docker
   become: true
   roles: 
