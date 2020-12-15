@@ -34,7 +34,6 @@ public class Ticket {
 		super();
 	}
 	
-
 	public Ticket(String title, String issue, String topic, Date submitDate, int urgency, String status, Trainer trainer, List<Trainee> trainees) {
 		setTitle(title);
 		setIssue(issue);

@@ -65,24 +65,22 @@ public class TicketIntegrationTest {
 		trainee.setId(1L);
 		List<Trainee> trainees = new ArrayList<Trainee>();
 		trainees.add(trainee);
-		Date date = new Date();
-		Timestamp timestamp = new Timestamp(date.getTime());
-		Ticket ticket = new Ticket("A title", "An issue", "A topic", timestamp , 4, "Pending", trainer, trainees);
+		Date date = new Date(10L);
+		Ticket ticket = new Ticket("A title", "An issue", "A topic", date, 4, "Pending", trainer, trainees);
 		ticket.setId(1L);
 		List<Ticket> tickets = new ArrayList<>();
 		tickets.add(ticket);
 		String getResponseBody = this.mapper.writeValueAsString(ticket);
 		
-		this.mockMVC.perform(get("/getAll")).andExpect(status().isOk()).andExpect(content().json(getResponseBody));
+		this.mockMVC.perform(get("/ticket/getAll")).andExpect(status().isOk()).andExpect(content().json(getResponseBody));
 	}
 	
 	@Test
 	void getTicketByTopicTest() throws Exception {
 		Trainer trainer = new Trainer(this.username,this.firstName,this.lastName,this.password,this.field,this.trainerEmail,this.ticketList);
 		List<Trainee> trainees = new ArrayList<Trainee>();
-		Date date = new Date();
-		Timestamp timestamp = new Timestamp(date.getTime());
-		Ticket ticket = new Ticket("A title", "An issue", "A topic", timestamp , 4, "Pending", trainer, trainees);
+		Date date = new Date(10L);
+		Ticket ticket = new Ticket("A title", "An issue", "A topic", date , 4, "Pending", trainer, trainees);
 		String topic = "Dev Ops";
 		List<Ticket> tickets = new ArrayList<>();
 		tickets.add(ticket);
@@ -99,9 +97,8 @@ public class TicketIntegrationTest {
 		Trainee trainee = new Trainee(this.username,this.firstName,this.lastName,this.cohort,this.password,this.traineeEmail,this.ticketList);
 		List<Trainee> trainees = new ArrayList<Trainee>();
 		trainees.add(trainee);
-		Date date = new Date();
-		Timestamp timestamp = new Timestamp(date.getTime());
-		Ticket ticket = new Ticket("A title", "An issue", "A topic", timestamp, 4, "Pending", trainer, trainees);
+		Date date = new Date(10L);
+		Ticket ticket = new Ticket("A title", "An issue", "A topic", date, 4, "Pending", trainer, trainees);
 		Long traineeId = 1L;
 		List<Ticket> tickets = new ArrayList<>();
 		tickets.add(ticket);
@@ -118,13 +115,12 @@ public class TicketIntegrationTest {
 		Trainee trainee = new Trainee(this.username,this.firstName,this.lastName,this.cohort,this.password,this.traineeEmail,this.ticketList);
 		List<Trainee> trainees = new ArrayList<Trainee>();
 		trainees.add(trainee);
-		Date date = new Date();
-		Timestamp timestamp = new Timestamp(date.getTime());
-		Ticket newTicket = new Ticket("A title", "An issue", "A topic", timestamp, 4, "Pending", trainer, trainees);
+		Date date = new Date(10L);
+		Ticket newTicket = new Ticket("A title", "An issue", "A topic", date, 4, "Pending", trainer, trainees);
 		String body = this.mapper.writeValueAsString(newTicket);
 		RequestBuilder createRequestBody = post("/ticket/create").contentType(MediaType.APPLICATION_JSON).content(body);
 		ResultMatcher checkStatus = status().isCreated();
-		Ticket savedTicket = new Ticket("A title", "An issue", "A topic", timestamp, 4, "Pending", trainer, trainees);
+		Ticket savedTicket = new Ticket("A title", "An issue", "A topic", date, 4, "Pending", trainer, trainees);
 		savedTicket.setId(2L);
 		String resultBody = this.mapper.writeValueAsString(savedTicket);
 		ResultMatcher checkBody = content().json(resultBody);
@@ -139,9 +135,8 @@ public class TicketIntegrationTest {
 		Trainee trainee = new Trainee(this.username,this.firstName,this.lastName,this.cohort,this.password,this.traineeEmail,this.ticketList);
 		List<Trainee> trainees = new ArrayList<Trainee>();
 		trainees.add(trainee);
-		Date date = new Date();
-		Timestamp timestamp = new Timestamp(date.getTime());
-		Ticket ticket = new Ticket("A title", "An issue", "A topic", timestamp, 4, "Pending", trainer, trainees);
+		Date date = new Date(10L);
+		Ticket ticket = new Ticket("A title", "An issue", "A topic", date, 4, "Pending", trainer, trainees);
 		ticket.setId(1L);
 		RequestBuilder deleteRequest = delete("/ticket/remove/1");
 		ResultMatcher checkStatus = status().is(200); 
@@ -154,13 +149,12 @@ public class TicketIntegrationTest {
 		Trainee trainee = new Trainee(this.username,this.firstName,this.lastName,this.cohort,this.password,this.traineeEmail,this.ticketList);
 		List<Trainee> trainees = new ArrayList<Trainee>();
 		trainees.add(trainee);
-		Date date = new Date();
-		Timestamp timestamp = new Timestamp(date.getTime());
-		Ticket newTicket = new Ticket("A title", "An issue", "A topic", timestamp, 4, "Pending", trainer, trainees);
+		Date date = new Date(10L);
+		Ticket newTicket = new Ticket("A title", "An issue", "A topic", date, 4, "Pending", trainer, trainees);
 		String body = this.mapper.writeValueAsString(newTicket);
 		RequestBuilder updateRequestBody = put("/ticket/update?id=1").contentType(MediaType.APPLICATION_JSON).content(body);
 		ResultMatcher checkStatus = status().isAccepted();
-		Ticket savedTicket = new Ticket("A title", "An issue", "A topic", timestamp, 4, "Pending", trainer, trainees);
+		Ticket savedTicket = new Ticket("A title", "An issue", "A topic", date, 4, "Pending", trainer, trainees);
 		savedTicket.setId(1L);
 		String resultBody = this.mapper.writeValueAsString(savedTicket);
 		ResultMatcher checkBody = content().json(resultBody);
