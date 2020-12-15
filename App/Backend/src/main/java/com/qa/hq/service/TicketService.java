@@ -32,7 +32,7 @@ public class TicketService {
 	}
 	
 	public List<Ticket> findTicketByStatus(String status) {
-		return this.repo.findByTopic(status);
+		return this.repo.findByStatus(status);
 	}
 	
 	public Ticket updateTicketStatus(Long id) {

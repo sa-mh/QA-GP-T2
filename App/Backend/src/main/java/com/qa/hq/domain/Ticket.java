@@ -34,6 +34,7 @@ public class Ticket {
 		super();
 	}
 	
+	//Change this to use Setters for more coverage
 	public Ticket(String title, String issue, String topic, Long submitDate, int urgency, String status, Trainer trainer, List<Trainee> trainees) {
 		this.title = title;
 		this.issue = issue;

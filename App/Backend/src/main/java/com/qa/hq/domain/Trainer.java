@@ -24,6 +24,7 @@ public class Trainer {
 	@OneToMany(mappedBy = "trainer")
 	private List<Ticket> tickets;
 	
+	//Change this to use Setters for more coverage
 	public Trainer(String username, String firstName, String lastName, String password, String field, String trainerEmail, List<Ticket> tickets) {
 		this.username = username;
 		this.firstName = firstName;
