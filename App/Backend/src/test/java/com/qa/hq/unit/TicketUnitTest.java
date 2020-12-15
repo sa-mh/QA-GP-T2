@@ -15,6 +15,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 import com.qa.hq.domain.Ticket;
 import com.qa.hq.domain.TicketRepo;
+import com.qa.hq.domain.Trainee;
 import com.qa.hq.service.TicketService;
 
 @SpringBootTest
@@ -151,6 +152,42 @@ public class TicketUnitTest {
 		// Then check that the correct Ticket is retrieved
 		assertThat(this.tService.findTicketByTopic("Testing")).isEqualTo(ReturnList);
 		Mockito.verify(this.tRepo, Mockito.times(1)).findByTopic("Testing");
+	}
+	
+	@Test
+	void testAddTraineeToTicket() {
+		// Given there are 2 trainees and one ticket
+		long TIID = 1;
+		Ticket oldTicket = new Ticket("Dummy Ticket", "This Ticket is a Dummy Ticket for Testing", "Testing", 1608026491L, 5, "Open", null, null);
+		oldTicket.setId(TIID++);
+		
+		List<Trainee> Ticket1Tr = new ArrayList<>();
+		
+		long TRID = 1;
+		//Trainee 2 joins the ticket
+		Trainee Trainee1 = new Trainee("DD", "Dummy", "Data", "Dev Ops", "DummyPass", "DD@Test.com", null);
+		Trainee1.setId(TRID++);
+		Ticket1Tr.add(Trainee1);
+		oldTicket.setTrainees(Ticket1Tr);
+		
+		//Trainee 2 gets Ticket 2
+		Trainee Trainee2 = new Trainee("Y0UL00K1N4M3", "Cannot", "Dev Ops", "Findme", "Software Engineering", "Hackerman@Realmail.com", null);
+		Trainee2.setId(TRID++);
+		
+		List<Trainee> TraineeList = new ArrayList<>();
+		TraineeList.add(Trainee1);
+		TraineeList.add(Trainee2);
+		
+		Ticket newTicket = new Ticket("Dummy Ticket", "This Ticket is a Dummy Ticket for Testing", "Testing", 1608026491L, 5, "Open", null, TraineeList);
+		
+					
+		// When trainee 2 joins the ticket
+		Mockito.when(this.tRepo.findById(1L)).thenReturn(Optional.of(oldTicket));
+		Mockito.when(this.tRepo.save(oldTicket)).thenReturn(newTicket);
+		// Then check that the both trainees are on the ticket
+		assertThat(this.tService.addTraineeToTicket(1L, Trainee2)).isEqualTo(newTicket);
+		Mockito.verify(this.tRepo, Mockito.times(1)).findById(1L);
+		Mockito.verify(this.tRepo, Mockito.times(1)).save(oldTicket);
 	}
 
 //	@Test
