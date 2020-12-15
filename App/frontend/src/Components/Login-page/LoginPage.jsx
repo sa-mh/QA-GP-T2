@@ -15,6 +15,7 @@ const LoginPage = props => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [memberType, setMemberType] = useState("");
+    const [trainerDetails, setTrainerDetails] = useState([]);
 
 
     const getLogin = (e) => {
@@ -23,28 +24,28 @@ const LoginPage = props => {
             axios.get("http://" + ip + "/trainee/findByUsername/" + username)
                 .then(response => {
                     setuserDetails(response.data);
-                    console.log(userDetails) //[]
-                    // sendToAccount(userDetails);
-                    // console.log(response.data.id);
+                    console.log(userDetails)
                 }).catch(error => {
                     console.log(error)
                 });
         } else {
-            axios.get("http://" + ip + "/trainer/findByUsername/" + username)
+            axios.get("http://" + ip + "/trainer/getAll")
                 .then(response => {
-                    // console.log(response.data[0].username);
-                    setuserDetails(response.data);
-                    console.log(userDetails);
+                    // console.log(response.data);
+                    setTrainerDetails(response.data);
                 }).catch(error => {
                     console.log(error)
                 });
         }
     }
-
-
+    console.log(trainerDetails);
     const validate = (e) => {
         if (userDetails.username === username && userDetails.password === password) {
-                props.history.push({pathname: "/postIssue", state: userDetails});
+            props.history.push({ pathname: "/postIssue", state: userDetails });
+        }
+        else if (memberType === "trainer") {
+            e.preventDefault();
+            validateTrainer();
         }
         else {
             e.preventDefault();
@@ -53,9 +54,28 @@ const LoginPage = props => {
         }
     }
 
+    const validateTrainer = (e) => {
+
+        let index = 0;
+        while (index < trainerDetails.length) {
+            console.log("the value of index is :" + {index})
+            if (trainerDetails[index].username === username && trainerDetails[index].password === password) {
+            //    window.location.reload(false);    
+                props.history.push({ pathname: "/viewAllIssues", state: trainerDetails });
+                console.log("it works");
+            }
+            else {
+                ReactDOM.render(<p style={{ color: "red" }}>Username/Password wrong</p>, document.getElementById('failed-message'));
+
+            }
+            index += 1;
+        }
+
+    }
+
     return (
         <>
-            
+
             <div className="loginDiv">
                 <h1 className="loginHeading">Login</h1>
                 <div>
