@@ -9,14 +9,16 @@ import { useContext } from 'react';
 const ManageIssues = (props) => {
 
     const ip = useContext(IpContext);
-    
+    const [userDetails, setUserDetails] = useState(props.location.state)
     const [data, setData] = useState([]);
     const [closedData, setClosedData] = useState([])
     const [traineeId, setId] = useState("1");
 
+    console.log(props.location.state); // gets info
+    console.log(userDetails);
 
     useEffect(() => {
-        axios.get("http://"+ip+"/ticket/findByTopic/MySQL")
+        axios.get("http://" + ip + "/ticket/findById?id=" + props.id)
             .then(response => {
                 response.data.map((child) => {
                     if (child.status === "new" || child.status === "Open") {
@@ -40,7 +42,7 @@ const ManageIssues = (props) => {
     )))
 
     useEffect(() => {
-        axios.get("http://"+ip+"/ticket/findByTopic/MySQL")
+        axios.get("http://" + ip + "/ticket/findById?id=" + props.id)
             .then(response => {
                 response.data.map((child) => {
                     if (child.status === "Closed") {

@@ -23,9 +23,9 @@ const LoginPage = props => {
             axios.get("http://" + ip + "/trainee/findByUsername/" + username)
                 .then(response => {
                     setuserDetails(response.data);
-                    console.log(userDetails)
-                    sendToAccount(userDetails);
-                    console.log(response.data.id);
+                    console.log(userDetails) //[]
+                    // sendToAccount(userDetails);
+                    // console.log(response.data.id);
                 }).catch(error => {
                     console.log(error)
                 });
@@ -41,24 +41,10 @@ const LoginPage = props => {
         }
     }
 
-    const sendToAccount = (userDetails) => {
-
-Object.entries(userDetails).map(([key, value]) => {
-    <PostIssues
-    username={userDetails.username}
-    id={userDetails.id}
-/>
-    })
-    }
-
 
     const validate = (e) => {
         if (userDetails.username === username && userDetails.password === password) {
-            props.history.push("/postIssue");
-            // userDetails.map((issue) => (
-            <PostIssues
-                userDetails={userDetails}
-            />
+                props.history.push({pathname: "/postIssue", state: userDetails});
         }
         else {
             e.preventDefault();
@@ -69,7 +55,7 @@ Object.entries(userDetails).map(([key, value]) => {
 
     return (
         <>
-
+            
             <div className="loginDiv">
                 <h1 className="loginHeading">Login</h1>
                 <div>

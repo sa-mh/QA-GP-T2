@@ -3,24 +3,23 @@ import axios from 'axios'
 import Issue from '../../Trainer/Issue';
 import IpContext from '../../../IpContext'
 import { useContext } from 'react';
+import { Link } from 'react-router-dom'
+import ManageIssues from '../Account/ManageIssues/ManageIssues';
+
 
 const PostIssues = props => {
-
-
 
     const ip = useContext(IpContext);
     const [ticketTitle, setTitle] = useState("");
     const [ticketIssue, setIssue] = useState("");
     const [ticketTopic, setTopic] = useState("");
     const [ticketPriority, setPriority] = useState("");
-    const [userDetails, setuserDetails] = useState("");
-
-    //Need to find a way to retrieve the Trainee ID - Likely via prop/state from Login Screen
-    const [traineeID, setId] = useState("")
+    const [userDetails, setuserDetails] = useState(props.location.state);
 
     const [data, setData] = useState([]);
 
-    console.log(props)
+    // console.log(props.location.state); // gets info
+    console.log(userDetails);
     
     useEffect(() => {
         axios.get("http://" + ip + "/ticket/getAll")
@@ -59,7 +58,7 @@ const PostIssues = props => {
             urgency: ticketPriority,
             status: "Open",
             trainer: {
-                id: 1,
+                id: null,
                 username: null,
                 firstName: null,
                 lastName: null,
@@ -72,13 +71,13 @@ const PostIssues = props => {
             },
             trainees: [
                 {
-                    id: 1,
-                    username: "string",
-                    firstName: "string",
-                    lastName: "string",
-                    cohort: "string",
-                    password: "string",
-                    traineeEmail: "string",
+                    id: userDetails.id,
+                    username: userDetails.username,
+                    firstName: userDetails.firstName,
+                    lastName: userDetails.lastName,
+                    cohort: userDetails.cohort,
+                    password: userDetails.password,
+                    traineeEmail: userDetails.traineeEmail,
                     tickets: [
                         null
                     ]
@@ -86,11 +85,16 @@ const PostIssues = props => {
             ]
         }
         ).then(response => {
-            console.log(response);
+            console.log(response.data);
             window.location.reload();
         }).catch(error => {
             console.log(error)
         });
+    }
+
+    const sendProps =() => {
+        props.history.push({pathname: "/manageIssues", state: userDetails});
+
     }
 
     return (
@@ -122,6 +126,9 @@ const PostIssues = props => {
                     </form>
                 </div>
             </div>
+            <div>
+                    <button id="ManageIssueButton" onClick={sendProps}>Manage your Issues</button>
+            </div>
 
             {/* View all the issues currently in the database here */}
             <div id="readDiv">
@@ -130,9 +137,6 @@ const PostIssues = props => {
                 <h5>All the issues currently awaiting help</h5>
                 {items}
             </div >
-            <div>
-                <h3>this is my props: {props.userDetails} </h3>
-            </div>
         </div>
     )
 
