@@ -3,6 +3,7 @@ package com.qa.hq.unit;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,8 +36,9 @@ public class TicketUnitTest {
 	@Test
 	void testCreateTicket() {
 		long ID = 1;
-		Ticket newTicket = new Ticket("Dummy Ticket", "This Ticket is a Dummy Ticket for Testing", "Testing", 1608026491L, 5, "Open", null, null);
-		Ticket savedTicket = new Ticket("Dummy Ticket", "This Ticket is a Dummy Ticket for Testing", "Testing", 1608026491L, 5, "Open", null, null);
+		Date date = new Date(1608026491L);
+		Ticket newTicket = new Ticket("Dummy Ticket", "This Ticket is a Dummy Ticket for Testing", "Testing", date, 5, "Open", null, null);
+		Ticket savedTicket = new Ticket("Dummy Ticket", "This Ticket is a Dummy Ticket for Testing", "Testing", date, 5, "Open", null, null);
 		savedTicket.setId(ID);
 		
 		// When the function is called to save the Trainee
@@ -52,9 +54,11 @@ public class TicketUnitTest {
 	void testGetTicket() {
 		// Given there are two Trainees, with ID's 1 & 2
 				long ID = 1;
-				Ticket Ticket1 = new Ticket("Dummy Ticket", "This Ticket is a Dummy Ticket for Testing", "Testing", 1608026491L, 5, "Open", null, null);
+				Date date = new Date(1608026491L);
+				Ticket Ticket1 = new Ticket("Dummy Ticket", "This Ticket is a Dummy Ticket for Testing", "Testing", date, 5, "Open", null, null);
 				Ticket1.setId(ID++);
-				Ticket Ticket2 = new Ticket("Another Dummy Ticket", "This Ticket is another Dummy Ticket for Testing", "Testing", 1608026584L, 3, "Open", null, null);
+				date = new Date(1608026584L);
+				Ticket Ticket2 = new Ticket("Another Dummy Ticket", "This Ticket is another Dummy Ticket for Testing", "Testing", date, 3, "Open", null, null);
 				Ticket2.setId(ID);
 				
 				List<Ticket> TicketList = new ArrayList<>();
@@ -73,11 +77,14 @@ public class TicketUnitTest {
 	@Test
 	void testFindTicketById() {
 		long ID = 1;
-		Ticket Ticket1 = new Ticket("Dummy Ticket", "This Ticket is a Dummy Ticket for Testing", "Testing", 1608026491L, 5, "Open", null, null);
+		Date date = new Date(1608026491L);
+		Ticket Ticket1 = new Ticket("Dummy Ticket", "This Ticket is a Dummy Ticket for Testing", "Testing", date, 5, "Open", null, null);
 		Ticket1.setId(ID++);
-		Ticket Ticket2 = new Ticket("Another Dummy Ticket", "This Ticket is another Dummy Ticket for Testing", "Testing", 1608026584L, 3, "Open", null, null);
+		date = new Date(1608026584L);
+		Ticket Ticket2 = new Ticket("Another Dummy Ticket", "This Ticket is another Dummy Ticket for Testing", "Testing", date, 3, "Open", null, null);
 		Ticket2.setId(ID++);
-		Ticket Ticket3 = new Ticket("Yet Another Dummy Ticket", "This Ticket is also another Dummy Ticket for Testing", "Testing", 1608026632L, 3, "Open", null, null);
+		date = new Date(1608026632L);
+		Ticket Ticket3 = new Ticket("Yet Another Dummy Ticket", "This Ticket is also another Dummy Ticket for Testing", "Testing", date, 3, "Open", null, null);
 		Ticket3.setId(ID);
 		
 		List<Ticket> TicketList = new ArrayList<>();
@@ -96,11 +103,14 @@ public class TicketUnitTest {
 	@Test
 	void testFindTicketByStatus() {
 		long ID = 1;
-		Ticket Ticket1 = new Ticket("Dummy Ticket", "This Ticket is a Dummy Ticket for Testing", "Testing", 1608026491L, 5, "Open", null, null);
+		Date date = new Date(1608026491L);
+		Ticket Ticket1 = new Ticket("Dummy Ticket", "This Ticket is a Dummy Ticket for Testing", "Testing", date, 5, "Open", null, null);
 		Ticket1.setId(ID++);
-		Ticket Ticket2 = new Ticket("Another Dummy Ticket", "This Ticket is another Dummy Ticket for Testing", "Testing", 1608026584L, 3, "Closed", null, null);
+		date = new Date(1608026584L);
+		Ticket Ticket2 = new Ticket("Another Dummy Ticket", "This Ticket is another Dummy Ticket for Testing", "Testing", date, 3, "Closed", null, null);
 		Ticket2.setId(ID++);
-		Ticket Ticket3 = new Ticket("Yet Another Dummy Ticket", "This Ticket is also another Dummy Ticket for Testing", "Don't see this test!", 1608026632L, 3, "Open", null, null);
+		date = new Date(1608026632L);
+		Ticket Ticket3 = new Ticket("Yet Another Dummy Ticket", "This Ticket is also another Dummy Ticket for Testing", "Don't see this test!", date, 3, "Open", null, null);
 		Ticket3.setId(ID);
 		
 		List<Ticket> ReturnList = new ArrayList<>();
@@ -118,9 +128,10 @@ public class TicketUnitTest {
 	@Test
 	void testUpdateTicketStatus() {
 		long ID = 1;
-		Ticket oldTicket = new Ticket("Dummy Ticket", "This Ticket is a Dummy Ticket for Testing", "Testing", 1608026491L, 5, "Open", null, null);
+		Date date = new Date(1608026491L);
+		Ticket oldTicket = new Ticket("Dummy Ticket", "This Ticket is a Dummy Ticket for Testing", "Testing", date, 5, "Open", null, null);
 		oldTicket.setId(ID);
-		Ticket updatedTicket = new Ticket("Dummy Ticket", "This Ticket is a Dummy Ticket for Testing", "Testing", 1608026491L, 5, "Closed", null, null);
+		Ticket updatedTicket = new Ticket("Dummy Ticket", "This Ticket is a Dummy Ticket for Testing", "Testing", date, 5, "Closed", null, null);
 		updatedTicket.setId(ID);
 
 		Mockito.when(this.tRepo.findById(ID)).thenReturn(Optional.of(oldTicket));
@@ -135,11 +146,14 @@ public class TicketUnitTest {
 	@Test
 	void testFindTicketByTopic() {
 		long ID = 1;
-		Ticket Ticket1 = new Ticket("Dummy Ticket", "This Ticket is a Dummy Ticket for Testing", "Testing", 1608026491L, 5, "Open", null, null);
+		Date date = new Date(1608026491L);
+		Ticket Ticket1 = new Ticket("Dummy Ticket", "This Ticket is a Dummy Ticket for Testing", "Testing", date, 5, "Open", null, null);
 		Ticket1.setId(ID++);
-		Ticket Ticket2 = new Ticket("Another Dummy Ticket", "This Ticket is another Dummy Ticket for Testing", "Testing", 1608026584L, 3, "Closed", null, null);
+		date = new Date(1608026584L);
+		Ticket Ticket2 = new Ticket("Another Dummy Ticket", "This Ticket is another Dummy Ticket for Testing", "Testing", date, 3, "Closed", null, null);
 		Ticket2.setId(ID++);
-		Ticket Ticket3 = new Ticket("Yet Another Dummy Ticket", "This Ticket is also another Dummy Ticket for Testing", "Don't see this test!", 1608026632L, 3, "Open", null, null);
+		date = new Date(1608026632L);
+		Ticket Ticket3 = new Ticket("Yet Another Dummy Ticket", "This Ticket is also another Dummy Ticket for Testing", "Don't see this test!", date, 3, "Open", null, null);
 		Ticket3.setId(ID);
 		
 		List<Ticket> ReturnList = new ArrayList<>();
@@ -158,7 +172,8 @@ public class TicketUnitTest {
 	void testAddTraineeToTicket() {
 		// Given there are 2 trainees and one ticket
 		long TIID = 1;
-		Ticket oldTicket = new Ticket("Dummy Ticket", "This Ticket is a Dummy Ticket for Testing", "Testing", 1608026491L, 5, "Open", null, null);
+		Date date = new Date(1608026491L);
+		Ticket oldTicket = new Ticket("Dummy Ticket", "This Ticket is a Dummy Ticket for Testing", "Testing", date, 5, "Open", null, null);
 		oldTicket.setId(TIID++);
 		
 		List<Trainee> Ticket1Tr = new ArrayList<>();
@@ -178,7 +193,7 @@ public class TicketUnitTest {
 		TraineeList.add(Trainee1);
 		TraineeList.add(Trainee2);
 		
-		Ticket newTicket = new Ticket("Dummy Ticket", "This Ticket is a Dummy Ticket for Testing", "Testing", 1608026491L, 5, "Open", null, TraineeList);
+		Ticket newTicket = new Ticket("Dummy Ticket", "This Ticket is a Dummy Ticket for Testing", "Testing", date, 5, "Open", null, TraineeList);
 		
 					
 		// When trainee 2 joins the ticket
