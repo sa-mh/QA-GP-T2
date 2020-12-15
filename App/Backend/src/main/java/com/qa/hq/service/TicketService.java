@@ -28,10 +28,6 @@ public class TicketService {
 		return this.repo.findAll();
 	}
 	
-//	public Ticket addTrainee(Long id) {
-//		return null;
-//	}
-	
 	public Ticket findTicketById(Long id) {
 		return this.repo.findById(id).get();
 	}
@@ -49,10 +45,6 @@ public class TicketService {
 	public List<Ticket> findTicketByTopic(String topic) {
 		return this.repo.findByTopic(topic);
 	}
-	
-//	public List<Ticket> findTicketByTrainee(Long id) { 
-//		return this.repo.findByTraineeId(id);
-//	}
 
 	public Ticket createTicket(Ticket ticket) {
 		return this.repo.save(ticket);
