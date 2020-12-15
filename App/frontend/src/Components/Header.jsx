@@ -8,7 +8,7 @@ function Header() {
             <Link to="/"><img className="navbar-logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqD9IJwZVQzyR-EEWFIzakgXEmNHBTnZWolA&usqp=CAU" alt="QA Logo" width="45" height="45"/></Link>
             </span>
             <div className="navbar-items">
-            <Link to="/index" className="item">Home</Link>
+            <Link to="/" className="item">Home</Link>
             <Link to="/login" className="item">Login</Link>
             </div>
         </>

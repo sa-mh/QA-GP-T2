@@ -402,3 +402,57 @@ top: 10%
     text-align: left;
     right: 47%;
   }
+
+  #root-home{
+    background-color: rgb(0, 64, 80);
+    width: 100%;
+    height: 2000px;
+  }
+
+#home-first-line{
+  position: absolute;
+  right: 36%;
+  bottom: 70%;
+  width: 25%;
+  color: white;
+}
+#home-second-line{
+position: absolute;
+right: 30%;
+bottom: 60%;
+width: 40%;
+color: lightgrey;
+text-align: center;
+}
+
+#home-button-createAccount{
+  position: absolute;
+right: 39%;
+bottom: 53%;
+  background-color: steelblue;
+  padding: 7px;
+  border: 1px solid white;
+  border-radius: 5px;
+  color: white;
+}
+
+#home-button-post{
+  position: absolute;
+right: 50%;
+bottom: 53%;
+  background-color: maroon;
+  padding: 7px;
+  border: 1px solid white;
+  border-radius: 5px;
+  color: white;
+}
+
+#home-button-createAccount:hover, #home-button-post:hover{
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 5px;
+  color: rgb(0, 64, 80);
+  text-decoration: none;
+
+  
+}

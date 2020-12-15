@@ -11,6 +11,7 @@ import ViewAllIssues from './Components/Trainer/ViewAllIssues';
 // import TrainerPage from './Components/Trainer/';
 import IpContext from './IpContext';
 import { useContext } from 'react';
+import Homepage from './Homepage';
 
 const ip = "localhost:8081"
 
@@ -18,20 +19,21 @@ function App() {
   return (
     <Router>
       <Header />
-      <IpContext.Provider value = {ip}>
-      <Switch>
-        <Route path="/login" component={LoginPage} />
-        <Route path="/about" component={Aboutpage} />
-        <Route path="/createAccount" component={CreateAccount} />
-        <Route path="/postIssue" component={PostIssues} />
-        <Route path="/ViewAllIssues" component={ViewAllIssues} />
-        <Route path="/manageIssues" component={ManageIssues} />
+      <IpContext.Provider value={ip}>
+        <Switch>
+          <Route path="/" exact component={Homepage} />
+          <Route path="/login" component={LoginPage} />
+          <Route path="/about" component={Aboutpage} />
+          <Route path="/createAccount" component={CreateAccount} />
+          <Route path="/postIssue" component={PostIssues} />
+          <Route path="/ViewAllIssues" component={ViewAllIssues} />
+          <Route path="/manageIssues" component={ManageIssues} />
 
-        {/* <Route path="/trainee" component={Trainee}/>
+          {/* <Route path="/trainee" component={Trainee}/>
             <Route path="/trainer" component={Trainer}/> */}
-      </Switch>
+        </Switch>
       </IpContext.Provider>
-             <Footer />
+      <Footer />
     </Router>
   );
 }
