@@ -34,6 +34,7 @@ public class Ticket {
 		super();
 	}
 	
+
 	public Ticket(String title, String issue, String topic, Date submitDate, int urgency, String status, Trainer trainer, List<Trainee> trainees) {
 		setTitle(title);
 		setIssue(issue);
@@ -115,6 +116,10 @@ public class Ticket {
 
 	public void setTrainees(List<Trainee> trainees) {
 		this.trainees = trainees;
+	}
+	
+	public void addTrainee(Trainee traineeToAdd) {
+		this.trainees.add(traineeToAdd);
 	}
 
 	@Override

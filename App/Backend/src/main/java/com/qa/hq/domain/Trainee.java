@@ -34,6 +34,8 @@ public class Trainee {
 		super();
 	}
 
+	
+	//Change this to use Setters for more coverage
 	public Trainee(String username, String firstName, String lastName, String cohort, String password, String traineeEmail, List<Ticket> tickets) {
 		super();
 		setUsername(username);

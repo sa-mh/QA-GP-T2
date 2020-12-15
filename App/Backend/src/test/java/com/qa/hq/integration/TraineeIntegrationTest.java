@@ -28,7 +28,7 @@ import com.qa.hq.domain.Trainee;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
-@Sql(scripts = { "classpath:trainee-schema.sql",
+@Sql(scripts = {"classpath:trainee-schema.sql",
 "classpath:trainee-data.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
 @ActiveProfiles(profiles = "test")
 public class TraineeIntegrationTest {
