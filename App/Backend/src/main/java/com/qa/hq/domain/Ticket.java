@@ -39,7 +39,7 @@ public class Ticket {
 		this.title = title;
 		this.issue = issue;
 		this.topic = topic;
-		this.submitDate = submitDate;
+		this.submitDate = submitDate;	
 		this.urgency = urgency;
 		this.status = status;
 		//this.traineeId = traineeId;
@@ -125,6 +125,10 @@ public class Ticket {
 
 	public void setTrainees(List<Trainee> trainees) {
 		this.trainees = trainees;
+	}
+	
+	public void addTrainee(Trainee traineeToAdd) {
+		this.trainees.add(traineeToAdd);
 	}
 
 	@Override
