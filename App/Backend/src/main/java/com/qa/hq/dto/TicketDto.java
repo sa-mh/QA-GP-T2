@@ -28,10 +28,21 @@ public class TicketDto {
 		setSubmitDate(ticket.getSubmitDate());
 		setUrgency(ticket.getUrgency());
 		setStatus(ticket.getStatus());
+		if(ticket.getTrainer() != null) {
 		setTrainerId(ticket.getTrainer().getId());
+		}
+		if(ticket.getTrainees() != null) {
 		setTraineeIds(ticket.getTrainees().stream().map( (trainee) -> trainee.getId()).collect(Collectors.toList()));
+		}
 	}
 	
+	@Override
+	public String toString() {
+		return "TicketDto [id=" + id + ", title=" + title + ", issue=" + issue + ", topic=" + topic + ", submitDate="
+				+ submitDate + ", urgency=" + urgency + ", status=" + status + ", trainerId=" + trainerId
+				+ ", traineeIds=" + traineeIds + "]";
+	}
+
 	public TicketDto(Long id, String title, String issue, String topic, Date submitDate, int urgency, String status, Long trainerId, List<Long> traineeIds) {
 		super();
 		setId(id);

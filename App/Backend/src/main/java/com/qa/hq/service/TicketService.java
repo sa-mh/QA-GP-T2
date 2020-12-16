@@ -54,9 +54,7 @@ public class TicketService {
 	}
 
 	public TicketDto createTicket(Ticket ticket) {
-		TicketDto ticketDto = new TicketDto(ticket);
-	    this.repo.save(ticket);
-	    return ticketDto;
+	    return new TicketDto(this.repo.save(ticket));
 	}
 	
 	public TicketDto addTraineeToTicket(Long id, Trainee trainee) {

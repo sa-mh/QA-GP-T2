@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -17,6 +18,7 @@ import org.springframework.test.context.ActiveProfiles;
 import com.qa.hq.domain.Ticket;
 import com.qa.hq.domain.TicketRepo;
 import com.qa.hq.domain.Trainee;
+import com.qa.hq.dto.TicketDto;
 import com.qa.hq.service.TicketService;
 
 @SpringBootTest
@@ -28,9 +30,6 @@ public class TicketUnitTest {
 	
 	@MockBean
 	private TicketRepo tRepo;
-	
-	@MockBean
-	private Ticket tTicket;
 	
 
 	@Test
@@ -45,7 +44,7 @@ public class TicketUnitTest {
 		Mockito.when(this.tRepo.save(newTicket)).thenReturn(savedTicket);	
 	
 		// Then check that the Trainee is saved correctly.
-		assertThat(this.tService.createTicket(newTicket)).isEqualTo(savedTicket);
+		assertThat(this.tService.createTicket(newTicket)).isEqualTo(new TicketDto(savedTicket));
 	
 		Mockito.verify(this.tRepo,Mockito.times(1)).save(newTicket);
 	}
@@ -69,7 +68,7 @@ public class TicketUnitTest {
 				Mockito.when(this.tRepo.findAll()).thenReturn(TicketList);
 				
 				// Then check that the Trainees are all there.
-				assertThat(this.tService.getTicket()).isEqualTo(TicketList);
+				assertThat(this.tService.getTicket()).isEqualTo(TicketList.stream().map(TicketDto::new).collect(Collectors.toList()));
 
 				Mockito.verify(this.tRepo, Mockito.times(1)).findAll();
 	}
@@ -96,7 +95,7 @@ public class TicketUnitTest {
 		Mockito.when(this.tRepo.findById(2L)).thenReturn(Optional.of(TicketList.get(1)));
 		
 		// Then check that the correct Trainee is retrieved
-		assertThat(this.tService.findTicketById(2L)).isEqualTo(Ticket2);
+		assertThat(this.tService.findTicketById(2L)).isEqualTo(new TicketDto(Ticket2));
 		Mockito.verify(this.tRepo, Mockito.times(1)).findById(2L);	
 	}
 
@@ -121,7 +120,7 @@ public class TicketUnitTest {
 		Mockito.when(this.tRepo.findByStatus("Open")).thenReturn(ReturnList);
 		
 		// Then check that the correct Ticket is retrieved
-		assertThat(this.tService.findTicketByStatus("Open")).isEqualTo(ReturnList);
+		assertThat(this.tService.findTicketByStatus("Open")).isEqualTo(ReturnList.stream().map(TicketDto::new).collect(Collectors.toList()));
 		Mockito.verify(this.tRepo, Mockito.times(1)).findByStatus("Open");
 	}
 
@@ -137,7 +136,7 @@ public class TicketUnitTest {
 		Mockito.when(this.tRepo.findById(ID)).thenReturn(Optional.of(oldTicket));
 		Mockito.when(this.tRepo.save(oldTicket)).thenReturn(updatedTicket);
 
-		assertThat(this.tService.updateTicketStatus(ID)).isEqualTo(updatedTicket);
+		assertThat(this.tService.updateTicketStatus(ID)).isEqualTo(new TicketDto(updatedTicket));
 
 		Mockito.verify(this.tRepo, Mockito.times(1)).findById(ID);
 		Mockito.verify(this.tRepo, Mockito.times(1)).save(oldTicket);
@@ -164,7 +163,7 @@ public class TicketUnitTest {
 		Mockito.when(this.tRepo.findByTopic("Testing")).thenReturn(ReturnList);
 		
 		// Then check that the correct Ticket is retrieved
-		assertThat(this.tService.findTicketByTopic("Testing")).isEqualTo(ReturnList);
+		assertThat(this.tService.findTicketByTopic("Testing")).isEqualTo(ReturnList.stream().map(TicketDto::new).collect(Collectors.toList()));
 		Mockito.verify(this.tRepo, Mockito.times(1)).findByTopic("Testing");
 	}
 	
@@ -174,7 +173,7 @@ public class TicketUnitTest {
 		long TIID = 1;
 		Date date = new Date(1608026491L);
 		Ticket oldTicket = new Ticket("Dummy Ticket", "This Ticket is a Dummy Ticket for Testing", "Testing", date, 5, "Open", null, null);
-		oldTicket.setId(TIID++);
+		oldTicket.setId(TIID);
 		
 		List<Trainee> Ticket1Tr = new ArrayList<>();
 		
@@ -195,13 +194,13 @@ public class TicketUnitTest {
 		
 		
 		Ticket newTicket = new Ticket("Dummy Ticket", "This Ticket is a Dummy Ticket for Testing", "Testing", date, 5, "Open", null, TraineeList);
-		
+		newTicket.setId(TIID);
 					
 		// When trainee 2 joins the ticket
 		Mockito.when(this.tRepo.findById(1L)).thenReturn(Optional.of(oldTicket));
 		Mockito.when(this.tRepo.save(oldTicket)).thenReturn(newTicket);
 		// Then check that the both trainees are on the ticket
-		assertThat(this.tService.addTraineeToTicket(1L, Trainee2)).isEqualTo(newTicket);
+		assertThat(this.tService.addTraineeToTicket(1L, Trainee2)).isEqualTo(new TicketDto(newTicket));
 		Mockito.verify(this.tRepo, Mockito.times(1)).findById(1L);
 		Mockito.verify(this.tRepo, Mockito.times(1)).save(oldTicket);
 	}
