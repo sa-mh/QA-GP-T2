@@ -4,7 +4,7 @@ import Issue from '../../Trainer/Issue';
 import IpContext from '../../../IpContext'
 import { useContext } from 'react';
 import { Link } from 'react-router-dom'
-import ManageIssues from '../Account/ManageIssues/ManageIssues';
+import ManageIssues from '../ManageIssues';
 
 
 const PostIssues = props => {
