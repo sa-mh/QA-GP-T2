@@ -25,25 +25,21 @@ public class Ticket {
 	private String topic;
 	private Date submitDate;
 	private int urgency;
-	private String status; 
-	@ManyToOne(targetEntity = Trainer.class)
-	private Trainer trainer; 
-	@ManyToMany(mappedBy = "tickets",cascade = CascadeType.ALL)
-	private List<Trainee> trainees;
+	private String status;
+	private String author;
 	
 	public Ticket() {
 		super();
 	}
-	
-	public Ticket(String title, String issue, String topic, Date submitDate, int urgency, String status, Trainer trainer, List<Trainee> trainees) {
+
+	public Ticket(String title, String issue, String topic, Date submitDate, int urgency, String status, String author) {
 		setTitle(title);
 		setIssue(issue);
 		setTopic(topic);
 		setSubmitDate(submitDate);
 		setUrgency(urgency);
 		setStatus(status);
-		setTrainer(trainer);
-		setTrainees(trainees);
+		setAuthor(author);
 	}
 
 	public Long getId() {
@@ -102,94 +98,12 @@ public class Ticket {
 		this.status = status;
 	}
 
-	public Trainer getTrainer() {
-		return trainer;
-	}
-
-	public void setTrainer(Trainer trainer) {
-		this.trainer = trainer;
-	}
-
-	public List<Trainee> getTrainees() {
-		return trainees;
-	}
-
-	public void setTrainees(List<Trainee> trainees) {
-		this.trainees = trainees;
+	public String getAuthor() {
+		return author;
 	}
 	
-	public void addTrainee(Trainee traineeToAdd) {
-		this.trainees.add(traineeToAdd);
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((issue == null) ? 0 : issue.hashCode());
-		result = prime * result + ((status == null) ? 0 : status.hashCode());
-		result = prime * result + ((submitDate == null) ? 0 : submitDate.hashCode());
-		result = prime * result + ((title == null) ? 0 : title.hashCode());
-		result = prime * result + ((topic == null) ? 0 : topic.hashCode());
-		result = prime * result + ((trainees == null) ? 0 : trainees.hashCode());
-		result = prime * result + ((trainer == null) ? 0 : trainer.hashCode());
-		result = prime * result + urgency;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Ticket other = (Ticket) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (issue == null) {
-			if (other.issue != null)
-				return false;
-		} else if (!issue.equals(other.issue))
-			return false;
-		if (status == null) {
-			if (other.status != null)
-				return false;
-		} else if (!status.equals(other.status))
-			return false;
-		if (submitDate == null) {
-			if (other.submitDate != null)
-				return false;
-		} else if (!submitDate.equals(other.submitDate))
-			return false;
-		if (title == null) {
-			if (other.title != null)
-				return false;
-		} else if (!title.equals(other.title))
-			return false;
-		if (topic == null) {
-			if (other.topic != null)
-				return false;
-		} else if (!topic.equals(other.topic))
-			return false;
-		if (trainees == null) {
-			if (other.trainees != null)
-				return false;
-		} else if (!trainees.equals(other.trainees))
-			return false;
-		if (trainer == null) {
-			if (other.trainer != null)
-				return false;
-		} else if (!trainer.equals(other.trainer))
-			return false;
-		if (urgency != other.urgency)
-			return false;
-		return true;
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 	
 }

@@ -2,16 +2,12 @@ package com.qa.hq.service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.qa.hq.domain.Ticket;
 import com.qa.hq.domain.TicketRepo;
-import com.qa.hq.domain.Trainee;
-import com.qa.hq.domain.Trainer;
-import com.qa.hq.dto.TicketDto;
 import com.qa.hq.exception.TicketNotFoundException;
 
 
@@ -26,43 +22,36 @@ public class TicketService {
 		this.repo = repo;
 	}
 
-	public List<TicketDto> getTicket() {
-		return this.repo.findAll().stream().map(TicketDto::new).collect(Collectors.toList());
+	public List<Ticket> getTicket() {
+		return this.repo.findAll();
 	}
 	
 
-	public TicketDto findTicketById(Long id) {
-		Ticket ticket = this.repo.findById(id).get();
-		TicketDto ticketDto = new TicketDto(ticket);
-		return ticketDto;
+	public Ticket findTicketById(Long id) {
+		return this.repo.findById(id).get();
 	}
 	
-	public List<TicketDto> findTicketByStatus(String status) {
-		return this.repo.findByStatus(status).stream().map(TicketDto::new).collect(Collectors.toList());
+	public List<Ticket> findTicketByStatus(String status) {
+		return this.repo.findByStatus(status);
 	}
 	
-	public TicketDto updateTicketStatus(Long id) {
-		Ticket oldTicket = this.repo.findById(id).get();
+	public List<Ticket> findTicketByAuthor(String author) {
+		return this.repo.findByAuthor(author);
+	}
+	
+	public Ticket updateTicketStatus(Long id) {
+		Optional<Ticket> optTicket = this.repo.findById(id);
+		Ticket oldTicket = optTicket.orElseThrow(() -> new TicketNotFoundException());
 		oldTicket.setStatus("Closed");
-		Ticket statusReturn = this.repo.save(oldTicket);
-		TicketDto ticketDto = new TicketDto(statusReturn);
-		return ticketDto;
+		return this.repo.save(oldTicket);
 	}
 	
-	public List<TicketDto> findTicketByTopic(String topic) {
-		return this.repo.findByTopic(topic).stream().map(TicketDto::new).collect(Collectors.toList());
+	public List<Ticket> findTicketByTopic(String topic) {
+		return this.repo.findByTopic(topic);
 	}
 
-	public TicketDto createTicket(Ticket ticket) {
-	    return new TicketDto(this.repo.save(ticket));
-	}
-	
-	public TicketDto addTraineeToTicket(Long id, Trainee trainee) {
-		Ticket oldTicket = this.repo.findById(id).get();
-		oldTicket.addTrainee(trainee);
-		this.repo.save(oldTicket);
-		TicketDto ticketDto = new TicketDto(oldTicket);
-		return ticketDto;
+	public Ticket createTicket(Ticket ticket) {
+	    return this.repo.save(ticket);
 	}
 
 	public boolean deleteTicket(Long id) {
@@ -70,7 +59,7 @@ public class TicketService {
 		return !this.repo.existsById(id);
 	}
 
-	public TicketDto updateTicket(Ticket ticket, Long id) {
+	public Ticket updateTicket(Ticket ticket, Long id) {
 		Optional<Ticket> optTicket = this.repo.findById(id);
 		Ticket oldTicket = optTicket.orElseThrow(() -> new TicketNotFoundException());
 
@@ -80,12 +69,9 @@ public class TicketService {
 		oldTicket.setSubmitDate(ticket.getSubmitDate());
 		oldTicket.setUrgency(ticket.getUrgency());
 		oldTicket.setStatus(ticket.getStatus());
-//		oldTicket.setTrainer(ticket.getTrainer());
-//		oldTicket.setTrainees(ticket.getTrainees());
+		oldTicket.setAuthor(ticket.getAuthor());
 
-		Ticket updatedTicket = this.repo.save(oldTicket);
-		TicketDto ticketDto = new TicketDto(updatedTicket);
-		return ticketDto;
+		return this.repo.save(oldTicket);
 	}
 	
 } 

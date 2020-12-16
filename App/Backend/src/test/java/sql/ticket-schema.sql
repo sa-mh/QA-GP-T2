@@ -8,6 +8,5 @@ CREATE TABLE `ticket` (
  	`submit_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
  	`urgency` INT NOT NULL,
   	`status` VARCHAR(20) NOT NULL,
-  	`trainer_id` BIGINT NOT NULL,
-  	FOREIGN KEY (`trainer_id`) REFERENCES `trainer`(`id`)
+  	`author` VARCHAR(20) NOT NULL
 );

@@ -18,8 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.qa.hq.domain.Ticket;
-import com.qa.hq.domain.Trainee;
-import com.qa.hq.dto.TicketDto;
 import com.qa.hq.service.TicketService;
 
 @RestController
@@ -35,23 +33,28 @@ public class TicketController {
 	}
 
 	@PostMapping("/create")
-	public ResponseEntity<TicketDto> createTicket(@RequestBody Ticket ticket) {
-		return new ResponseEntity<TicketDto>(this.service.createTicket(ticket), HttpStatus.CREATED);
+	public ResponseEntity<Ticket> createTicket(@RequestBody Ticket ticket) {
+		return new ResponseEntity<Ticket>(this.service.createTicket(ticket), HttpStatus.CREATED);
 	}
 
 	@GetMapping("/getAll")
-	public ResponseEntity<List<TicketDto>> getTicket() {
+	public ResponseEntity<List<Ticket>> getTicket() {
 		return ResponseEntity.ok(this.service.getTicket());
 	}
 	
 	@GetMapping("/findById")
-	public ResponseEntity<TicketDto> findTicketById(Long id) {
+	public ResponseEntity<Ticket> findTicketById(Long id) {
 		return ResponseEntity.ok(this.service.findTicketById(id));
 	}
 	
 	@GetMapping("/findByTopic/{topic}")
-	public ResponseEntity<List<TicketDto>> findTicketByTopic(@PathVariable String topic) {
+	public ResponseEntity<List<Ticket>> findTicketByTopic(@PathVariable String topic) {
 		return ResponseEntity.ok(this.service.findTicketByTopic(topic));
+	}
+	
+	@GetMapping("/findByAuthor/{author}")
+	public ResponseEntity<List<Ticket>> findTicketByAuthor(@PathVariable String author) {
+		return ResponseEntity.ok(this.service.findTicketByAuthor(author));
 	}
 
 	@DeleteMapping("/remove/{id}")
@@ -64,17 +67,12 @@ public class TicketController {
 	}
 
 	@PutMapping("/update")
-	public ResponseEntity<TicketDto> updateTicket(@RequestBody Ticket ticket, @PathParam("id") Long id) {
-		return new ResponseEntity<TicketDto>(this.service.updateTicket(ticket, id), HttpStatus.ACCEPTED);
+	public ResponseEntity<Ticket> updateTicket(@RequestBody Ticket ticket, @PathParam("id") Long id) {
+		return new ResponseEntity<Ticket>(this.service.updateTicket(ticket, id), HttpStatus.ACCEPTED);
 	}
 	
 	@PatchMapping("/status/{id}")
-	public ResponseEntity<TicketDto> updateTicketStatus(@PathVariable Long id) {
-		return new ResponseEntity<TicketDto>(this.service.updateTicketStatus(id), HttpStatus.ACCEPTED);
+	public ResponseEntity<Ticket> updateTicketStatus(@PathVariable Long id) {
+		return new ResponseEntity<Ticket>(this.service.updateTicketStatus(id), HttpStatus.ACCEPTED);
 	}
-	
-	@PatchMapping("/joinTicket/{id}")
-    public ResponseEntity<TicketDto> addTraineeToTicket(@RequestBody Trainee trainee, @PathVariable Long id) {
-    return new ResponseEntity<TicketDto>(this.service.addTraineeToTicket(id, trainee), HttpStatus.ACCEPTED);
-    }
 }
