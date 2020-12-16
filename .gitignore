@@ -4,4 +4,6 @@ Infra/Terraform/secretVariables.tf
 Infra/Terraform/terraform.tfstate
 Infra/Terraform/terraform.tfstate.backup
 Infra/Kubernetes/secrets.yaml
-
+Infra/Terraform/aws
+.vscode
+Infra/Terraform/.terraform.lock.hcl

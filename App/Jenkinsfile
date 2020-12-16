@@ -5,35 +5,55 @@ pipeline{
 
         stage("Step 1") {
             steps {
+                withCredentials(bindings: [usernamePassword(credentialsId: 'Nexus', passwordVariable: 'NexusPassword', usernameVariable: 'NexusUser'), usernamePassword(credentialsId: 'AWS', passwordVariable: 'aswSecretKey', usernameVariable: 'awsKey'), string(credentialsId: 'NexusIP', variable: 'NexusIP')]) {
+                // some block
                 // In the jenkinsVM, sign into DockerHub and Kubectl (as jenkins user?)
                 sh 'bash ./App/Scripts/logins.sh'
+                }   
+                
             }
         }
         stage("Step 2") {
             steps {
-                //Docker compose up -d (to build all the images (frontend and backend))
-                sh 'cd ~/QA-TP-G2/App/'
-                sh 'docker-compose up -d'
+                //Docker compose up -d (to build all the images (frontend and backend))          
+                sh 'cd ./App'
+                sh 'ls'
+                withCredentials(bindings: [usernamePassword(credentialsId: 'Nexus', passwordVariable: 'NexusPassword', usernameVariable: 'NexusUser'), usernamePassword(credentialsId: 'AWS', passwordVariable: 'aswSecretKey', usernameVariable: 'awsKey'), string(credentialsId: 'NexusIP', variable: 'NexusIP')]) {
+                dir('App')
+                {
+                    sh 'docker-compose up -d'
+                }
+            }
+                
             }
         }
         stage("Run the backend and frontend tests") {
             steps {
                 // Run the tests (npm test for frontend) (somehow test backend)
-                sh 'bash ./App/Scripts/frontend-tests.sh'
-                sh 'bash ./App/Scripts/backend-tests.sh'
+                dir('App/Scripts')
+                {
+                sh 'bash frontend-tests.sh'
+                sh 'bash backend-tests.sh'
+                }
             }
         }
         stage("Push the successful images to nexus repo") {
             steps {
                 // Pushing the images ran to nexus repository
-                sh 'bash ./App/Scripts/image-push.sh'
+                dir('App/Scripts')
+                {
+                    withCredentials(bindings: [usernamePassword(credentialsId: 'Nexus', passwordVariable: 'NexusPassword', usernameVariable: 'NexusUser'), usernamePassword(credentialsId: 'AWS', passwordVariable: 'aswSecretKey', usernameVariable: 'awsKey'), string(credentialsId: 'NexusIP', variable: 'NexusIP')]) {
+                        sh 'bash image-push.sh'
+                    }
+                }
             }
         }
-        stage("Uodate the Kubernetes files") {
+        stage("Update the Kubernetes files") {
             steps {
                 // Updating the kubernetes files (deployments, services, configmap, secrets) to pull latest image
-                sh 'bash ./App/Scripts/...'
+                sh 'bash Scripts/...'
             }
         }
     }
 }
+

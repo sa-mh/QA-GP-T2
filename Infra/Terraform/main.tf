@@ -19,10 +19,20 @@ module "ec2" {
 
 module "ec2-2" {
   source             = "./ec2"
+  type               = "t2.micro"
+  size               = 8
   subnet_id          = module.subnets.subnet_id
   security_group_ids = [module.securitygroups.ssh_id]
   tag1 = {
     Name = "Test-EC2"
+  }
+}
+module "ec2-3" {
+  source             = "./ec2"
+  subnet_id          = module.subnets.subnet_id
+  security_group_ids = [module.securitygroups.ssh_id]
+  tag1 = {
+    Name = "Nexus-EC2"
   }
 }
 

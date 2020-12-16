@@ -1,4 +1,8 @@
-- name: Install aws-cli
-  apt:
-    name: awscli
-    state: latest
+- name: Copy aws-install.sh
+  copy:
+    src: aws-install.sh
+    dest: /root
+    owner: root
+
+- name: Run aws-install.sh
+  command: bash /root/aws-install.sh

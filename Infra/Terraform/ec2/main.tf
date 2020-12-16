@@ -6,5 +6,8 @@ resource "aws_instance" "EC2" {
   vpc_security_group_ids      = var.security_group_ids
   associate_public_ip_address = "true"
   tags                        = var.tag1
+  root_block_device {
+    volume_size = var.size
+  }
 }
 
