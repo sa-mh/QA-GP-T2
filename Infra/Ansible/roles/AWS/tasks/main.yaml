@@ -5,4 +5,4 @@
     owner: root
 
 - name: Run aws-install.sh
-  command: sh /root/aws-install.sh
+  command: bash /root/aws-install.sh
