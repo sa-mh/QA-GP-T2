@@ -1,16 +1,15 @@
 INSERT INTO `trainer`
 (`username`,
-`firstName`,
-`lastName`,
+`first_name`,
+`last_name`,
 `password`,
 `field`,
-`trainerEmail`,
-`tickets`)
+`trainer_email`)
 VALUES
 ('A username',
 'First name',
 'Last name',
 'A password',
 'A field',
-'An email',
-1);
+'An email'
+);

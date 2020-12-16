@@ -3,19 +3,18 @@ package com.qa.hq.domain;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
-import org.joda.time.DateTime;
-
-@Entity 
+@Entity
 public class Ticket {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -25,17 +24,19 @@ public class Ticket {
 	private String topic;
 	private Date submitDate;
 	private int urgency;
-	private String status; 
+	private String status;
 	@ManyToOne(targetEntity = Trainer.class)
-	private Trainer trainer; 
-	@ManyToMany(mappedBy = "tickets",cascade = CascadeType.ALL)
+	private Trainer trainer;
+	@ManyToMany
+	@JoinTable(name = "trainee_ticket", joinColumns = @JoinColumn(name = "ticket_id"), inverseJoinColumns = @JoinColumn(name = "trainee_id"))
 	private List<Trainee> trainees;
-	
+
 	public Ticket() {
 		super();
 	}
-	
-	public Ticket(String title, String issue, String topic, Date submitDate, int urgency, String status, Trainer trainer, List<Trainee> trainees) {
+
+	public Ticket(String title, String issue, String topic, Date submitDate, int urgency, String status,
+			Trainer trainer, List<Trainee> trainees) {
 		setTitle(title);
 		setIssue(issue);
 		setTopic(topic);
@@ -117,7 +118,7 @@ public class Ticket {
 	public void setTrainees(List<Trainee> trainees) {
 		this.trainees = trainees;
 	}
-	
+
 	public void addTrainee(Trainee traineeToAdd) {
 		this.trainees.add(traineeToAdd);
 	}
@@ -191,5 +192,5 @@ public class Ticket {
 			return false;
 		return true;
 	}
-	
+
 }

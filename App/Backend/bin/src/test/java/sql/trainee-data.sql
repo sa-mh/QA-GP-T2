@@ -1,12 +1,14 @@
 INSERT INTO `trainee`
-(`username`,
-`firstName`,
-`lastName`,
+(`id`,
+`username`,
+`first_name`,
+`last_name`,
 `cohort`,
 `password`,
-`traineeEmail`)
+`trainee_email`)
 VALUES
-('A username',
+(NULL,
+'A username',
 'First name',
 'Last name',
 'A cohort',

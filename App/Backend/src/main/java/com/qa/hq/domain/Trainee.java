@@ -2,41 +2,36 @@ package com.qa.hq.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 @Entity
 public class Trainee {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	private String username;
 	private String firstName;
-	private String lastName; 
+	private String lastName;
 	private String cohort;
 	private String password;
 	private String traineeEmail;
-	@ManyToMany
-	@JoinTable(
-		name = "trainee_ticket",
-		joinColumns = @JoinColumn(name = "trainee_id"),
-		inverseJoinColumns = @JoinColumn(name = "ticket_id"))
+	@ManyToMany(mappedBy = "trainees", cascade = CascadeType.ALL)
 	private List<Ticket> tickets;
-	
+
 	public Trainee() {
 		super();
 	}
 
-	
-	//Change this to use Setters for more coverage
-	public Trainee(String username, String firstName, String lastName, String cohort, String password, String traineeEmail, List<Ticket> tickets) {
+	// Change this to use Setters for more coverage
+	public Trainee(String username, String firstName, String lastName, String cohort, String password,
+			String traineeEmail, List<Ticket> tickets) {
 		super();
 		setUsername(username);
 		setFirstName(firstName);
