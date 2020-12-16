@@ -9,6 +9,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,13 +29,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qa.hq.domain.Ticket;
 import com.qa.hq.domain.Trainee;
 import com.qa.hq.domain.Trainer;
+import com.qa.hq.dto.TicketDto;
 
 import java.sql.Timestamp;    
 import java.util.Date; 
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
-@Sql(scripts = { "classpath:/sql/trainer-schema.sql", "classpath:/sql/trainee-schema.sql", "classpath:/sql/ticket-schema.sql", "classpath:/sql/trainee-ticket-schema.sql", "classpath:/sql/trainer-data.sql", "classpath:/sql/trainee-data.sql", "classpath:/sql/ticket-data.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
+@Sql(scripts = { "classpath:/sql/trainer-schema.sql", "classpath:/sql/trainee-schema.sql", "classpath:/sql/ticket-schema.sql", "classpath:/sql/trainee-ticket-schema.sql", "classpath:/sql/trainer-data.sql", "classpath:/sql/trainee-data.sql", "classpath:/sql/ticket-data.sql", "classpath:/sql/trainee-ticket-data.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
 
 
 @ActiveProfiles(profiles = "test")
@@ -70,7 +72,8 @@ public class TicketIntegrationTest {
 		ticket.setId(1L);
 		List<Ticket> tickets = new ArrayList<>();
 		tickets.add(ticket);
-		String getResponseBody = this.mapper.writeValueAsString(ticket);
+		TicketDto ticketDto = new TicketDto(ticket);
+		String getResponseBody = this.mapper.writeValueAsString(tickets.stream().map(TicketDto::new).collect(Collectors.toList()));
 		
 		this.mockMVC.perform(get("/ticket/getAll")).andExpect(status().isOk()).andExpect(content().json(getResponseBody));
 	}
@@ -84,30 +87,33 @@ public class TicketIntegrationTest {
 		String topic = "Dev Ops";
 		List<Ticket> tickets = new ArrayList<>();
 		tickets.add(ticket);
-		String responseBody = this.mapper.writeValueAsString(ticket);
+		TicketDto ticketDto = new TicketDto(ticket);
+		String responseBody = this.mapper.writeValueAsString(ticketDto);
 		RequestBuilder request = get("/ticket/findByTopic/" + topic).contentType(MediaType.APPLICATION_JSON).content(responseBody);
 		ResultMatcher checkStatus = status().isOk();
 		
 		this.mockMVC.perform(request).andExpect(checkStatus);
 	}
 	
-	@Test
-	void getTicketByTrainee() throws Exception {
-		Trainer trainer = new Trainer(this.username,this.firstName,this.lastName,this.password,this.field,this.trainerEmail,this.ticketList);
-		Trainee trainee = new Trainee(this.username,this.firstName,this.lastName,this.cohort,this.password,this.traineeEmail,this.ticketList);
-		List<Trainee> trainees = new ArrayList<Trainee>();
-		trainees.add(trainee);
-		Date date = new Date(10L);
-		Ticket ticket = new Ticket("A title", "An issue", "A topic", date, 4, "Pending", trainer, trainees);
-		Long traineeId = 1L;
-		List<Ticket> tickets = new ArrayList<>();
-		tickets.add(ticket);
-		String responseBody = this.mapper.writeValueAsString(tickets);
-		RequestBuilder request = get("/ticket/findByTrainee/" + traineeId).contentType(MediaType.APPLICATION_JSON).content(responseBody);
-		ResultMatcher checkStatus = status().isOk();
-		
-		this.mockMVC.perform(request).andExpect(checkStatus);
-	}
+	//This should be in TraineeIntegrationTest
+//	@Test
+//	void getTicketByTrainee() throws Exception {
+//		Trainer trainer = new Trainer(this.username,this.firstName,this.lastName,this.password,this.field,this.trainerEmail,this.ticketList);
+//		Trainee trainee = new Trainee(this.username,this.firstName,this.lastName,this.cohort,this.password,this.traineeEmail,this.ticketList);
+//		List<Trainee> trainees = new ArrayList<Trainee>();
+//		trainees.add(trainee);
+//		Date date = new Date(10L);
+//		Ticket ticket = new Ticket("A title", "An issue", "A topic", date, 4, "Pending", trainer, trainees);
+//		Long traineeId = 1L;
+//		List<Ticket> tickets = new ArrayList<>();
+//		tickets.add(ticket);
+//		TicketDto ticketDto = new TicketDto(ticket);
+//		String responseBody = this.mapper.writeValueAsString(ticketDto);
+//		RequestBuilder request = get("/ticket/findByTrainee/" + traineeId).contentType(MediaType.APPLICATION_JSON).content(responseBody);
+//		ResultMatcher checkStatus = status().isOk();
+//		
+//		this.mockMVC.perform(request).andExpect(checkStatus);
+//	}
 		
 	@Test
 	void createTicketTest() throws Exception {
@@ -116,17 +122,23 @@ public class TicketIntegrationTest {
 		List<Trainee> trainees = new ArrayList<Trainee>();
 		trainees.add(trainee);
 		Date date = new Date(10L);
+		
 		Ticket newTicket = new Ticket("A title", "An issue", "A topic", date, 4, "Pending", trainer, trainees);
-		String body = this.mapper.writeValueAsString(newTicket);
+		newTicket.setId(1L);
+		TicketDto ticketDto1 = new TicketDto(newTicket);
+		
+		String body = this.mapper.writeValueAsString(ticketDto1);
 		RequestBuilder createRequestBody = post("/ticket/create").contentType(MediaType.APPLICATION_JSON).content(body);
 		ResultMatcher checkStatus = status().isCreated();
+		
 		Ticket savedTicket = new Ticket("A title", "An issue", "A topic", date, 4, "Pending", trainer, trainees);
 		savedTicket.setId(2L);
-		String resultBody = this.mapper.writeValueAsString(savedTicket);
+		TicketDto ticketDto2 = new TicketDto(savedTicket);
+		String resultBody = this.mapper.writeValueAsString(ticketDto2);
+	
 		ResultMatcher checkBody = content().json(resultBody);
 		
 		this.mockMVC.perform(createRequestBody).andExpect(checkStatus).andExpect(checkBody);
-		MvcResult result = this.mockMVC.perform(createRequestBody).andExpect(checkStatus).andReturn();
 	}
 
 	@Test
@@ -150,17 +162,18 @@ public class TicketIntegrationTest {
 		List<Trainee> trainees = new ArrayList<Trainee>();
 		trainees.add(trainee);
 		Date date = new Date(10L);
+		trainer.setId(1L);
 		Ticket newTicket = new Ticket("A title", "An issue", "A topic", date, 4, "Pending", trainer, trainees);
 		String body = this.mapper.writeValueAsString(newTicket);
 		RequestBuilder updateRequestBody = put("/ticket/update?id=1").contentType(MediaType.APPLICATION_JSON).content(body);
 		ResultMatcher checkStatus = status().isAccepted();
 		Ticket savedTicket = new Ticket("A title", "An issue", "A topic", date, 4, "Pending", trainer, trainees);
 		savedTicket.setId(1L);
-		String resultBody = this.mapper.writeValueAsString(savedTicket);
+		TicketDto ticketDto = new TicketDto(savedTicket);
+		String resultBody = this.mapper.writeValueAsString(ticketDto);
 		ResultMatcher checkBody = content().json(resultBody);
 
 		this.mockMVC.perform(updateRequestBody).andExpect(checkStatus).andExpect(checkBody);
-		MvcResult result = this.mockMVC.perform(updateRequestBody).andExpect(checkStatus).andReturn();
 	}
 
 }

@@ -53,9 +53,7 @@ public class TicketService {
 	}
 
 	public TicketDto createTicket(Ticket ticket) {
-		TicketDto ticketDto = new TicketDto(ticket);
-	    this.repo.save(ticket);
-	    return ticketDto;
+	    return new TicketDto(this.repo.save(ticket));
 	}
 	
 	public TicketDto addTraineeToTicket(Long id, Trainee trainee) {
@@ -81,8 +79,8 @@ public class TicketService {
 		oldTicket.setSubmitDate(ticket.getSubmitDate());
 		oldTicket.setUrgency(ticket.getUrgency());
 		oldTicket.setStatus(ticket.getStatus());
-		oldTicket.setTrainer(ticket.getTrainer());
-		oldTicket.setTrainees(ticket.getTrainees());
+//		oldTicket.setTrainer(ticket.getTrainer());
+//		oldTicket.setTrainees(ticket.getTrainees());
 
 		Ticket updatedTicket = this.repo.save(oldTicket);
 		TicketDto ticketDto = new TicketDto(updatedTicket);
