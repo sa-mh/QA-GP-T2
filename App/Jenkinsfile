@@ -30,14 +30,20 @@ pipeline{
         stage("Run the backend and frontend tests") {
             steps {
                 // Run the tests (npm test for frontend) (somehow test backend)
-                sh 'bash Scripts/frontend-tests.sh'
-                sh 'bash Scripts/backend-tests.sh'
+                dir('App/Scripts')
+                {
+                sh 'bash frontend-tests.sh'
+                sh 'bash backend-tests.sh'
+                }
             }
         }
         stage("Push the successful images to nexus repo") {
             steps {
                 // Pushing the images ran to nexus repository
-                sh 'bash Scripts/image-push.sh'
+                dir('App/Scripts')
+                {
+                sh 'bash image-push.sh'
+                }
             }
         }
         stage("Update the Kubernetes files") {
