@@ -22,7 +22,7 @@ const PostIssues = props => {
     console.log(userDetails);
     
     useEffect(() => {
-        axios.get("http://" + ip + "/ticket/getAll")
+        axios.get("http://" + ip + "/ticket/findByStatus/Open")
             .then(response => {
                 response.data.map((child) => {
                     if (child.status === "new" || child.status === "Open") {
@@ -56,7 +56,7 @@ const PostIssues = props => {
             title: ticketTitle,
             issue: ticketIssue,
             topic: ticketTopic,
-            submitDate: "2020-12-16T14:26:10.056Z",
+            submitDate: null,
             urgency: ticketPriority,
             status: "Open",
             author: "test autho"
@@ -95,11 +95,11 @@ const PostIssues = props => {
                         </select>
                         <select defaultValue="" id="priority" onChange={e => setPriority(e.target.value)}>
                             <option value="" disabled hidden>Priority</option>
-                            <option value="1">Very High</option>
-                            <option value="2">High</option>
+                            <option value="5">Very High</option>
+                            <option value="4">High</option>
                             <option value="3">Medium</option>
-                            <option value="4">Low</option>
-                            <option value="5">Very Low</option>
+                            <option value="2">Low</option>
+                            <option value="1">Very Low</option>
                         </select>
                         <button className="btn btn-primary" id="postButton" type="submit" onSubmit={post_newIssue}>Post Issue</button>
                     </form>
