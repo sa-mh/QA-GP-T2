@@ -22,7 +22,6 @@ const ViewAllIssues = () => {
                         console.log("I'm here");
                         setRespondedData(response.data);
                     }else{
-                        ReactDOM.render(<p style={{ color: "red"}}>Username/Password wrong. Please try again.</p>, document.getElementById('failed-message'));
                     }
                 })
             })
