@@ -11,7 +11,7 @@ const ViewAllIssues = () => {
     const [respondedData, setRespondedData] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:8081/ticket/getAll")
+        axios.get("http://52.16.137.246:8081/ticket/getAll")
             .then(response => {
                 response.data.map( (child) => {
                     if(child.status === "new" || child.status === "Open"  ){
@@ -39,7 +39,7 @@ const ViewAllIssues = () => {
 
 
     useEffect(() => {
-        axios.get("http://54.78.12.174:8081/ticket/getAll")
+        axios.get("http://52.16.137.246:8081//ticket/getAll")
             .then(response => {
                 response.data.map( (child) => {
                     if(child.status === "Closed" ){

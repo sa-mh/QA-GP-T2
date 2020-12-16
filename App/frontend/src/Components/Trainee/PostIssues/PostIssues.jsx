@@ -44,6 +44,8 @@ const PostIssues = props => {
             message={issue.issue}
             date={issue.submitDate}
             priority={issue.urgency}
+            firstName={issue.trainees.firstName}
+            lastName={issue.trainees.lastName}
         />
         // <Issue title={issue.title}/>
     )))
@@ -102,7 +104,7 @@ const PostIssues = props => {
 
             {/* Allow user to post an issue here */}
             <div className="createDiv">
-                <h3 className="signupHeading">Post an issue</h3>
+                <h3 className="createPost-heading">Post an issue</h3>
                 <div>
                     <form className="ml-3" id="postIssueForm" onSubmit={post_newIssue}>
                         <input className="issueInput" type="text" id="title" onChange={e => setTitle(e.target.value)} placeholder="Give issue a title" required></input> <br></br>
@@ -124,6 +126,7 @@ const PostIssues = props => {
                         </select>
                         <button className="btn btn-primary" id="postButton" type="submit" onSubmit={post_newIssue}>Post Issue</button>
                     </form>
+                    <p id="post-note">*Please note that all tickets posted will be responded to by a trainer as soon as possible. You will be notified via email when a response has been made.</p>
                 </div>
             </div>
             <div>

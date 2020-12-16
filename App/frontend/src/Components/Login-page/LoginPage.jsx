@@ -49,7 +49,7 @@ const LoginPage = props => {
         }
         else {
             e.preventDefault();
-            ReactDOM.render(<p style={{ color: "red" }}>Username/Password wrong</p>, document.getElementById('failed-message'));
+            ReactDOM.render(<p style={{ color: "red"}}>Username/Password wrong. Please try again.</p>, document.getElementById('failed-message'));
 
         }
     }
@@ -86,8 +86,9 @@ const LoginPage = props => {
                             <option value="" disabled hidden >Position</option>
                             <option value="trainer">Trainer</option>
                             <option value="trainee">Trainee</option>
-                        </select>
+                        </select><br></br>
                         <button className="btn btn-primary" id="loginButton" type="submit">Login</button>
+                        <p>Dont have an account? You can create one using the button below</p>
                         <div>
                             <Link to="/createAccount">
                                 <button style={{ backgroundColor: "darkred" }} className="btn btn-primary" id="signUpButton" type="button">Create an account</button>
