@@ -10,6 +10,7 @@ resource "aws_key_pair" "sshKeyGen" {
 
 module "ec2" {
   source             = "./ec2"
+  type               = "t2.medium"
   subnet_id          = module.subnets.subnet_id
   security_group_ids = [module.securitygroups.ssh_id]
   tag1 = {
