@@ -18,10 +18,12 @@ pipeline{
                 //Docker compose up -d (to build all the images (frontend and backend))          
                 sh 'cd ./App'
                 sh 'ls'
+                withCredentials(bindings: [usernamePassword(credentialsId: 'Nexus',  passwordVariable: 'NexusPassword', usernameVariable: 'NexusUser'), usernamePassword(credentialsId: 'awsKeys', passwordVariable: 'awsSecretKey', usernameVariable: 'awsKey'), string(credentialsId: 'NexusIP', variable: 'NexusIP')]) {
                 dir('App')
                 {
                     sh 'docker-compose up -d'
                 }
+            }
                 
             }
         }
