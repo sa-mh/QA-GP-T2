@@ -1,4 +1,6 @@
-
+withCredentials([usernamePassword(credentialsId: 'Nexus', passwordVariable: 'NexusPassword', usernameVariable: 'NexusUser'), usernamePassword(credentialsId: 'awsKeys', passwordVariable: 'awsSecretKey', usernameVariable: 'awsKey'), string(credentialsId: 'NexusIP', variable: 'NexusIP')]) {
+    // some block
+}
 pipeline{
     agent any
 	stages{
