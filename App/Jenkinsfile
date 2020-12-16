@@ -42,7 +42,9 @@ pipeline{
                 // Pushing the images ran to nexus repository
                 dir('App/Scripts')
                 {
-                sh 'bash image-push.sh'
+                    withCredentials(bindings: [usernamePassword(credentialsId: 'NexusAdmin', passwordVariable: 'NexusPassword', usernameVariable: 'NexusUser'), usernamePassword(credentialsId: 'awsKeys', passwordVariable: 'awsSecretKey', usernameVariable: 'awsKey'), string(credentialsId: 'NexusIP', variable: 'NexusIP')]) {
+                        sh 'bash image-push.sh'
+                    }
                 }
             }
         }
