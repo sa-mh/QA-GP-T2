@@ -25,7 +25,6 @@ The initial brief required us (within a team) to create a Help Queue web applica
 ### Team
 * Sam Horner
 * Ramgith Jagajith
-* Shaquille Ricketts-Sesay
 * Sheraz Shahid
 * Lewis Thomson
 * Lisandro Villarruel
@@ -57,7 +56,7 @@ The initial brief required us (within a team) to create a Help Queue web applica
 ## Application Navigation
 
 ## Acknowledgements
-	
+In memory of Shaquille Ricketts-Sesay
 
 Trello : https://trello.com/b/C5f54Wkv/final-project-group-2 <br>
 Jira Board: https://sshahid.atlassian.net/secure/RapidBoard.jspa?projectKey=GRP2&rapidView=5# <br>
