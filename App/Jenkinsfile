@@ -1,7 +1,7 @@
 
 pipeline{
     agent any
-    withCredentials(bindings: [usernamePassword(credentialsId: 'Nexus', \ passwordVariable: 'NexusPassword', \ usernameVariable: 'NexusUser'), usernamePassword(credentialsId: 'awsKeys', \ passwordVariable: 'awsSecretKey', \ usernameVariable: 'awsKey'), string(credentialsId: 'NexusIP', \ variable: 'NexusIP')]) {
+    withCredentials(bindings: [usernamePassword(credentialsId: 'Nexus', \ passwordVariable: 'NexusPassword', \ usernameVariable: 'NexusUser'), \ usernamePassword(credentialsId: 'awsKeys', \ passwordVariable: 'awsSecretKey', \ usernameVariable: 'awsKey'), \ string(credentialsId: 'NexusIP', \ variable: 'NexusIP')]) {
     // some block
     }
 	stages{
