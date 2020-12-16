@@ -47,6 +47,11 @@ public class TicketController {
 		return ResponseEntity.ok(this.service.findTicketById(id));
 	}
 	
+	@GetMapping("/findByStatus/{status}")
+	public ResponseEntity<List<Ticket>> findTicketByStatus(@PathVariable String status){
+		return ResponseEntity.ok(this.service.findTicketByStatus(status));
+	}
+	
 	@GetMapping("/findByTopic/{topic}")
 	public ResponseEntity<List<Ticket>> findTicketByTopic(@PathVariable String topic) {
 		return ResponseEntity.ok(this.service.findTicketByTopic(topic));
