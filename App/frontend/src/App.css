@@ -178,7 +178,7 @@ width: 50%;
 
 .card #issue-priority {
   position: absolute;
-  left:50%;
+  left:65%;
   bottom: -7%;
 }
 
@@ -258,22 +258,32 @@ margin-top: 10px;
 }
 
 #readDiv {
-  /* background-color: white; */
+  /* background-color: red; */
   width: 50%;
-  float: right;
   margin-right: 1%;
   margin-top: 1%;
-  position: relative;
-  top: 40px;
+  position: absolute;
+  top: 50px;
+  right: 15%;
   
 }
 
+#readDiv #filter {
+  position: absolute;
+  float: right;
+  left: 120%;
+  width: fit-content;
+}
+
 #readDiv .card {
-  width: 80%;
+  width: 160%;
   background-color: white;
   box-shadow: 3px 2px 10px #888888;
 }
 
+#readDiv-heading{
+  padding-bottom: 4%;
+}
 
 /* Trainer responds to an issue - ViewAllIssues.jsx */
 
@@ -447,11 +457,15 @@ color: lightgrey;
 text-align: center;
 }
 
+#author{
+  margin-bottom: 1%;
+}
+
 #post-note{
   position: absolute;
   font-size: 12px;
   right: -2%;
-  bottom: 0%;
+  bottom: -3%;
   width: 100%;
   color: darkgray;
   text-align: left;

@@ -8,11 +8,6 @@ const Issue = (props) => {
     const closeTicket = () => {
         axios.patch("http://" + ip + "/ticket/status/" + props.ticketId, {
             status: "Closed"
-        },{
-            headers: {
-                'Access-Control-Allow-Origin' : '*',     
-                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH'   
-            }
         }).then(response => {
             console.log(response);
             // window.location.reload();
@@ -22,7 +17,6 @@ const Issue = (props) => {
     }
 
 
-
     return (
         <>
             <div className="card">
@@ -30,7 +24,7 @@ const Issue = (props) => {
                     <h5 className="card-title">{props.title}</h5>
                     <p className="card-body" id="issue-topic">Topic: {props.topic}</p>
                     <p className="card-body">{props.message}</p>
-                    <p className="card-body">{props.firstName} {props.lastName}</p> 
+                    <p className="card-body">Posted by: {props.author}</p> 
                     <p className="card-body" id="issue-date">Created on: {props.date}</p>
                     <p className="card-body" id="issue-priority">Priority: {props.priority}</p>
                     <button className="card-body" id="solve-button" onClick={closeTicket}>Done</button>
