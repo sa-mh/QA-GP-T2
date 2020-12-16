@@ -193,6 +193,7 @@ public class TicketUnitTest {
 		TraineeList.add(Trainee1);
 		TraineeList.add(Trainee2);
 		
+		
 		Ticket newTicket = new Ticket("Dummy Ticket", "This Ticket is a Dummy Ticket for Testing", "Testing", date, 5, "Open", null, TraineeList);
 		
 					
@@ -205,27 +206,27 @@ public class TicketUnitTest {
 		Mockito.verify(this.tRepo, Mockito.times(1)).save(oldTicket);
 	}
 
-//	@Test
-//	void testDeleteTicket() {
-//		this.repo.deleteById(id);
-//		return !this.repo.existsById(id);
-//	}
-//
-//	@Test
-//	void testUpdateTicket() {
-//		Optional<Ticket> optTicket = this.repo.findById(id);
-//		Ticket oldTicket = optTicket.orElseThrow(() -> new TicketNotFoundException());
-//
-//		oldTicket.setTitle(ticket.getTitle());
-//		oldTicket.setIssue(ticket.getIssue());
-//		oldTicket.setTopic(ticket.getTopic());
-//		oldTicket.setSubmitDate(ticket.getSubmitDate());
-//		oldTicket.setUrgency(ticket.getUrgency());
-//		oldTicket.setStatus(ticket.getStatus());
-//		oldTicket.setTrainer(ticket.getTrainer());
-//		oldTicket.setTrainees(ticket.getTrainees());
-//
-//		Ticket updatedTicket = this.repo.save(oldTicket);
-//		return updatedTicket;
-//	}
+	
+	@Test void testDeleteTicket() {
+		Long ID = 1L;
+		boolean idFound = true;
+		Mockito.when(this.tRepo.existsById(ID)).thenReturn(idFound);
+		assertThat(this.tService.deleteTicket(ID)).isEqualTo(!idFound);
+		Mockito.verify(this.tRepo, Mockito.times(1)).existsById(ID);
+	}
+	/* 
+	 * @Test void testUpdateTicket() { Optional<Ticket> optTicket =
+	 * this.repo.findById(id); Ticket oldTicket = optTicket.orElseThrow(() -> new
+	 * TicketNotFoundException());
+	 * 
+	 * oldTicket.setTitle(ticket.getTitle()); oldTicket.setIssue(ticket.getIssue());
+	 * oldTicket.setTopic(ticket.getTopic());
+	 * oldTicket.setSubmitDate(ticket.getSubmitDate());
+	 * oldTicket.setUrgency(ticket.getUrgency());
+	 * oldTicket.setStatus(ticket.getStatus());
+	 * oldTicket.setTrainer(ticket.getTrainer());
+	 * oldTicket.setTrainees(ticket.getTrainees());
+	 * 
+	 * Ticket updatedTicket = this.repo.save(oldTicket); return updatedTicket; }
+	 */
 }

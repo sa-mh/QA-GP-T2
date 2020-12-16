@@ -30,6 +30,7 @@ public class TicketService {
 		return this.repo.findAll().stream().map(TicketDto::new).collect(Collectors.toList());
 	}
 	
+
 	public TicketDto findTicketById(Long id) {
 		Ticket ticket = this.repo.findById(id).get();
 		TicketDto ticketDto = new TicketDto(ticket);
