@@ -1,15 +1,16 @@
 
 pipeline{
     agent any
-    withCredentials(bindings: [usernamePassword(credentialsId: 'Nexus', \ passwordVariable: 'NexusPassword', \ usernameVariable: 'NexusUser'), \ usernamePassword(credentialsId: 'awsKeys', \ passwordVariable: 'awsSecretKey', \ usernameVariable: 'awsKey'), \ string(credentialsId: 'NexusIP', \ variable: 'NexusIP')]) {
-    // some block
-    }
 	stages{
 
         stage("Step 1") {
             steps {
+                withCredentials(bindings: [usernamePassword(credentialsId: 'Nexus',  passwordVariable: 'NexusPassword', usernameVariable: 'NexusUser'), usernamePassword(credentialsId: 'awsKeys', passwordVariable: 'awsSecretKey', usernameVariable: 'awsKey'), string(credentialsId: 'NexusIP', variable: 'NexusIP')]) {
+                // some block
                 // In the jenkinsVM, sign into DockerHub and Kubectl (as jenkins user?)
                 sh 'bash ./App/Scripts/logins.sh'
+                }   
+                
             }
         }
         stage("Step 2") {
