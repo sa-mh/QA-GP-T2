@@ -16,7 +16,7 @@ pipeline{
         stage("Step 2") {
             steps {
                 //Docker compose up -d (to build all the images (frontend and backend))          
-                sh 'cd App/'
+                sh 'cd App'
                 sh 'ls'
                 sh 'docker-compose up -d'
             }
