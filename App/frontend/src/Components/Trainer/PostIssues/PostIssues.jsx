@@ -70,7 +70,7 @@ const PostIssues = props => {
     }
 
     const sendProps =() => {
-        props.history.push({pathname: "/viewAllIssues", state: userDetails});
+        props.history.push({pathname: "/manageIssues", state: userDetails});
 
     }
 
