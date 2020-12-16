@@ -11,13 +11,10 @@ const Homepage = () => {
               <h5 id="home-second-line">Share any problems you are facing with your projects and a trainer will respond to you within 24 hours</h5>
               <div class="home-buttons">
               
-              <Link to="/login">
+              <Link to="/postIssue">
               <button class="home-button-item" id="home-button-post">Post an Issue</button>
               </Link>
               
-              <Link to="/createAccount">
-                  <button class="home-button-item" id="home-button-createAccount">Create an account</button>
-                  </Link>
               </div>
               </div>  
 
