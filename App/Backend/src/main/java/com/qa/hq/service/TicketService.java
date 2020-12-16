@@ -80,8 +80,8 @@ public class TicketService {
 		oldTicket.setSubmitDate(ticket.getSubmitDate());
 		oldTicket.setUrgency(ticket.getUrgency());
 		oldTicket.setStatus(ticket.getStatus());
-		oldTicket.setTrainer(ticket.getTrainer());
-		oldTicket.setTrainees(ticket.getTrainees());
+//		oldTicket.setTrainer(ticket.getTrainer());
+//		oldTicket.setTrainees(ticket.getTrainees());
 
 		Ticket updatedTicket = this.repo.save(oldTicket);
 		TicketDto ticketDto = new TicketDto(updatedTicket);

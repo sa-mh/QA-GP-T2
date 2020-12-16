@@ -3,6 +3,7 @@ package com.qa.hq.domain;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,7 +28,7 @@ public class Ticket {
 	private String status; 
 	@ManyToOne(targetEntity = Trainer.class)
 	private Trainer trainer; 
-	@ManyToMany(mappedBy = "tickets")
+	@ManyToMany(mappedBy = "tickets",cascade = CascadeType.ALL)
 	private List<Trainee> trainees;
 	
 	public Ticket() {
