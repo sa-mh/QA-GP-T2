@@ -39,13 +39,13 @@ const PostIssues = props => {
     const items = (data.map((issue) => (
 
         <Issue
+            ticketId={issue.id}
             title={issue.title}
             topic={issue.topic}
             message={issue.issue}
             date={issue.submitDate}
             priority={issue.urgency}
-            firstName={issue.trainees.firstName}
-            lastName={issue.trainees.lastName}
+            author={issue.author}
         />
         // <Issue title={issue.title}/>
     )))
@@ -56,37 +56,12 @@ const PostIssues = props => {
             title: ticketTitle,
             issue: ticketIssue,
             topic: ticketTopic,
-            submitDate: "0000-00-00 00:00:00",
+            submitDate: "2020-12-16T14:26:10.056Z",
             urgency: ticketPriority,
             status: "Open",
-            trainer: {
-                id: null,
-                username: null,
-                firstName: null,
-                lastName: null,
-                password: null,
-                field: null,
-                trainerEmail: null,
-                tickets: [
-                    null
-                ]
-            },
-            trainees: [
-                {
-                    id: userDetails.id,
-                    username: userDetails.username,
-                    firstName: userDetails.firstName,
-                    lastName: userDetails.lastName,
-                    cohort: userDetails.cohort,
-                    password: userDetails.password,
-                    traineeEmail: userDetails.traineeEmail,
-                    tickets: [
-                        null
-                    ]
-                }
-            ]
-        }
-        ).then(response => {
+            author: "test autho"
+            })
+        .then(response => {
             console.log(response.data);
             window.location.reload();
         }).catch(error => {
@@ -120,9 +95,11 @@ const PostIssues = props => {
                         </select>
                         <select defaultValue="" id="priority" onChange={e => setPriority(e.target.value)}>
                             <option value="" disabled hidden>Priority</option>
-                            <option value="1">High</option>
-                            <option value="2">Medium</option>
-                            <option value="3">Low</option>
+                            <option value="1">Very High</option>
+                            <option value="2">High</option>
+                            <option value="3">Medium</option>
+                            <option value="4">Low</option>
+                            <option value="5">Very Low</option>
                         </select>
                         <button className="btn btn-primary" id="postButton" type="submit" onSubmit={post_newIssue}>Post Issue</button>
                     </form>

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import TraineeIssue from './TraineeIssue'
 import ClosedDataProps from './ClosedDataProps';
-import IpContext from '../../../../IpContext';
+import IpContext from '../../IpContext';
 import { useContext } from 'react';
 
 const ManageIssues = (props) => {

@@ -6,16 +6,8 @@ import { useContext } from 'react';
 const Issue = (props) => {
     const ip = useContext(IpContext);
     const closeTicket = () => {
-        axios.put("http://" + ip + "/ticket/status/" + props.ticketId, {
-            ticketId: props.ticketId,
-            title: props.title,
-            issue: props.message,
-            topic: props.topic,
-            submitDate: props.date,
-            urgency: props.priority,
-            status: "Closed",
-            traineeId: 1,
-            trainerId: 1
+        axios.patch("http://" + ip + "/ticket/status/" + props.ticketId, {
+            status: "Closed"
         }).then(response => {
             console.log(response);
             // window.location.reload();

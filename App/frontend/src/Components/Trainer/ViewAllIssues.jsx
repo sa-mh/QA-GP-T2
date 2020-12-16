@@ -39,7 +39,7 @@ const ViewAllIssues = () => {
 
 
     useEffect(() => {
-        axios.get("http://52.16.137.246:8081//ticket/getAll")
+        axios.get("http://52.16.137.246:8081/ticket/getAll")
             .then(response => {
                 response.data.map( (child) => {
                     if(child.status === "Closed" ){

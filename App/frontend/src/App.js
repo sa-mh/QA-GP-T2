@@ -3,7 +3,7 @@ import Footer from './Components/Footer';
 import Header from './Components/Header';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Aboutpage from './Components/About-page/Aboutpage';
-import PostIssues from './Components/Trainee/PostIssues/PostIssues';
+import PostIssues from './Components/Trainer/PostIssues/PostIssues';
 import ViewAllIssues from './Components/Trainer/ViewAllIssues';
 import IpContext from './IpContext';
 import { useContext } from 'react';
