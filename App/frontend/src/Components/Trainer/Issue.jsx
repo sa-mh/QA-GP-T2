@@ -15,13 +15,11 @@ const Issue = (props) => {
             }
         }).then(response => {
             console.log(response);
-            // window.location.reload();
+            window.location.reload();
         }).catch(error => {
             console.log(error.data)
         });
     }
-
-
 
     return (
         <>
@@ -33,6 +31,7 @@ const Issue = (props) => {
                     <p className="card-body">{props.firstName} {props.lastName}</p> 
                     <p className="card-body" id="issue-date">Created on: {props.date}</p>
                     <p className="card-body" id="issue-priority">Priority: {props.priority}</p>
+                    
                     <button className="card-body" id="solve-button" onClick={closeTicket}>Done</button>
                 </div>
             </div>

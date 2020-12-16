@@ -71,7 +71,6 @@ const PostIssues = props => {
 
     const sendProps =() => {
         props.history.push({pathname: "/viewAllIssues", state: userDetails});
-
     }
 
     return (
