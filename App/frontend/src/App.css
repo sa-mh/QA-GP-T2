@@ -352,9 +352,19 @@ margin-top: 10px;
 
 #completed-heading {
 position: absolute;
-left: 58%;
-top: 10%  
+left: 0%;
+top: 10%;
+margin-left: 1%;  
 }
+
+#completed-p{
+position: relative;
+top: 110px;
+color: black;
+right:210px;
+
+}
+
 
 #PostIssueButton{
   position: absolute;

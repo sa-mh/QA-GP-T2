@@ -3,6 +3,7 @@ import axios from 'axios'
 import Issue from './Issue';
 import RespondedIssuesProps from './RespondedIssuesProps';
 import IpContext from '../../IpContext';
+import ReactDOM from 'react-dom';
 
 
 const ViewAllIssues = () => {
@@ -11,34 +12,8 @@ const ViewAllIssues = () => {
     const [data, setData] = useState([]);
     const [respondedData, setRespondedData] = useState([]);
 
-    useEffect(() => {
-        axios.get("http://"+ip+"/ticket/findByStatus/Open")
-            .then(response => {
-                response.data.map( (child) => {
-                    if(child.status === "Open"  ){
-                        console.log("I'm here");
-                        setData(response.data);
-                    }else{
-                        console.log("nope");
-                    }
-                })
-            })
-    }, [])  
-
-
-    const items = (data.map((issue) => (
-        
-        <Issue
-            ticketId={issue.id}
-            title={issue.title}
-            topic={issue.topic}
-            message={issue.issue}
-            date={issue.submitDate}
-            priority={issue.urgency}
-        />
-    )))
-
-
+    
+    
     useEffect(() => {
         axios.get("http://"+ip+"/ticket/findByStatus/Closed")
             .then(response => {
@@ -47,7 +22,7 @@ const ViewAllIssues = () => {
                         console.log("I'm here");
                         setRespondedData(response.data);
                     }else{
-                        console.log("nope");
+                        ReactDOM.render(<p style={{ color: "red"}}>Username/Password wrong. Please try again.</p>, document.getElementById('failed-message'));
                     }
                 })
             })
@@ -71,16 +46,11 @@ const ViewAllIssues = () => {
 
     return (
         <>
-            <h3> View all the Issues here</h3>
-            <div name="issues" id="issues">
-                {items}
-            </div>
-
+            
 
             <h3 id="completed-heading">Completed Items</h3>
             <div name="issues" id="completed-issues">
-            <div className="vl"></div>
-
+        <p id="completed-p"> Below shows all the items that has been responded to by the trainers.</p>
                 {Respondeditems}
             </div>
         </>

@@ -8,6 +8,11 @@ const Issue = (props) => {
     const closeTicket = () => {
         axios.patch("http://" + ip + "/ticket/status/" + props.ticketId, {
             status: "Closed"
+        },{
+            headers: {
+                'Access-Control-Allow-Origin' : '*',     
+                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH'   
+            }
         }).then(response => {
             console.log(response);
             // window.location.reload();
@@ -15,6 +20,7 @@ const Issue = (props) => {
             console.log(error.data)
         });
     }
+
 
 
     return (
