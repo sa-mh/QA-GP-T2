@@ -5,7 +5,7 @@ variable "ami" {
 
 variable "type" {
   description = "machine size"
-  default     = "t2.micro"
+  default     = "t2.medium"
 }
 
 variable "subnet_id" {
@@ -18,4 +18,9 @@ variable "security_group_ids" {
 
 variable "tag1" {
   description = "Tag name for main ec2"
+}
+
+variable "size" {
+  description = "VM storage in GB"
+  default = 16
 }
