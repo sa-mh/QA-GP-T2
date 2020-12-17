@@ -6,6 +6,7 @@ metadata:
   labels: 
     app: backend
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: backend
@@ -31,8 +32,6 @@ spec:
             secretKeyRef:
               name: secretsql
               key: secret-key
-      imagePullSecrets:
-      - name: nexusregistry
 
 ---
 
@@ -45,6 +44,7 @@ metadata:
   labels:
     app: frontend
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: frontend
@@ -59,8 +59,6 @@ spec:
         imagePullPolicy: "Always"
         ports:
         - containerPort: 5000
-      imagePullSecrets:
-      - name: nexusregistry
 
 ---
 
@@ -72,6 +70,7 @@ metadata:
   labels: 
     app: nginx
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: nginx
