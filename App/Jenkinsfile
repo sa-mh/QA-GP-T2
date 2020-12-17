@@ -58,7 +58,7 @@ pipeline{
                         sh 'kubectl apply -f secrets.yaml'
                         sh 'kubectl apply -f services.yaml'
                         sh 'kubectl apply -f configmap.yaml'
-                        sh 'kubectl apply -f deployment.yaml'
+                        sh 'kubectl apply -f deployments.yaml'
                     }
                 }
             }
