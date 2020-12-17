@@ -5,6 +5,7 @@ import IpContext from '../../../IpContext'
 import { useContext } from 'react';
 import { Link } from 'react-router-dom'
 import ManageIssues from '../ManageIssues';
+import SearchableIssues from "./SearchableIssues";
 
 
 const PostIssues = props => {
@@ -14,41 +15,12 @@ const PostIssues = props => {
     const [ticketIssue, setIssue] = useState("");
     const [ticketTopic, setTopic] = useState("");
     const [ticketPriority, setPriority] = useState("");
+    const [author, setAuthor] = useState("");
     const [userDetails, setuserDetails] = useState(props.location.state);
-
+    const [search, setSearch] = useState("");
     const [data, setData] = useState([]);
 
-    // console.log(props.location.state); // gets info
-    console.log(userDetails);
-    
-    useEffect(() => {
-        axios.get("http://" + ip + "/ticket/findByStatus/Open")
-            .then(response => {
-                response.data.map((child) => {
-                    if (child.status === "new" || child.status === "Open") {
-                        console.log("I'm here");
-                        setData(response.data);
-                    } else {
-                        console.log("nope");
-                    }
-                })
-            })
-    }, [])
 
-
-    const items = (data.map((issue) => (
-
-        <Issue
-            ticketId={issue.id}
-            title={issue.title}
-            topic={issue.topic}
-            message={issue.issue}
-            date={issue.submitDate}
-            priority={issue.urgency}
-            author={issue.author}
-        />
-        // <Issue title={issue.title}/>
-    )))
 
     const post_newIssue = (e) => {
         e.preventDefault();
@@ -59,18 +31,18 @@ const PostIssues = props => {
             submitDate: null,
             urgency: ticketPriority,
             status: "Open",
-            author: "test autho"
-            })
-        .then(response => {
-            console.log(response.data);
-            window.location.reload();
-        }).catch(error => {
-            console.log(error)
-        });
+            author: author
+        })
+            .then(response => {
+                console.log(response.data);
+                window.location.reload();
+            }).catch(error => {
+                console.log(error)
+            });
     }
 
-    const sendProps =() => {
-        props.history.push({pathname: "/viewAllIssues", state: userDetails});
+    const sendProps = () => {
+        props.history.push({ pathname: "/viewAllIssues", state: userDetails });
 
     }
 
@@ -82,6 +54,7 @@ const PostIssues = props => {
                 <h3 className="createPost-heading">Post an issue</h3>
                 <div>
                     <form className="ml-3" id="postIssueForm" onSubmit={post_newIssue}>
+                    <input className="issueInput" type="text" id="author" onChange={e => setAuthor(e.target.value)} placeholder="Enter your full name" required></input> <br></br>
                         <input className="issueInput" type="text" id="title" onChange={e => setTitle(e.target.value)} placeholder="Give issue a title" required></input> <br></br>
                         <input className="issueInput" type="text" id="issue" onChange={e => setIssue(e.target.value)} placeholder="Please explain the issue in as much detail as possible" required></input> <br></br>
                         <select defaultValue="" id="topic" onChange={e => setTopic(e.target.value)}>
@@ -107,15 +80,12 @@ const PostIssues = props => {
                 </div>
             </div>
             <div>
-                    <button id="ManageIssueButton" onClick={sendProps}>Manage your Issues</button>
+                <button id="ManageIssueButton" onClick={sendProps}>Manage your Issues</button>
             </div>
 
             {/* View all the issues currently in the database here */}
             <div id="readDiv">
-                <div className="vl"></div>
-
-                <h5>All the issues currently awaiting help</h5>
-                {items}
+                <SearchableIssues />
             </div >
         </div>
     )
