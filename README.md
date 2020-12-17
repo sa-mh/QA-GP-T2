@@ -29,7 +29,11 @@ The initial brief required us (within a team) to create a Help Queue web applica
 * Lewis Thomson
 * Lisandro Villarruel
 
-### Requirements
+### Project Expectations
+- Fully functioning Help Queue application deployed via Kubernetes (EKS).
+- Fully automated CI pipeline via Jenkins.
+- User friendly GUI (React) & functional backend (Java/Spring).
+- Application infrastructure built through Terraform and the adequate configuration management performed through Ansible.
 
 ## Planning
 
@@ -47,16 +51,22 @@ The initial brief required us (within a team) to create a Help Queue web applica
 
 ### Jenkins
 
-## Testing
+## Backend Testing
 
 ### Unit Tests
 
+
+
 ### Integration Tests
+
+Integration testing was performed to verify that the system we created had the adequate behaviours and functionality. The many methods employed in this application were tested via jUnit5. Integration testing is a fundamental part of automated applications, and we managed to successfully achieve a coverage of ...
+
+INSERT IMAGE OF INTEGRATION TEST COVERAGE
 
 ## Application Navigation
 
 ## Acknowledgements
-In memory of Shaquille Ricketts-Sesay
+We would like to acknowledge the contribution of our colleague Shaquille Rickets-Sesay and our trainers Jordan Harrision, Luke Benson, Savannah Vaithilingam, and Raji Kolluru for their continued support and direction throughout this group project. 
 
 Trello : https://trello.com/b/C5f54Wkv/final-project-group-2 <br>
 Jira Board: https://sshahid.atlassian.net/secure/RapidBoard.jspa?projectKey=GRP2&rapidView=5# <br>
