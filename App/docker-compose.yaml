@@ -16,7 +16,7 @@ services:
     image: ${NexusUser}/frontend:latest
     container_name: frontend
     ports:
-    - target: 5000
+    - target: 3000
       published: 80
       protocol: tcp
      
