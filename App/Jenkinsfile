@@ -54,6 +54,7 @@ pipeline{
                 dir('Infra/Kubernetes'){
                     withCredentials(bindings: [usernamePassword(credentialsId: 'NexusLogin', passwordVariable: 'NexusPassword', usernameVariable: 'NexusUser'), usernamePassword(credentialsId: 'AWSkeys', passwordVariable: 'awsSecretKey', usernameVariable: 'awsKey'), string(credentialsId: 'NexusIP', variable: 'NexusIP'), string(credentialsId: 'SecretKey', variable: 'secretKey'), string(credentialsId: 'Test RDS', variable: 'testURI'), string(credentialsId: 'Main RDS', variable: 'prodURI')]) {
                         sh 'kubectl delete --all pods -n project'
+                        sh 'kubectl delete ns project'
                         sh 'kubectl create ns project'
                         sh 'kubectl apply -f secrets.yaml'
                         sh 'kubectl apply -f services.yaml'
