@@ -31,7 +31,8 @@ return (
                 <p className="card-body" id="issue-message">{props.message}</p>
                 <p className="card-body" id="issue-date">Created on: {props.date}</p>
                 <p className="card-body" id="completed">Completed</p>
-                
+                <br></br>
+                <p className="card-body" id="solution">Solution: {props.solution}</p>
                 <button className="card-body" id="remove-button" onClick={deleteTicket}>Remove</button>
             </div>
         </div>

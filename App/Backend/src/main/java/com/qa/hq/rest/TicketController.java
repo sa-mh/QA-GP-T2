@@ -69,7 +69,7 @@ public class TicketController {
 		} else {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-	}
+	} 
 
 	@PutMapping("/update")
 	public ResponseEntity<Ticket> updateTicket(@RequestBody Ticket ticket, @PathParam("id") Long id) {
@@ -77,7 +77,7 @@ public class TicketController {
 	}
 	
 	@PatchMapping("/status/{id}")
-	public ResponseEntity<Ticket> updateTicketStatus(@PathVariable Long id) {
-		return new ResponseEntity<Ticket>(this.service.updateTicketStatus(id), HttpStatus.ACCEPTED);
+	public ResponseEntity<Ticket> updateTicketStatus(@RequestBody Ticket ticket, @PathVariable Long id) {
+		return new ResponseEntity<Ticket>(this.service.updateTicketStatus(id,ticket), HttpStatus.ACCEPTED);
 	}
 }

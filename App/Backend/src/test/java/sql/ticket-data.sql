@@ -5,7 +5,8 @@
 `submit_date`,
 `urgency`,
 `status`,
-`author`)
+`author`,
+`solution`)
 VALUES
 ('A title',
 'An issue',
@@ -13,4 +14,5 @@ VALUES
 '1970-01-01T00:00:00.010+00:00',
 4,
 'Open',
-'A author');
+'A author',
+NULL);
