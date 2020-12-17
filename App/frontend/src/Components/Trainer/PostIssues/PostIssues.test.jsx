@@ -78,7 +78,7 @@ describe('Posting Issues Testing',()=>{
             return new Promise(async(resolve, reject) => {
                 
                 const ip = useContext(IpContext);
-                let response = await fetch("http://"+ip+"/ticket/getAll");
+                let response = await fetch("api/ticket/getAll");
                 let issues = response.json(); 
 
                 for(let i=0; i<issues.length; i++){
