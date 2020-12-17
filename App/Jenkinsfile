@@ -56,7 +56,7 @@ pipeline{
                         dir('../../../.docker'){
                         sh 'pwd'
                         sh 'ls'
-                        sh 'kubectl create secret generic regcred --from-file=.dockerconfigjson=/home/jenkins/.docker/config.json --type=kubernetes.io/dockerconfigjson '
+                        //sh 'kubectl create secret generic regcred --from-file=.dockerconfigjson=/home/jenkins/.docker/config.json --type=kubernetes.io/dockerconfigjson '
                         dir('../.jenkins/workspace/test/Infra/Kubernetes'){
                         sh 'kubectl delete --all pods -n project'
                         sh 'kubectl delete ns project'
