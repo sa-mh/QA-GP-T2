@@ -24,7 +24,7 @@ const PostIssues = props => {
 
     const post_newIssue = (e) => {
         e.preventDefault();
-        axios.post("http://" + ip + "/ticket/create", {
+        axios.post("/api/ticket/create", {
             title: ticketTitle,
             issue: ticketIssue,
             topic: ticketTopic,
@@ -64,7 +64,10 @@ const PostIssues = props => {
                             <option value="Java">Java</option>
                             <option value="JavaScript">JavaScript</option>
                             <option value="Terraform">Terraform</option>
+                            <option value="Python">Python</option>
+                            <option value="AWS">AWS</option>
                             <option value="Ansible">Ansible</option>
+                            <option value="Linux">Linux</option>
                         </select>
                         <select defaultValue="" id="priority" onChange={e => setPriority(e.target.value)}>
                             <option value="" disabled hidden>Priority</option>

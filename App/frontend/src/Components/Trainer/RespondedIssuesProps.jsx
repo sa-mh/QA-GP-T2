@@ -9,7 +9,7 @@ const RespondedIssuesProps =  (props) => {
 
     const ip = useContext(IpContext);
     const deleteTicket = () => {
-        axios.delete("http://" + ip + "/ticket/remove/" + props.ticketId, {
+        axios.delete("/api/ticket/remove/" + props.ticketId, {
             headers: {
                 'Access-Control-Allow-Origin' : '*',     
                 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH'   

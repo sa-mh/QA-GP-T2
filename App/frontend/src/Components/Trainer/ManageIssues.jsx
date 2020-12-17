@@ -42,7 +42,7 @@ const ManageIssues = (props) => {
     )))
 
     useEffect(() => {
-        axios.get("http://" + ip + "/ticket/findById?id=" + props.id)
+        axios.get("/api/ticket/findById?id=" + props.id)
             .then(response => {
                 response.data.map((child) => {
                     if (child.status === "Closed") {
