@@ -41,9 +41,9 @@ const PostIssues = props => {
             });
     }
 
-    const sendProps = () => {
-        props.history.push({ pathname: "/viewAllIssues", state: userDetails });
 
+    const sendProps =() => {
+        props.history.push({pathname: "/viewAllIssues", state: userDetails});
     }
 
     return (
@@ -80,7 +80,8 @@ const PostIssues = props => {
                 </div>
             </div>
             <div>
-                <button id="ManageIssueButton" onClick={sendProps}>Manage your Issues</button>
+
+                    <button id="ManageIssueButton" onClick={sendProps}>View Closed Issues</button>
             </div>
 
             {/* View all the issues currently in the database here */}

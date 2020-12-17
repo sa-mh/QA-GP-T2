@@ -10,7 +10,7 @@ const Issue = (props) => {
             status: "Closed"
         }).then(response => {
             console.log(response);
-            // window.location.reload();
+            window.location.reload();
         }).catch(error => {
             console.log(error.data)
         });
@@ -27,6 +27,7 @@ const Issue = (props) => {
                     <p className="card-body">Posted by: {props.author}</p> 
                     <p className="card-body" id="issue-date">Created on: {props.date}</p>
                     <p className="card-body" id="issue-priority">Priority: {props.priority}</p>
+                    
                     <button className="card-body" id="solve-button" onClick={closeTicket}>Done</button>
                 </div>
             </div>

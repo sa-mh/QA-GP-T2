@@ -1,5 +1,6 @@
 package com.qa.hq.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,6 +52,7 @@ public class TicketService {
 	}
 
 	public Ticket createTicket(Ticket ticket) {
+		ticket.setSubmitDate(new Date());
 	    return this.repo.save(ticket);
 	}
 

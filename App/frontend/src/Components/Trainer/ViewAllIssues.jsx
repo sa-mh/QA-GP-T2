@@ -1,9 +1,10 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState, useContext} from 'react'
 import axios from 'axios'
 import Issue from './Issue';
 import RespondedIssuesProps from './RespondedIssuesProps';
 import IpContext from '../../IpContext';
 import ReactDOM from 'react-dom';
+import { Link } from 'react-router-dom'
 
 
 const ViewAllIssues = () => {
@@ -41,8 +42,6 @@ const ViewAllIssues = () => {
         />
     )))
 
-
-
     return (
         <>
             
@@ -52,6 +51,8 @@ const ViewAllIssues = () => {
         <p id="completed-p"> Below shows all the items that has been responded to by the trainers.</p>
                 {Respondeditems}
             </div>
+        
+            <Link to="/postIssue" ><button id="ManageIssueButton">Back To Issues</button></Link>
         </>
     );
 
