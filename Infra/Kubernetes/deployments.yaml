@@ -32,7 +32,7 @@ spec:
               name: secretsql
               key: secret-key
       imagePullSecrets:
-      - name: nexusRegistry
+      - name: nexusregistry
 
 ---
 
@@ -59,7 +59,7 @@ spec:
         ports:
         - containerPort: 3000
       imagePullSecrets:
-      - name: nexusRegistry
+      - name: nexusregistry
 
 ---
 
