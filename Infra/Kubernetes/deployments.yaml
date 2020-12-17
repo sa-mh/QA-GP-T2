@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: backend:latest
+        image: ${NexusUser}/backend:latest
         imagePullPolicy: "Always"
         ports:
         - containerPort: 8080
@@ -36,7 +36,7 @@ spec:
 
 ---
 
-  
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -55,7 +55,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: frontend:latest
+        image: ${NexusUser}/frontend:latest
         imagePullPolicy: "Always"
         ports:
         - containerPort: 3000

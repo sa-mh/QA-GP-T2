@@ -53,22 +53,17 @@ pipeline{
                 // Updating the kubernetes files (deployments, services, configmap, secrets) to pull latest image
                 
                     withCredentials(bindings: [usernamePassword(credentialsId: 'NexusLogin', passwordVariable: 'NexusPassword', usernameVariable: 'NexusUser'), usernamePassword(credentialsId: 'AWSkeys', passwordVariable: 'awsSecretKey', usernameVariable: 'awsKey'), string(credentialsId: 'NexusIP', variable: 'NexusIP'), string(credentialsId: 'SecretKey', variable: 'secretKey'), string(credentialsId: 'Test RDS', variable: 'testURI'), string(credentialsId: 'Main RDS', variable: 'prodURI')]) {
-                        dir('../../../.docker'){
-                        sh 'pwd'
-                        sh 'ls'
-                        //sh 'kubectl create secret docker-registry nexusregistry --docker-server=52.17.168.238:8082 --docker-username=${NexusUser} --docker-password=${NexusPassword}'
-                        //sh 'kubectl create secret generic regcred --from-file=.dockerconfigjson=/home/jenkins/.docker/config.json --type=kubernetes.io/dockerconfigjson '
-                        dir('../.jenkins/workspace/test/Infra/Kubernetes'){
+
+                        dir('Infra/Kubernetes'){
                         sh 'kubectl delete --all pods -n project'
                         sh 'kubectl delete ns project'
                         sh 'kubectl create ns project'
-                        sh 'docker login -u ${NexusUser} -p ${NexusPassword} ${NexusIP}'
                         sh 'kubectl apply -f secrets.yaml'
                         sh 'kubectl apply -f services.yaml'
                         sh 'kubectl apply -f configmap.yaml'
                         sh 'kubectl apply -f deployments.yaml'
                     }
-                    }
+                    
                 }
             }
         }
