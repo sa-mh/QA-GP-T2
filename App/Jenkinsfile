@@ -62,6 +62,7 @@ pipeline{
                         sh 'kubectl delete --all pods -n project'
                         sh 'kubectl delete ns project'
                         sh 'kubectl create ns project'
+                        sh 'docker login -u ${NexusUser} -p ${NexusPassword} ${NexusIP}'
                         sh 'kubectl apply -f secrets.yaml'
                         sh 'kubectl apply -f services.yaml'
                         sh 'kubectl apply -f configmap.yaml'
