@@ -53,6 +53,7 @@ pipeline{
                 // Updating the kubernetes files (deployments, services, configmap, secrets) to pull latest image
                 dir('Infra/Kubernetes'){
                     withCredentials(bindings: [usernamePassword(credentialsId: 'NexusLogin', passwordVariable: 'NexusPassword', usernameVariable: 'NexusUser'), usernamePassword(credentialsId: 'AWSkeys', passwordVariable: 'awsSecretKey', usernameVariable: 'awsKey'), string(credentialsId: 'NexusIP', variable: 'NexusIP'), string(credentialsId: 'SecretKey', variable: 'secretKey'), string(credentialsId: 'Test RDS', variable: 'testURI'), string(credentialsId: 'Main RDS', variable: 'prodURI')]) {
+                        sh 'kubectl create secret generic regcred --from-file=.dockerconfigjson=/home/jenkins/.docker/config.json> --type=kubernetes.io/dockerconfigjson '
                         sh 'kubectl delete --all pods -n project'
                         sh 'kubectl delete ns project'
                         sh 'kubectl create ns project'
