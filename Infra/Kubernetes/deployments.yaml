@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend
+  namespace: project
   labels: 
     app: backend
 spec:
@@ -37,6 +38,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend
+  namespace: project
   labels:
     app: frontend
 spec:
@@ -61,6 +63,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-app
+  namespace: project
   labels: 
     app: nginx
 spec:
