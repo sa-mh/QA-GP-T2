@@ -15,7 +15,7 @@ const PostIssues = props => {
     const [ticketIssue, setIssue] = useState("");
     const [ticketTopic, setTopic] = useState("");
     const [ticketPriority, setPriority] = useState("");
-    const [author, setAuthor] = useState("");
+    const [author, setAuthor] = useState("Anonymous");
     const [userDetails, setuserDetails] = useState(props.location.state);
     const [search, setSearch] = useState("");
     const [data, setData] = useState([]);
@@ -54,7 +54,7 @@ const PostIssues = props => {
                 <h3 className="createPost-heading">Post an issue</h3>
                 <div>
                     <form className="ml-3" id="postIssueForm" onSubmit={post_newIssue}>
-                    <input className="issueInput" type="text" id="author" onChange={e => setAuthor(e.target.value)} placeholder="Enter your full name" required></input> <br></br>
+                    <input className="issueInput" type="text" id="author" onChange={e => setAuthor(e.target.value)} placeholder="Enter your full name"></input> <br></br>
                         <input className="issueInput" type="text" id="title" onChange={e => setTitle(e.target.value)} placeholder="Give issue a title" required></input> <br></br>
                         <input className="issueInput" type="text" id="issue" onChange={e => setIssue(e.target.value)} placeholder="Please explain the issue in as much detail as possible" required></input> <br></br>
                         <select defaultValue="" id="topic" onChange={e => setTopic(e.target.value)}>

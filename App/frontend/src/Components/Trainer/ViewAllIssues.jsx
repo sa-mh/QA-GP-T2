@@ -34,6 +34,7 @@ const ViewAllIssues = () => {
         
         <RespondedIssuesProps
             ticketId={issue.id}
+            author={issue.author}
             title={issue.title}
             topic={issue.topic}
             message={issue.issue}
