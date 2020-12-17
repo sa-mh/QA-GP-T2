@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: ${NexusUser}/backend:latest
+        image: cptfalconator/backend:latest
         imagePullPolicy: "Always"
         ports:
         - containerPort: 8080
@@ -55,7 +55,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: ${NexusUser}/frontend:latest
+        image: cptfalconator/frontend:latest
         imagePullPolicy: "Always"
         ports:
         - containerPort: 3000
