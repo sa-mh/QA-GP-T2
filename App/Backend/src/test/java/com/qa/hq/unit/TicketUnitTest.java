@@ -125,16 +125,18 @@ public class TicketUnitTest {
 	@Test
 	void testUpdateTicketStatus() {
 		long ID = 1;
+		String SOLUTION = "This is a solution";
 		Date date = new Date(1608026491L);
 		Ticket oldTicket = new Ticket("Dummy Ticket", "This Ticket is a Dummy Ticket for Testing", "Testing", date, 5, "Open", "Jim Henson");
 		oldTicket.setId(ID);
 		Ticket updatedTicket = new Ticket("Dummy Ticket", "This Ticket is a Dummy Ticket for Testing", "Testing", date, 5, "Closed", "Jim Henson");
 		updatedTicket.setId(ID);
+		updatedTicket.setSolution(SOLUTION);
 
 		Mockito.when(this.tRepo.findById(ID)).thenReturn(Optional.of(oldTicket));
 		Mockito.when(this.tRepo.save(oldTicket)).thenReturn(updatedTicket);
 
-		assertThat(this.tService.updateTicketStatus(ID)).isEqualTo(updatedTicket);
+		assertThat(this.tService.updateTicketStatus(ID,SOLUTION)).isEqualTo(updatedTicket);
 
 		Mockito.verify(this.tRepo, Mockito.times(1)).findById(ID);
 		Mockito.verify(this.tRepo, Mockito.times(1)).save(oldTicket);

@@ -1,14 +1,15 @@
 import React from 'react'
 import axios from 'axios'
 import IpContext from '../../IpContext'
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
 const Issue = (props) => {
+
+    const [ticketSolution, setSolution] = useState(null);
     const ip = useContext(IpContext);
     const closeTicket = () => {
-        axios.patch("http://" + ip + "/ticket/status/" + props.ticketId, {
-            status: "Closed"
-        }).then(response => {
+        axios.patch("http://" + ip + "/ticket/status/" + props.ticketId, {solution:ticketSolution}
+        ).then(response => {
             console.log(response);
             window.location.reload();
         }).catch(error => {
@@ -28,6 +29,7 @@ const Issue = (props) => {
                     <p className="card-body" id="issue-date">Created on: {props.date}</p>
                     <p className="card-body" id="issue-priority">Priority: {props.priority}</p>
                     
+                    <input className="issueSolution" type="text" id="issue" onChange={e => setSolution(e.target.value)} placeholder="Please enter your solution to the issue" required></input> <br></br>  
                     <button className="card-body" id="solve-button" onClick={closeTicket}>Done</button>
                 </div>
             </div>

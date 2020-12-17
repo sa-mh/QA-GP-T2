@@ -1,5 +1,6 @@
 package com.qa.hq.service;
 
+import java.io.Console;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -40,10 +41,11 @@ public class TicketService {
 		return this.repo.findByAuthor(author);
 	}
 	
-	public Ticket updateTicketStatus(Long id) {
+	public Ticket updateTicketStatus(Long id, Ticket ticket) {
 		Optional<Ticket> optTicket = this.repo.findById(id);
 		Ticket oldTicket = optTicket.orElseThrow(() -> new TicketNotFoundException());
 		oldTicket.setStatus("Closed");
+		oldTicket.setSolution(ticket.getSolution());
 		return this.repo.save(oldTicket);
 	}
 	

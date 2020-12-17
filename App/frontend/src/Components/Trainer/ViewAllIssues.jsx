@@ -40,6 +40,7 @@ const ViewAllIssues = () => {
             message={issue.issue}
             date={issue.submitDate}
             priority={issue.urgency}
+            solution={issue.solution}
         />
     )))
 

@@ -27,6 +27,7 @@ public class Ticket {
 	private int urgency;
 	private String status;
 	private String author;
+	private String solution;
 	
 	public Ticket() {
 		super();
@@ -40,6 +41,7 @@ public class Ticket {
 		setUrgency(urgency);
 		setStatus(status);
 		setAuthor(author);
+		setSolution(null);
 	}
 
 	public Long getId() {
@@ -104,6 +106,14 @@ public class Ticket {
 	
 	public void setAuthor(String author) {
 		this.author = author;
+	}
+	
+	public String getSolution() {
+		return solution;
+	}
+	
+	public void setSolution(String solution) {
+		this.solution = solution;
 	}
 	
 }
