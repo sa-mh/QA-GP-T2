@@ -58,7 +58,7 @@ spec:
         image: cptfalconator/frontend:latest
         imagePullPolicy: "Always"
         ports:
-        - containerPort: 5000
+        - containerPort: 3000
 
 ---
 
