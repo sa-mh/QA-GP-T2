@@ -19,7 +19,7 @@ spec:
         image: cptfalconator/backend:latest
         imagePullPolicy: "Always"
         ports:
-        - containerPort: 8081
+        - containerPort: 8080
         env:
         - name: DATABASE_URI
           valueFrom:

@@ -17,14 +17,14 @@ services:
     container_name: frontend
     ports:
     - target: 5000
-      published: 5000
+      published: 80
       protocol: tcp
      
   nginx:
     image: nginx:latest
     ports:
-    - target: 80
-      published: 80
+    - target: 81
+      published: 81
       protocol: tcp
     volumes:
     - type: bind
