@@ -67,7 +67,7 @@ pipeline{
                         sh 'kubectl apply -f configmap.yaml'
                         sh 'kubectl apply -f deployments.yaml'
                     }
-                        }
+                    }
                 }
             }
         }
