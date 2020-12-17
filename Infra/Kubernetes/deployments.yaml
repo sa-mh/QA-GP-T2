@@ -13,24 +13,24 @@ spec:
     metadata:
       labels:
         app: backend
-      spec:
-        containers:
-        - name: backend
-          image: ${NexusIP}/backend:latest
-          imagePullPolicy: "Always"
-          ports:
-          - containerPort: 8080
-          env:
-          - name: DATABASE_URI
-            valueFrom:
-              secretKeyRef:
-                name: secretsql
-                key: database-uri
-          - name: SECRET_KEY
-            valueFrom:
-              secretKeyRef:
-                name: secretsql
-                key: secret-key
+    spec:
+      containers:
+      - name: backend
+        image: ${NexusIP}/backend:latest
+        imagePullPolicy: "Always"
+        ports:
+        - containerPort: 8080
+        env:
+        - name: DATABASE_URI
+          valueFrom:
+            secretKeyRef:
+              name: secretsql
+              key: database-uri
+        - name: SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: secretsql
+              key: secret-key
 
 ---
 
