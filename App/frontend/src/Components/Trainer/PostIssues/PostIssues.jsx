@@ -34,11 +34,9 @@ const PostIssues = props => {
             author: author
         })
             .then(response => {
-                debugger
                 console.log(response.data);
                 window.location.reload();
             }).catch(error => {
-                debuggers
                 console.log(error)
             });
     }
