@@ -13,7 +13,7 @@ data:
       location / {
         try_files $uri $uri/ /;
       }
-      location /api {
-        proxy_pass http://backend:8081;
+      location /backend {
+        proxy_pass http://backend:8081/;
       }
     }
