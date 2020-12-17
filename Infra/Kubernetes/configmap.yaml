@@ -11,7 +11,7 @@ data:
       index index.html;
       include /etc/nginx/mime.types;
       location / {
-        try_files $uri $uri/ /;
+        try_files $uri $uri/ /build/index.html;
       }
       location /backend {
         proxy_pass http://backend:8081;
