@@ -20,3 +20,13 @@ services:
       published: 80
       protocol: tcp
      
+  nginx:
+    image: nginx:latest
+    ports:
+    - target: 81
+      published: 81
+      protocol: tcp
+    volumes:
+    - type: bind
+      source: ./nginx.conf
+      target: /etc/nginx/nginx.conf
