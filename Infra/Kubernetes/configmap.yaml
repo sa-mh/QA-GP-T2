@@ -7,13 +7,16 @@ data:
   default.conf: |
     server {
       listen 80;
-      root ./build;
-      index public/index.html;
-      include /etc/nginx/mime.types;
-      location / {
-        try_files $uri $uri/ /;
+      # root ./build;
+      # index public/index.html;
+      # include /etc/nginx/mime.types;
+      # location / {
+      #   try_files $uri $uri/ /;
+      # }
+      location /frontend {
+        proxy_pass http://frontend:5000;
       }
       location /backend {
-        proxy_pass http://backend:8081/;
+        proxy_pass http://backend:8081;
       }
     }
