@@ -1,57 +1,59 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext} from 'react'
 import axios from 'axios'
 import Issue from './Issue';
+import RespondedIssuesProps from './RespondedIssuesProps';
+import IpContext from '../../IpContext';
+import ReactDOM from 'react-dom';
+import { Link } from 'react-router-dom'
 
 
 const ViewAllIssues = () => {
 
+    const ip = useContext(IpContext);
     const [data, setData] = useState([]);
-    const [backendpoint, setBackEndPoint] = useState("http://localhost:8081");
+    const [respondedData, setRespondedData] = useState([]);
 
-    const allIssues = document.getElementById("issues");
-
-
+    
+    
     useEffect(() => {
-        axios.get("http://localhost:8081/ticket/getAll")
+        axios.get("http://"+ip+"/ticket/findByStatus/Closed")
             .then(response => {
-                console.log(response.data);
-                setData(response.data);
+                response.data.map( (child) => {
+                    if(child.status === "Closed" ){
+                        console.log("I'm here");
+                        setRespondedData(response.data);
+                    }else{
+                    }
+                })
             })
-    }, [])
+    }, [])  
 
 
-    let index = 0;
-    while (index < data.length) {
-        console.log(data[index].issue);
-        console.log(data[index].status);
-        console.log(data[index].submitDate);
-        console.log(data[index].title);
-        console.log(data[index].topic);
-        console.log(data[index].urgency);
-        index += 1;
-    }
-    const items = (data.map((issue) =>(
+
+    const Respondeditems = (respondedData.map((issue) => (
         
-        <Issue 
+        <RespondedIssuesProps
+            ticketId={issue.id}
+            author={issue.author}
             title={issue.title}
             topic={issue.topic}
             message={issue.issue}
             date={issue.submitDate}
             priority={issue.urgency}
-         />
-        // <Issue title={issue.title}/>
+        />
     )))
-    //The data saved from the API call should be then used to display it on the page.  
+
     return (
         <>
-            <h1> View all the Issues here</h1>
+            
 
-            <div name="issues" id="issues">
-               {items}
+            <h3 id="completed-heading">Completed Items</h3>
+            <div name="issues" id="completed-issues">
+        <p id="completed-p"> Below shows all the items that has been responded to by the trainers.</p>
+                {Respondeditems}
             </div>
-
-            <div class="vl"></div>
-
+        
+            <Link to="/postIssue" ><button id="ManageIssueButton">Back To Issues</button></Link>
         </>
     );
 
