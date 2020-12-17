@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: ${NexusIP}/backend:latest
+        image: backend:latest
         imagePullPolicy: "Always"
         ports:
         - containerPort: 8080
@@ -52,7 +52,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: ${NexusIP}/frontend:latest
+        image: frontend:latest
         imagePullPolicy: "Always"
         ports:
         - containerPort: 3000
