@@ -38,7 +38,7 @@ const PostIssues = props => {
                 console.log(response.data);
                 window.location.reload();
             }).catch(error => {
-                debuggers
+                debugger
                 console.log(error)
             });
     }

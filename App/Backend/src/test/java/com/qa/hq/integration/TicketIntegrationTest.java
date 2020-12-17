@@ -31,7 +31,7 @@ import java.util.Date;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
-@Sql(scripts = { "classpath:/sql/ticket-schema.sql", "classpath:/sql/ticket-data.sql"}, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
+@Sql(scripts = { "classpath:/ticket-schema.sql", "classpath:/ticket-data.sql"}, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
 
 
 @ActiveProfiles(profiles = "test")
