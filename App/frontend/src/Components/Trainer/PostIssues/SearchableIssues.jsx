@@ -12,7 +12,7 @@ const SearchableIssues = () => {
 
 
     useEffect(() => {
-        axios.get("http://" + "localhost:8081" + "/ticket/findByStatus/Open")
+        axios.get("/api/ticket/findByStatus/Open")
             .then(response => {
                 response.data.map((child) => {
                     setData(response.data);
@@ -21,7 +21,7 @@ const SearchableIssues = () => {
     }, [])
 
     const searchIssues = (e) => {
-        axios.get("http://" + "localhost:8081" + "/ticket/findByTopic/" + e)
+        axios.get("/api/ticket/findByTopic/" + e)
             .then(response => {
                 response.data.map((child) => {
                     console.log(child);
@@ -33,7 +33,7 @@ const SearchableIssues = () => {
     }
 
     const searchAuthor = (e) => {
-        axios.get("http://" + "localhost:8081" + "/ticket/findByAuthor/" + e)
+        axios.get("/api/ticket/findByAuthor/" + e)
             .then(response => {
                 response.data.map((child) => {
                     console.log(child);

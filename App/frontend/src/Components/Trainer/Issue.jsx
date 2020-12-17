@@ -9,7 +9,7 @@ const Issue = (props) => {
     const ip = useContext(IpContext);
     const closeTicket = () => {
         if(ticketSolution!=null){
-        axios.patch("http://" + ip + "/ticket/status/" + props.ticketId, {solution:ticketSolution}
+        axios.patch("/api/ticket/status/" + props.ticketId, {solution:ticketSolution}
         ).then(response => {
             console.log(response);
             window.location.reload();
