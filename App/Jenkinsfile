@@ -5,7 +5,7 @@ pipeline{
 
         stage("Step 1") {
             steps {
-                withCredentials(bindings: [usernamePassword(credentialsId: 'Nexus', passwordVariable: 'NexusPassword', usernameVariable: 'NexusUser'), usernamePassword(credentialsId: 'AWS', passwordVariable: 'aswSecretKey', usernameVariable: 'awsKey'), string(credentialsId: 'NexusIP', variable: 'NexusIP')]) {
+                withCredentials(bindings: [usernamePassword(credentialsId: 'NexusLogin', passwordVariable: 'NexusPassword', usernameVariable: 'NexusUser'), usernamePassword(credentialsId: 'AWSkeys', passwordVariable: 'awsSecretKey', usernameVariable: 'awsKey'), string(credentialsId: 'NexusIP', variable: 'NexusIP'), string(credentialsId: 'SecretKey', variable: 'secretKey'), string(credentialsId: 'Test RDS', variable: 'testURI'), string(credentialsId: 'Main RDS', variable: 'prodURI')]) {
                 // some block
                 // In the jenkinsVM, sign into DockerHub and Kubectl (as jenkins user?)
                 sh 'bash ./App/Scripts/logins.sh'
@@ -18,7 +18,7 @@ pipeline{
                 //Docker compose up -d (to build all the images (frontend and backend))          
                 sh 'cd ./App'
                 sh 'ls'
-                withCredentials(bindings: [usernamePassword(credentialsId: 'Nexus', passwordVariable: 'NexusPassword', usernameVariable: 'NexusUser'), usernamePassword(credentialsId: 'AWS', passwordVariable: 'aswSecretKey', usernameVariable: 'awsKey'), string(credentialsId: 'NexusIP', variable: 'NexusIP')]) {
+                withCredentials(bindings: [usernamePassword(credentialsId: 'NexusLogin', passwordVariable: 'NexusPassword', usernameVariable: 'NexusUser'), usernamePassword(credentialsId: 'AWSkeys', passwordVariable: 'awsSecretKey', usernameVariable: 'awsKey'), string(credentialsId: 'NexusIP', variable: 'NexusIP'), string(credentialsId: 'SecretKey', variable: 'secretKey'), string(credentialsId: 'Test RDS', variable: 'testURI'), string(credentialsId: 'Main RDS', variable: 'prodURI')]) {
                 dir('App')
                 {
                     sh 'docker-compose up -d'
@@ -42,7 +42,7 @@ pipeline{
                 // Pushing the images ran to nexus repository
                 dir('App/Scripts')
                 {
-                    withCredentials(bindings: [usernamePassword(credentialsId: 'Nexus', passwordVariable: 'NexusPassword', usernameVariable: 'NexusUser'), usernamePassword(credentialsId: 'AWS', passwordVariable: 'aswSecretKey', usernameVariable: 'awsKey'), string(credentialsId: 'NexusIP', variable: 'NexusIP')]) {
+                    withCredentials(bindings: [usernamePassword(credentialsId: 'NexusLogin', passwordVariable: 'NexusPassword', usernameVariable: 'NexusUser'), usernamePassword(credentialsId: 'AWSkeys', passwordVariable: 'awsSecretKey', usernameVariable: 'awsKey'), string(credentialsId: 'NexusIP', variable: 'NexusIP'), string(credentialsId: 'SecretKey', variable: 'secretKey'), string(credentialsId: 'Test RDS', variable: 'testURI'), string(credentialsId: 'Main RDS', variable: 'prodURI')]) {
                         sh 'bash image-push.sh'
                     }
                 }
@@ -52,12 +52,14 @@ pipeline{
             steps {
                 // Updating the kubernetes files (deployments, services, configmap, secrets) to pull latest image
                 dir('Infra/Kubernetes'){
-                    sh 'kubectl delete --aa pods -n project'
-                    sh 'kubectl create ns project'
-                    sh 'kubectl apply -f secrets.yaml'
-                    sh 'kubectl apply -f services.yaml'
-                    sh 'kubectl apply -f configmap.yaml'
-                    sh 'kubectl apply -f deployment.yaml'
+                    withCredentials(bindings: [usernamePassword(credentialsId: 'NexusLogin', passwordVariable: 'NexusPassword', usernameVariable: 'NexusUser'), usernamePassword(credentialsId: 'AWSkeys', passwordVariable: 'awsSecretKey', usernameVariable: 'awsKey'), string(credentialsId: 'NexusIP', variable: 'NexusIP'), string(credentialsId: 'SecretKey', variable: 'secretKey'), string(credentialsId: 'Test RDS', variable: 'testURI'), string(credentialsId: 'Main RDS', variable: 'prodURI')]) {
+                        sh 'kubectl delete --aa pods -n project'
+                        sh 'kubectl create ns project'
+                        sh 'kubectl apply -f secrets.yaml'
+                        sh 'kubectl apply -f services.yaml'
+                        sh 'kubectl apply -f configmap.yaml'
+                        sh 'kubectl apply -f deployment.yaml'
+                    }
                 }
             }
         }
