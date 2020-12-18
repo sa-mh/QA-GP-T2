@@ -27,6 +27,7 @@ A ticket would have the following fields:
  * description
  * urgency
  * time submitted
+ <br>
  A user would create a ticket, this would then be entered into a filterable list, whereby the user would be able to filter and search by topic, keyword, urgency and time order.
 
  As well as the base functionality, we had also been required to implement two additional functions. For these, our group had chosen the following:
@@ -115,9 +116,9 @@ We would like to acknowledge the contribution of our colleague Shaquille Rickets
 
 Trello : https://trello.com/b/C5f54Wkv/final-project-group-2 <br>
 Jira Board: https://sshahid.atlassian.net/secure/RapidBoard.jspa?projectKey=GRP2&rapidView=5# <br>
-Presentation: https://docs.google.com/presentation/d/1fCoc-SBS9Q4AhR2ujqA88gNCe8LzTho-nxHLKSiIheo/edit?usp=sharing
-Meeting Minutes: https://docs.google.com/document/d/13ec3HPhvutlPI8vnxUElQxeGXlUSlCxcmUcYQ8zwN2U/edit?usp=sharing
-Retrospective Meetings: https://docs.google.com/spreadsheets/d/1sreFU64bie0nRqOoTKejqML0XQxc4-_8SbXFbrQKbvs/edit?usp=sharing
+Presentation: https://docs.google.com/presentation/d/1fCoc-SBS9Q4AhR2ujqA88gNCe8LzTho-nxHLKSiIheo/edit?usp=sharing <br>
+Meeting Minutes: https://docs.google.com/document/d/13ec3HPhvutlPI8vnxUElQxeGXlUSlCxcmUcYQ8zwN2U/edit?usp=sharing <br>
+Retrospective Meetings: https://docs.google.com/spreadsheets/d/1sreFU64bie0nRqOoTKejqML0XQxc4-_8SbXFbrQKbvs/edit?usp=sharing <br>
 
 [jiraboard]: https://i.gyazo.com/99ec86602d2b217fb8fc3a91af10df64.png
 [riskassessment]: https://i.gyazo.com/acb26d26611dcc8ff12be482e395a9bf.png
