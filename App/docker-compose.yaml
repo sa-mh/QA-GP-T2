@@ -20,13 +20,3 @@ services:
       published: 3000
       protocol: tcp
      
-  nginx:
-    image: nginx:latest
-    ports:
-    - target: 81
-      published: 81
-      protocol: tcp
-    volumes:
-    - type: bind
-      source: ./frontend/nginx.conf
-      target: /etc/nginx/nginx.conf

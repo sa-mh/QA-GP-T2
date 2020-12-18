@@ -36,58 +36,58 @@ spec:
 ---
 
 
-# apiVersion: apps/v1
-# kind: Deployment
-# metadata:
-#   name: frontend
-#   namespace: project
-#   labels:
-#     app: frontend
-# spec:
-#   replicas: 3
-#   selector:
-#     matchLabels:
-#       app: frontend
-#   template:
-#     metadata:
-#       labels:
-#         app: frontend
-#     spec:
-#       containers:
-#       - name: frontend
-#         image: cptfalconator/frontend:latest
-#         imagePullPolicy: "Always"
-#         ports:
-#         - containerPort: 3000
-
----
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-app
+  name: frontend
   namespace: project
-  labels: 
-    app: nginx
+  labels:
+    app: frontend
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: nginx
+      app: frontend
   template:
     metadata:
       labels:
-        app: nginx
+        app: frontend
     spec:
       containers:
-      - name: nginx
-        image: nginx:latest
+      - name: frontend
+        image: cptfalconator/frontend:latest
+        imagePullPolicy: "Always"
         ports:
-        - containerPort: 80
-        volumeMounts:
-        - name: nginx-config
-          mountPath: /etc/nginx/conf.d
-      volumes:
-      - name: nginx-config
-        configMap:
-          name: nginx-config
+        - containerPort: 3000
+
+# ---
+
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: nginx-app
+#   namespace: project
+#   labels: 
+#     app: nginx
+# spec:
+#   replicas: 3
+#   selector:
+#     matchLabels:
+#       app: nginx
+#   template:
+#     metadata:
+#       labels:
+#         app: nginx
+#     spec:
+#       containers:
+#       - name: nginx
+#         image: nginx:latest
+#         ports:
+#         - containerPort: 80
+#         volumeMounts:
+#         - name: nginx-config
+#           mountPath: /etc/nginx/conf.d
+#       volumes:
+#       - name: nginx-config
+#         configMap:
+#           name: nginx-config
