@@ -83,12 +83,12 @@ module "rds-2" {
   rdsname            = "test-db"
 }
 
-// module "eks" {
-//   source             = "./eks"
-//   subnet_id          = module.subnets.subnet_id
-//   subnet2_id         = module.subnets.subnet2_id
-//   subnet3_id         = module.subnets.subnet3_id
-//   security_group_ids = [module.securitygroups.ssh_id]
-// }
+module "eks" {
+  source             = "./eks"
+  subnet_id          = module.subnets.subnet_id
+  subnet2_id         = module.subnets.subnet2_id
+  subnet3_id         = module.subnets.subnet3_id
+  security_group_ids = [module.securitygroups.ssh_id]
+}
 
 

@@ -4,7 +4,7 @@ services:
   
   backend:
     build: ./Backend
-    image: ${NexusIP}/backend:latest 
+    image: ${NexusUser}/backend:latest 
     container_name: backend
     ports:
     - target: 8081
@@ -13,10 +13,10 @@ services:
 
   frontend:
     build: ./frontend
-    image: ${NexusIP}/frontend:latest
+    image: ${NexusUser}/frontend:latest
     container_name: frontend
     ports:
-    - target: 5000
-      published: 80
+    - target: 80
+      published: 5000
       protocol: tcp
      

@@ -1,0 +1,13 @@
+DROP TABLE IF EXISTS `ticket` CASCADE;
+
+CREATE TABLE `ticket` (
+  	`id` BIGINT PRIMARY KEY AUTO_INCREMENT,
+  	`title` VARCHAR(30) NOT NULL,
+  	`issue` VARCHAR(200) NOT NULL,
+ 	`topic` VARCHAR(20) NOT NULL,
+ 	`submit_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ 	`urgency` INT NOT NULL,
+  	`status` VARCHAR(20) NOT NULL,
+  	`author` VARCHAR(20) NOT NULL,
+  	`solution` VARCHAR(200)
+);

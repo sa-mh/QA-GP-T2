@@ -1,3 +1,3 @@
 #!/bin/bash
-docker push ${NexusIP}/frontend:latest
-docker push ${NexusIP}/backend:latest
+docker push ${NexusUser}/frontend:latest
+docker push ${NexusUser}/backend:latest
