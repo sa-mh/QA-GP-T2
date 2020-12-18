@@ -11,7 +11,6 @@ describe('Posting Issues Testing',()=>{
     const d_topic= "React";
     const d_priority = "5";
     const d_priorityTag = "Very High";
-    const d_status = "Open";
     const d_author = "Anonymous";
 
     it('should check if the title updates', () => {
