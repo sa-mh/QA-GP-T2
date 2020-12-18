@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-config
+  namespace: project
+data:
+  default.conf: |
+    server {
+      listen 80;
+      root /build;
+      index index.html;
+      include /etc/nginx/mime.types;
+      location / {
+        try_files $uri $uri/ /;
+      }
+      location /backend {
+        proxy_pass http://backend:8081;
+      }
+    }

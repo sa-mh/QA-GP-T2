@@ -1,0 +1,8 @@
+- name: Copy kubectl-install.sh
+  copy:
+    src: kubectl-install.sh
+    dest: /root
+    owner: root
+
+- name: Run kubectl-install.sh
+  command: sh /root/kubectl-install.sh

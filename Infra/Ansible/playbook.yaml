@@ -1,0 +1,19 @@
+- hosts: Docker
+  become: true
+  roles: 
+  - Docker
+
+- hosts: Jenkins
+  become: true
+  roles: 
+  - Jenkins
+
+- hosts: AWS
+  become: true
+  roles:
+  - AWS
+
+- hosts: Kube
+  become: true
+  roles:
+  - Kube 

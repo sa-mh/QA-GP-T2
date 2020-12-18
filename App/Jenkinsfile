@@ -1,0 +1,72 @@
+
+pipeline{
+    agent any
+	stages{
+
+        stage("Logins") {
+            steps {
+                withCredentials(bindings: [usernamePassword(credentialsId: 'NexusLogin', passwordVariable: 'NexusPassword', usernameVariable: 'NexusUser'), usernamePassword(credentialsId: 'AWSkeys', passwordVariable: 'awsSecretKey', usernameVariable: 'awsKey'), string(credentialsId: 'NexusIP', variable: 'NexusIP'), string(credentialsId: 'SecretKey', variable: 'secretKey'), string(credentialsId: 'Test RDS', variable: 'testURI'), string(credentialsId: 'Main RDS', variable: 'prodURI')]) {
+                // some block
+                // In the jenkinsVM, sign into DockerHub and Kubectl (as jenkins user?)
+                sh 'bash ./App/Scripts/logins.sh'
+                }   
+                
+            }
+        }
+        stage("Docker Compose") {
+            steps {
+                //Docker compose up -d (to build all the images (frontend and backend))          
+                sh 'cd ./App'
+                sh 'ls'
+                withCredentials(bindings: [usernamePassword(credentialsId: 'NexusLogin', passwordVariable: 'NexusPassword', usernameVariable: 'NexusUser'), usernamePassword(credentialsId: 'AWSkeys', passwordVariable: 'awsSecretKey', usernameVariable: 'awsKey'), string(credentialsId: 'NexusIP', variable: 'NexusIP'), string(credentialsId: 'SecretKey', variable: 'secretKey'), string(credentialsId: 'Test RDS', variable: 'testURI'), string(credentialsId: 'Main RDS', variable: 'prodURI')]) {
+                dir('App')
+                {
+                    sh 'docker-compose up -d'
+                }
+            }
+                
+            }
+        }
+        stage("Run the backend and frontend tests") {
+            steps {
+                // Run the tests (npm test for frontend) (somehow test backend)
+                dir('App/Scripts')
+                {
+                sh 'bash frontend-tests.sh'
+                sh 'bash backend-tests.sh'
+                }
+            }
+        }
+        stage("Push the successful images to nexus repo") {
+            steps {
+                // Pushing the images ran to nexus repository
+                dir('App/Scripts')
+                {
+                    withCredentials(bindings: [usernamePassword(credentialsId: 'NexusLogin', passwordVariable: 'NexusPassword', usernameVariable: 'NexusUser'), usernamePassword(credentialsId: 'AWSkeys', passwordVariable: 'awsSecretKey', usernameVariable: 'awsKey'), string(credentialsId: 'NexusIP', variable: 'NexusIP'), string(credentialsId: 'SecretKey', variable: 'secretKey'), string(credentialsId: 'Test RDS', variable: 'testURI'), string(credentialsId: 'Main RDS', variable: 'prodURI')]) {
+                        sh 'bash image-push.sh'
+                    }
+                }
+            }
+        }
+        stage("Update the Kubernetes files") {
+            steps {
+                // Updating the kubernetes files (deployments, services, configmap, secrets) to pull latest image
+                
+                    withCredentials(bindings: [usernamePassword(credentialsId: 'NexusLogin', passwordVariable: 'NexusPassword', usernameVariable: 'NexusUser'), usernamePassword(credentialsId: 'AWSkeys', passwordVariable: 'awsSecretKey', usernameVariable: 'awsKey'), string(credentialsId: 'NexusIP', variable: 'NexusIP'), string(credentialsId: 'SecretKey', variable: 'secretKey'), string(credentialsId: 'Test RDS', variable: 'testURI'), string(credentialsId: 'Main RDS', variable: 'prodURI')]) {
+
+                        dir('Infra/Kubernetes'){
+                        sh 'kubectl delete --all pods -n project'
+                        sh 'kubectl delete ns project'
+                        sh 'kubectl create ns project'
+                        sh 'kubectl apply -f secrets.yaml'
+                        sh 'kubectl apply -f services.yaml'
+                        sh 'kubectl apply -f configmap.yaml'
+                        sh 'kubectl apply -f deployments.yaml'
+                    }
+                    
+                }
+            }
+        }
+    }
+}
+
