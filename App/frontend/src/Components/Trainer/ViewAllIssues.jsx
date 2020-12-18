@@ -14,7 +14,7 @@ const ViewAllIssues = () => {
     
     
     useEffect(() => {
-        axios.get("/api/ticket/findByStatus/Closed")
+        axios.get("http://localhost:8080/ticket/findByStatus/Closed")
             .then(response => {
                 response.data.map( (child) => {
                     if(child.status === "Closed" ){

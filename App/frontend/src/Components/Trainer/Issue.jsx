@@ -7,7 +7,7 @@ const Issue = (props) => {
     const [ticketSolution, setSolution] = useState(null);
     const closeTicket = () => {
         if(ticketSolution!=null){
-        axios.patch("/api/ticket/status/" + props.ticketId, {solution:ticketSolution}
+        axios.patch("http://localhost:8080/ticket/status/" + props.ticketId, {solution:ticketSolution}
         ).then(response => {
             console.log(response);
             window.location.reload();
