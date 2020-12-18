@@ -52,22 +52,20 @@ The project had been approached with Agile Methodology practises being followed.
 In order to break down the requirements, we had convereted these into user stories and then used them as product backlog items. Each backlog item was assigned story points (unanimously decided) and grouped by epics (functionality based). Product backlog items were then assigned to each sprint, therefore becoming part of the sprint backlog.
 This project had entailed 3 sprints in its entirity, which the backlog items for each sprint devided by the group in the weekly 'Start of Sprint' meeting.
 
-*INSERT SCREENSHOT OF JIRA BOARD HERE*
+![jriabpard][jiraboard]
 
 ### Risk Assessment
 In order to assess and minimise the chance of the project being impacted greatly by any external or internal threats, we had completed a Risk Assesment prior to starting the project. In doing so, this would allow for us to be prepared for potential threats and risks that we may face and therefore look to minimise and mitigate risks before they may arise.
 
-*INSERT SCREENSHOT OF RISK ASSESMENT HERE*
+![riskassessment][riskassessment]
 
 ### Entity Relationship Diagram
 Below is the attached entity relationship diagram for the project. Originally we attempted a multi relational architecture with 4 tables (trainer, trainee, ticket, ticket_trainee); however, due to time constraints, we had then stripped this down to a single ticket table architecture. The table with all fields are as shown below:
 
-*INSERT SCREENSHOT OF ERD HERE*
+![erd][erd]
 
 ### Team Meetings
 Due to this project following agile methodology, there was a set procedure/guideline we would follow, alongside any additions we had added on our own accord. At the start of each sprint, we would hold a 'Start of Sprint' meeting in order to discuss the sprint backlog items and associate members to each item. Each sprint was concluded with a Sprint Review and Sprint Retrospective. A link to all the meeting minutes and retrospectives can be found as below:
-
-*INSERT GOOGLE LINKS TO MEETING MINUTES AND RETROSPECTIVES*
 
 ## CI Pipeline
 For this project, we had decided on and aimed towards the following architecture diagram:
@@ -80,6 +78,8 @@ As shown in the above diagram, we had decided upon ....
 
 ### Jenkins
 
+![jenkinsci][jenkinsci]
+
 ## Testing
 
 ### Unit Tests
@@ -88,7 +88,7 @@ As shown in the above diagram, we had decided upon ....
 
 Integration testing was performed to verify that the system we created had the adequate behaviours and functionality. The many methods employed in this application were tested via jUnit5. Integration testing is a fundamental part of automated applications, and we managed to successfully achieve a coverage of ...
 
-INSERT IMAGE OF INTEGRATION TEST COVERAGE
+![apptests][apptests]
 
 ### Jest Testing
 
@@ -117,3 +117,8 @@ Presentation: https://docs.google.com/presentation/d/1fCoc-SBS9Q4AhR2ujqA88gNCe8
 Meeting Minutes: https://docs.google.com/document/d/13ec3HPhvutlPI8vnxUElQxeGXlUSlCxcmUcYQ8zwN2U/edit?usp=sharing
 Retrospective Meetings: https://docs.google.com/spreadsheets/d/1sreFU64bie0nRqOoTKejqML0XQxc4-_8SbXFbrQKbvs/edit?usp=sharing
 
+[jiraboard]: https://i.gyazo.com/99ec86602d2b217fb8fc3a91af10df64.png
+[riskassessment]: https://i.gyazo.com/acb26d26611dcc8ff12be482e395a9bf.png
+[erd]: https://i.gyazo.com/e453a59b8cf3b0afb10cd773a87aaa61.png
+[jenkinsci]: https://i.gyazo.com/10f8f9cf8a2d293771a681e48f025939.png
+[apptests]: https://i.gyazo.com/20ceafc050dcf217e3bf693b95411bcc.png
