@@ -7,7 +7,7 @@ data:
   default.conf: |
     server {
       listen 80;
-      root ./build;
+      root /build;
       index index.html;
       include /etc/nginx/mime.types;
       location / {
