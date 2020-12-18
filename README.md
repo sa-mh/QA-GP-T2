@@ -14,8 +14,8 @@
 	* [Github](#github)
 	* [Jenkins](#jenkins)
 * [Testing](#testing)
-	* [Unit Tests](#unit-tests)
-	* [Integration Tests](#integration-tests)
+	* [App Testing](#app-testing)
+	* [Jest Testing](#jest-testing)
 * [Application Navigation](#application-navigation)
 * [Acknowledgements](#acknowledgements)
 
@@ -83,15 +83,16 @@ As shown in the above diagram, we had decided upon ....
 
 ## Testing
 
-### Unit Tests
+### App Testing
 
-### Integration Tests
-
-Integration testing was performed to verify that the system we created had the adequate behaviours and functionality. The many methods employed in this application were tested via jUnit5. Integration testing is a fundamental part of automated applications, and we managed to successfully achieve a coverage of ...
+Integration and Unit testing was performed to verify that the system we created had the adequate behaviours and functionality. The many methods employed in this application were tested via jUnit5 and Mockito. Testing is a fundamental part of automated applications, and we managed to successfully achieve a coverage of 74% (application)
 
 ![apptests][apptests]
+![coverage][coverage]
 
 ### Jest Testing
+
+Jest testing is a form of Unit testing for the frontend, which shows that the system is behaving as it should with inputs and functions.
 
 ![jesttest][jesttest]
 
@@ -126,4 +127,5 @@ Retrospective Meetings: https://docs.google.com/spreadsheets/d/1sreFU64bie0nRqOo
 [cipipe]: https://i.gyazo.com/b76248ef0be868813a59b439c0613826.png
 [jenkinsci]: https://i.gyazo.com/10f8f9cf8a2d293771a681e48f025939.png
 [apptests]: https://i.gyazo.com/20ceafc050dcf217e3bf693b95411bcc.png
+[coverage]: https://i.gyazo.com/e50b02fb66c50222897341a64af973e7.png
 [jesttest]: https://i.gyazo.com/3deff2cf6e18982660cab74961972653.png
