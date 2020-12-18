@@ -9,10 +9,10 @@ describe('Posting Issues Testing',()=>{
     const d_issue= "I can't get Project 3 working!";
     const d_topicTag= "React";
     const d_topic= "React";
-    const d_priority = "1";
-    const d_priorityTag = "High";
+    const d_priority = "5";
+    const d_priorityTag = "Very High";
     const d_status = "Open";
-    const d_traineeid = "1";
+    const d_author = "Anonymous";
 
     it('should check if the title updates', () => {
         const {container} = render(<PostIssues/>);
@@ -54,12 +54,23 @@ describe('Posting Issues Testing',()=>{
         expect(priorityInput.value).toEqual(d_priority);
     });
 
+    it('should check if the issue updates', () => {
+        const {container} = render(<PostIssues/>);
+        const authorInput = container.querySelector('[id="author"]');
+        expect(authorInput.value).toEqual('');
+    
+        userEvent.type(authorInput,d_author);
+    
+        expect(authorInput.value).toEqual(d_author);
+    });    
+    
     it('should call the handleSubmit function for posting issues', async () => {
         const {container} = render(<PostIssues onSubmit={mockSubmitFunction}/>);
         const titleInput = container.querySelector('[id="title"]');
         const issueInput = container.querySelector('[id="issue"]');
         const topicInput = container.querySelector('[id="topic"]');
         const priorityInput = container.querySelector('[id="priority"]');
+        const authorInput = container.querySelector('[id="author"]');
         const issueSubmit = container.querySelector('[id="postButton"]');
         issueSubmit.onClick=mockSubmitFunction()
         
@@ -67,6 +78,7 @@ describe('Posting Issues Testing',()=>{
         userEvent.type(issueInput, d_issue);
         userEvent.selectOptions(topicInput, d_topicTag);
         userEvent.selectOptions(priorityInput, d_priorityTag);
+        userEvent.type(authorInput, d_author);
         fireEvent.click(issueSubmit);
     
         expect(mockSubmitFunction).toHaveBeenCalled();
@@ -78,7 +90,7 @@ describe('Posting Issues Testing',()=>{
             return new Promise(async(resolve, reject) => {
                 
                 const ip = useContext(IpContext);
-                let response = await fetch("api/ticket/getAll");
+                let response = await fetch("http://localhost:8080/ticket/getAll");
                 let issues = response.json(); 
 
                 for(let i=0; i<issues.length; i++){
