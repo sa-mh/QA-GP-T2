@@ -70,7 +70,7 @@ Due to this project following agile methodology, there was a set procedure/guide
 ## CI Pipeline
 For this project, we had decided on and aimed towards the following architecture diagram:
 
-*INSERT SCREENSHOT OF ARCHITECTURE DIAGRAM*
+![cipipe][cipipe]
 
 As shown in the above diagram, we had decided upon ....
 
@@ -91,6 +91,8 @@ Integration testing was performed to verify that the system we created had the a
 ![apptests][apptests]
 
 ### Jest Testing
+
+![jesttest][jesttest]
 
 ### User Design
 
@@ -120,5 +122,7 @@ Retrospective Meetings: https://docs.google.com/spreadsheets/d/1sreFU64bie0nRqOo
 [jiraboard]: https://i.gyazo.com/99ec86602d2b217fb8fc3a91af10df64.png
 [riskassessment]: https://i.gyazo.com/acb26d26611dcc8ff12be482e395a9bf.png
 [erd]: https://i.gyazo.com/e453a59b8cf3b0afb10cd773a87aaa61.png
+[cipipe]: https://i.gyazo.com/b76248ef0be868813a59b439c0613826.png
 [jenkinsci]: https://i.gyazo.com/10f8f9cf8a2d293771a681e48f025939.png
 [apptests]: https://i.gyazo.com/20ceafc050dcf217e3bf693b95411bcc.png
+[jesttest]: https://i.gyazo.com/3deff2cf6e18982660cab74961972653.png
