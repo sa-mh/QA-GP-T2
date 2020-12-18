@@ -1,15 +1,13 @@
-import React, { useEffect, useState, useContext} from 'react'
+import React, { useEffect, useState} from 'react'
 import axios from 'axios'
 import Issue from './Issue';
 import RespondedIssuesProps from './RespondedIssuesProps';
-import IpContext from '../../IpContext';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom'
 
 
 const ViewAllIssues = () => {
 
-    const ip = useContext(IpContext);
     const [data, setData] = useState([]);
     const [respondedData, setRespondedData] = useState([]);
 

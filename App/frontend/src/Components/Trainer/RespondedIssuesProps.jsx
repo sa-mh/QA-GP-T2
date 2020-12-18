@@ -1,13 +1,10 @@
 import React from 'react';
 import axios from 'axios'
-import IpContext from '../../IpContext'
-import { useContext } from 'react';
 
 
 
 const RespondedIssuesProps =  (props) => {
 
-    const ip = useContext(IpContext);
     const deleteTicket = () => {
         axios.delete("/api/ticket/remove/" + props.ticketId, {
             headers: {

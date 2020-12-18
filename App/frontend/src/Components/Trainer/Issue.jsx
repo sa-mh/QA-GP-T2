@@ -1,12 +1,10 @@
 import React from 'react'
 import axios from 'axios'
-import IpContext from '../../IpContext'
-import { useContext, useState } from 'react';
+import {useState } from 'react';
 
 const Issue = (props) => {
 
     const [ticketSolution, setSolution] = useState(null);
-    const ip = useContext(IpContext);
     const closeTicket = () => {
         if(ticketSolution!=null){
         axios.patch("/api/ticket/status/" + props.ticketId, {solution:ticketSolution}

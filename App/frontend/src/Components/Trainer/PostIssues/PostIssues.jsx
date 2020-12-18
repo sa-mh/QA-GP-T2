@@ -1,22 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Issue from '../../Trainer/Issue';
-import IpContext from '../../../IpContext'
-import { useContext } from 'react';
 import { Link } from 'react-router-dom'
-import ManageIssues from '../ManageIssues';
 import SearchableIssues from "./SearchableIssues";
 
 
 const PostIssues = props => {
 
-    const ip = useContext(IpContext);
     const [ticketTitle, setTitle] = useState("");
     const [ticketIssue, setIssue] = useState("");
     const [ticketTopic, setTopic] = useState("");
     const [ticketPriority, setPriority] = useState("");
     const [author, setAuthor] = useState("Anonymous");
-    const [userDetails, setuserDetails] = useState(props.location.state);
     const [search, setSearch] = useState("");
     const [data, setData] = useState([]);
 
@@ -28,7 +23,6 @@ const PostIssues = props => {
             title: ticketTitle,
             issue: ticketIssue,
             topic: ticketTopic,
-            submitDate: null,
             urgency: ticketPriority,
             status: "Open",
             author: author
@@ -43,7 +37,7 @@ const PostIssues = props => {
 
 
     const sendProps =() => {
-        props.history.push({pathname: "/viewAllIssues", state: userDetails});
+        props.history.push({pathname: "/viewAllIssues"});
     }
 
     return (
