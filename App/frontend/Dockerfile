@@ -4,8 +4,6 @@ COPY . ./
 
 RUN ["npm", "install"]
 
-EXPOSE 3000
-
 RUN ["npm", "run", "build"]
 
 FROM nginx:latest as hostnginx
