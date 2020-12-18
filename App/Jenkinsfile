@@ -3,7 +3,7 @@ pipeline{
     agent any
 	stages{
 
-        stage("Step 1") {
+        stage("Logins") {
             steps {
                 withCredentials(bindings: [usernamePassword(credentialsId: 'NexusLogin', passwordVariable: 'NexusPassword', usernameVariable: 'NexusUser'), usernamePassword(credentialsId: 'AWSkeys', passwordVariable: 'awsSecretKey', usernameVariable: 'awsKey'), string(credentialsId: 'NexusIP', variable: 'NexusIP'), string(credentialsId: 'SecretKey', variable: 'secretKey'), string(credentialsId: 'Test RDS', variable: 'testURI'), string(credentialsId: 'Main RDS', variable: 'prodURI')]) {
                 // some block
@@ -13,7 +13,7 @@ pipeline{
                 
             }
         }
-        stage("Step 2") {
+        stage("Docker Compose") {
             steps {
                 //Docker compose up -d (to build all the images (frontend and backend))          
                 sh 'cd ./App'
