@@ -41,7 +41,7 @@ metadata:
   namespace: project
 spec:
   selector:
-    app: nginx
+    app: frontend
   ports:
   - protocol: TCP
     port: 80
