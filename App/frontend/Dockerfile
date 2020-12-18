@@ -8,9 +8,6 @@ EXPOSE 3000
 
 RUN ["npm", "run", "build"]
 
-RUN ["npm", "install", "-g", "serve"]
-
-
 FROM nginx:latest as hostnginx
 
 #Copy static files from the build folder from the first stage
@@ -20,5 +17,3 @@ COPY --from=reactbuild . .
 COPY ./nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 80
-
-ENTRYPOINT ["serve",  "-s", "build"]
