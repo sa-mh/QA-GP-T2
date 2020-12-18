@@ -81,6 +81,10 @@ The repository shwon was initially an EC2 running nexus however due to changes t
 
 ### Github
 
+We used Github as our source code manager. We used git as it allowed us to work cooperatively and simultaneously on the project files. With the different branches for different features and stages, we were able to effectively organise our work and merge the branches together to join the changes when we saw fit.
+
+Another benefit of using Github was that it is compatible with the Jenkins pipeline and, had everything worked successfully, allows for webhooks to have jenkins pull down any changes and automatically build the new files thus automating the deployment of any updates.
+
 ### Jenkins
 
 The Jenkins pipeline was split into five stages. The first stage, 'Step 1' was the logging into the dockerhub account as well as configuring the AWS keys. In order to securely do this, the pipeline used pre-defined credentials so that the jenkinsfile could be securely uploaded to git.
