@@ -42,3 +42,4 @@ build/
 /.metadata/
 /bin/
 
+App/frontend/package-lock.json
