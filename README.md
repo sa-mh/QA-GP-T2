@@ -73,11 +73,27 @@ For this project, we had decided on and aimed towards the following architecture
 
 ![cipipe][cipipe]
 
-As shown in the above diagram, we had decided upon ....
+As shown in the above diagram, we had decided upon an architecture would would have had the app as the only instance publicaly available to the end users. The majority of the infrastructure was to be inside a private subnet that only the initial terraform EC2 and the EKS cluster was able to access. There was a second private subnet in a second availability zone that only the RDS instances would be in. This was due to the RDS's needed to be spread across multiple availability zones.
+
+The users would have accessed the site through the internet gateway into the VPC and through to the EKS. The EKS also would be in multiple availability zones in order to reduce any down time as pods could then be spread to reduce the chances of hardware issues on AWS's side from causing outages to the entire infrastructure.
+
+The repository shwon was initially an EC2 running nexus however due to changes the repository is now dockerhub.
 
 ### Github
 
 ### Jenkins
+
+The Jenkins pipeline was split into five stages. The first stage, 'Step 1' was the logging into the dockerhub account as well as configuring the AWS keys. In order to securely do this, the pipeline used pre-defined credentials so that the jenkinsfile could be securely uploaded to git.
+
+'Step 2' was just the creation of the docker images through the use of the docker-compose.
+
+The third step was supposed to run both of the backend and the front end tests. Unfortunately due to us being unable to get the app succesfully deployed, we never progressed to running the tests through jenkins. The tests that had been created weren't ran here as it would have increased the pipeline build times by a considerable amount when you consider the amount of builds that went through the pipeline.
+
+The next stage pushed the images created in Step 2 to either dockerhub or to nexus depending on which version was being ran. When pushing to nexus, the IP address of the repository was hidden through a jenkins credential.
+
+The final stage was the push to kubernetes. We were able to get the clusters and pods configured to run the images for both the front and back end of the application each time through running the respective kubectl apply commands. 
+
+The overall length of the jenkins pipeline build were very dependant on if they had to create and push a new docker image. The average length of runtime for the jenkins builds over 71 builds was 2 minutes and 19 seconds.
 
 ![jenkinsci][jenkinsci]
 
