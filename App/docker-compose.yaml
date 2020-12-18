@@ -1,0 +1,22 @@
+version: "3.7"
+
+services:
+  
+  backend:
+    build: ./Backend
+    image: ${NexusUser}/backend:latest 
+    container_name: backend
+    ports:
+    - target: 8081
+      published: 8081
+      protocol: tcp
+
+  frontend:
+    build: ./frontend
+    image: ${NexusUser}/frontend:latest
+    container_name: frontend
+    ports:
+    - target: 80
+      published: 5000
+      protocol: tcp
+     

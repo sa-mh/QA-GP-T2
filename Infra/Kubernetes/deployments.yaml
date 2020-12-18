@@ -1,0 +1,93 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: project
+  labels: 
+    app: backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: cptfalconator/backend:latest
+        imagePullPolicy: "Always"
+        ports:
+        - containerPort: 8080
+        env:
+        - name: DATABASE_URI
+          valueFrom:
+            secretKeyRef:
+              name: secretsql
+              key: database-uri
+        - name: SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: secretsql
+              key: secret-key
+
+---
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: project
+  labels:
+    app: frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: cptfalconator/frontend:latest
+        imagePullPolicy: "Always"
+        ports:
+        - containerPort: 5000
+
+# ---
+
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: nginx-app
+#   namespace: project
+#   labels: 
+#     app: nginx
+# spec:
+#   replicas: 3
+#   selector:
+#     matchLabels:
+#       app: nginx
+#   template:
+#     metadata:
+#       labels:
+#         app: nginx
+#     spec:
+#       containers:
+#       - name: nginx
+#         image: nginx:latest
+#         ports:
+#         - containerPort: 80
+#         volumeMounts:
+#         - name: nginx-config
+#           mountPath: /etc/nginx/conf.d
+#       volumes:
+#       - name: nginx-config
+#         configMap:
+#           name: nginx-config
