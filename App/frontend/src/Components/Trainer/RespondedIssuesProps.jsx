@@ -6,7 +6,7 @@ import axios from 'axios'
 const RespondedIssuesProps =  (props) => {
 
     const deleteTicket = () => {
-        axios.delete("/api/ticket/remove/" + props.ticketId, {
+        axios.delete("http://localhost:8080/ticket/remove/" + props.ticketId, {
             headers: {
                 'Access-Control-Allow-Origin' : '*',     
                 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH'   

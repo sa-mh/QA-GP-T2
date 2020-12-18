@@ -19,7 +19,7 @@ const PostIssues = props => {
 
     const post_newIssue = (e) => {
         e.preventDefault();
-        axios.post("/api/ticket/create", {
+        axios.post("http://localhost:8080/ticket/create", {
             title: ticketTitle,
             issue: ticketIssue,
             topic: ticketTopic,
